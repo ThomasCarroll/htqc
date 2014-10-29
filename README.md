@@ -45,6 +45,7 @@ If you have a question about present or future analysis or require analysis supp
 > **Reproducibility of Research**
 > The bioinformatics team works to ensure that all data and analyses are not only of **high quality** but also **reproducible** by external examiners.
 > To ensure this, the bioinformatics team implements tracking of analysis project using [Redmine](http://www.redmine.org/) and controls versions and analysis methods using tools such as [knitr](http://yihui.name/knitr/) and [packrat](http://rstudio.github.io/packrat/) R libraries.
+
 Software
 -------------
 The Bioinformatics team focuses on the development of Bioinformatics software for high-throughput analysis, quality control and visualization of biological data relevant to our work at the CSC. All sofware developed is publically available through our github site or from online, peer-reviewed repositories.
