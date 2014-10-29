@@ -7,9 +7,9 @@ The Bioinformatics team provides Bioinformatics analysis, support, training and 
 
 The core Bioinformatics team consists of 3 section bioinformaticians working within their relevant sections and alongside their academic advisors.
 
-*   Head Of Bioinformatics - Thomas Carroll [thomas.carroll@csc.mrc.ac.uk](thomas.carroll@csc.mrc.ac.uk)
-*   Epigenetics - Gopuraja Dharmalingham [gopuraja.dharmalingam@csc.mrc.ac.uk](thomas.carroll@csc.mrc.ac.uk)
-*   Genes And Metabolism - Sanjay Khadayate [sanjay.khadayate@csc.mrc.ac.uk](sanjay.khadayate@csc.mrc.ac.uk)
+*   Head Of Bioinformatics - Thomas Carroll (thomas.carroll@csc.mrc.ac.uk)
+*   Epigenetics - Gopuraja Dharmalingham (thomas.carroll@csc.mrc.ac.uk)
+*   Genes And Metabolism - Sanjay Khadayate (sanjay.khadayate@csc.mrc.ac.uk)
 *   Integrative Biology - TBD 
 
 
@@ -27,7 +27,7 @@ Examples of typical experimental design tasks:-
 *  Design for differential occupancy of epigenetic factors by ChIP-seq.
 *  Choice of sequencing parameters for differential splicing analysis.
 
-If you would like to consult on the design or required power of upcoming or present experiments please contact Thomas Carroll [thomas.carroll@csc.mrc.ac.uk](thomas.carroll@csc.mrc.ac.uk).
+If you would like to consult on the design or required power of upcoming or present experiments please contact Thomas Carroll (thomas.carroll@csc.mrc.ac.uk).
 Analysis Support
 -------------
 The bioinformatics team provides analysis support for all biological data. The team has a large pool of experience in analysis support from initial data processing and QC through to publication. 
@@ -40,7 +40,7 @@ Example of analysis projects.
 *	Evaluation of genes important to survival after treatment using shRNA-seq.
 *	Identification of transcript selection and differential exon usage in RNA-seq data.
 
-If you have a question about present or future analysis or require analysis support please contact the relevant section bioinformatician or Thomas Carroll [thomas.carroll@csc.mrc.ac.uk](thomas.carroll@csc.mrc.ac.uk).
+If you have a question about present or future analysis or require analysis support please contact the relevant section bioinformatician or Thomas Carroll (thomas.carroll@csc.mrc.ac.uk).
 
 > **Reproducibility of Research**
 > The bioinformatics team works to ensure that all data and analyses are not only of **high quality** but also **reproducible** by external examiners.
@@ -62,7 +62,7 @@ Training and Seminars
 
 The Bioinformatics team provides ad-hoc training for biologists as well as training courses covering topics such as ChIP-seq analysis, data visualisation etc.
 
-All course material is made publicly available and in the new year (*2015*), the core will be running training for basic ChIP-seq and RNA-seq analysis. For details on upcoming courses see our [Github site](https://github.com/ThomasCarroll/bioinformatics-training) or contact Thomas Carroll [thomas.carroll@csc.mrc.ac.uk](thomas.carroll@csc.mrc.ac.uk).
+All course material is made publicly available and in the new year (*2015*), the core will be running training for basic ChIP-seq and RNA-seq analysis. For details on upcoming courses see our [Github site](https://github.com/ThomasCarroll/bioinformatics-training) or contact Thomas Carroll (thomas.carroll@csc.mrc.ac.uk).
 
 > Current training material can be found at
 > https://github.com/ThomasCarroll/bioinformatics-training
@@ -71,6 +71,6 @@ As well as training in Bioinformatics methods, the Bioinformatics team can offer
 
 In conjuction to the training, the Bioinformatics Core hosts the "Meet the Geek" seminars which contain bioinformatics talks from external and internal speakers aiming to highlight the latest in bioinformatics techniques.
 
-If you would like to have advice on using our local computing cluster, bioinformatics training or information about our "Meet the Geek" seminars please contact Thomas Carroll [thomas.carroll@csc.mrc.ac.uk](thomas.carroll@csc.mrc.ac.uk).
+If you would like to have advice on using our local computing cluster, bioinformatics training or information about our "Meet the Geek" seminars please contact Thomas Carroll (thomas.carroll@csc.mrc.ac.uk).
 
 > **Note:**  A later version of this document may exist on our [webpage](http://mrccsc.github.io/)
