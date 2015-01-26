@@ -2159,6 +2159,9 @@ Result <- t.test(tTestExample$A,tTestExample$B,alternative ="two.sided",
 Result
 ```
 
+T-test example (Unequal variance)
+=========================================================
+
 To compare groups of unequal variance then the var.equal argument may be set to FALSE (which is the default).
 ```{r}
 Result <- t.test(tTestExample$A,tTestExample$C,alternative ="two.sided",
@@ -2167,20 +2170,18 @@ Result
 
 ```
 
-T-test example (Assess variance)
+T-test example 
 =========================================================
 
 The same result to that shown could be achieved by specify a formula for the comparison.
 Here we wish to compare column A versus B so we could simply specify the formula and the data to be used.
 
-
 ```{r}
-longFrame <- data.frame(Group = c(rep("A",nrow(tTestExample)),rep("B",nrow(tTestExample)))
-                          ,Value=c(tTestExample$A,tTestExample$B))
+longFrame <- data.frame(Group = c(rep("A",nrow(tTestExample)),rep("B",nrow(tTestExample))), Value=c(tTestExample$A,tTestExample$B))
 
-Result <- t.test(Value~Group,longFrame,alternative ="two.sided",
+result <- t.test(Value~Group,longFrame,alternative ="two.sided",
                  var.equal = T)
-Result
+result$statistic
 ```
 
 
