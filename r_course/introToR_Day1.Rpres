@@ -144,6 +144,42 @@ If you need to see how a function works try **?** infront of function name.
 
 Lets run **?sqrt** in RStudio and look at the help.
 
+Using functions (Arguments have names and order)
+========================================================
+
+With functions such as mean() and sqrt(), the arguments to be provided are obvious and the order of these arguments doesnt matter.
+
+```{r}
+mean(5,4,6)
+mean(6,4,5)
+```
+
+Many functions however have an order to their arguments.
+Try and look at the arguments for the dir() function.
+
+```
+?dir
+```
+Using functions (Setting names for arguments)
+========================================================
+
+Often we know the names of arguments but not necessarily their order.
+In cases where we want to be sure we specify the right argument, we provide names for the arguments used.
+
+```{r,eval=F}
+dir()
+dir(full.names=T)
+```
+
+This also means we don't have to copy out all the defaults for arguments preceeding it.
+
+```{r,eval=F}
+dir(full.names=T)
+# Is equivalent to...
+dir(".",NULL,FALSE,T)
+```
+
+
 Variables (1/2)
 ========================================================
 
@@ -477,13 +513,13 @@ When creating a matrix using **cbind()** or **matrix()** from incompatable vecto
 
 
 ```{r}
-recycledMatrix1 <- cbind(x,z)
-recycledMatrix2 <- matrix(1:10,ncol=5,nrow=3)
+recycledMatrix2 <- matrix(1:5,ncol=2,nrow=3)
+recycledMatrix2
 ```
 ***
 For **rbind()** function longer vector is clipped.
 ```{r}
-recycledMatrix3 <- rbind(recycledMatrix1,y)
+recycledMatrix3 <- rbind(recycledMatrix2,c(1:5))
 recycledMatrix3
 ```
 
@@ -703,14 +739,13 @@ We saw that with matrices you can only have one type of data. We tried to create
 
 In practice, we would want to have a table which is a mixture of types (e.g a table with samplenames (character), sampletype (factor) and survival time (numeric))
 
-In R, we make use of the data.frame object which allows us to store different data types in one container. To create a data frame we can simply use the data.frame() function.
+In R, we make use of the data.frame object which allows us to store tables with columns of different data types in one container. To create a data frame we can simply use the data.frame() function.
 
 ```{r}
 patientName <- c("patient1","patient2","patient3","patient4")
 patientType <- factor(rep(c("male","female"),2))
 survivalTime <- c(1,30,2,20)
-
-dfExample <- data.frame(Name=patientName,Type=patientType,Survival_Time=survivalTime)
+dfExample <- data.frame(Name=patientName, Type=patientType,Survival_Time=survivalTime)
 dfExample
 ```
 
@@ -729,7 +764,7 @@ dfExample[dfExample[,"Survival_Time"] > 10,]
 Data.frames (3/) - Indexing and replacement
 =========================================================
 
-Unlike matrices however, certain columns can not be replaced. Numeric columns may have their values replaced but columns with character values may not.This occurs because character vectors are treated as vectors by default.
+Unlike matrices however, certain columns can not be replaced. Numeric columns may have their values replaced but columns with character values may not.This occurs because character vectors are treated as factors by default.
 
 
 ```{r}
@@ -769,7 +804,7 @@ The **$** operator allows for the creation of new columns for a data frame on th
 
 ```{r}
 dfExample
-dfExample$new <- rep("newData",nrow(dfExample))
+dfExample$newColumn <- rep("newData",nrow(dfExample))
 dfExample
 ```
 
@@ -830,7 +865,7 @@ Data.frames (Ordering data.frames)
 Since the order argument returns an index of intended order for vector, we can use the order() function to order Data.frames by certain columns
 ```{r}
 dfExample
-dfExample[order(dfExample$Surv,decreasing=T),]
+dfExample[order(dfExample$Surv, decreasing=T),]
 ```
 ***
 We can also use order to arrange multiple columns in a data.frame by providing multiple vectors to order() function. Ordering will be performed in order of arguments.
@@ -871,7 +906,7 @@ Lists
 
 Lists are the final data-type we will look. 
 
-In R, lists provide a general container which may hold any data-type as part of its elements.
+In R, lists provide a general container which may hold any data-types of unequal lengths as part of its elements.
 To create a list we can simply use the list() function with arguments specifying the data we wish to include in the list.
 
 ```{r}
@@ -969,8 +1004,6 @@ id: reading
 
 Data from External sources
 =========================================================
-http://www.computerworld.com/article/2497164/business-intelligence-beginner-s-guide-to-r-get-your-data-into-r.html?page=4
-
 
 Most of the time, you will not be generating data in R but will be importing data from external files.
 
@@ -991,48 +1024,75 @@ kable(minRepdf)
 Data from text file
 =========================================================
 
-Tables can be read with read.table function
-point out rownames argument
+Tables from text files can be read with **read.table()** function
 
-Notes!
+```{r,echo=T}
+Table <- read.table("readThisTable.csv",sep=",",header=T)
+Table[1:4,1:3]
+```
+
+Here we have provided two arguments. 
+- **sep** argument specifies how columns are separated in our text file. ("," for .csv, "\t" for .tsv)
+- **header** argument specifies whether columns have headers.
+
+Data from text file
 =========================================================
 
-Good example for reproducibility!
+Read.table() allows for significant control over reading files through its has many arguments. Have a look at options by using **?read.table**
 
-https://support.rstudio.com/hc/en-us/articles/200552086-Using-R-Markdown
+The row.names() argument can be used to specify a column to use as rownames for the resulting data frame. Here we use the first column as row names.
 
+```{r,echo=T}
+Table <- read.table("readThisTable.csv",sep=",",header=T,row.names=1)
+Table[1:4,1:3]
+```
 
-Add part of making notebooks from r scripts 
-http://rmarkdown.rstudio.com/r_notebook_format.html
-
-
-http://quadroideas.com/great-google-font-combinations-ready-use/
-
-
-2. Importing data files using the scan function
-
-The scan function is an extremely flexible tool for importing data.  Unlike the read.table function, however, which returns a data frame, the scan function returns a list or a vector. This makes the scan function less useful for inputting "rectangular" data such as the car data set that will been seen in later examples. In the previous example we input first numeric data and then string data directly from the console; in the following example, we input a text file. For the what option, we use list and then list the variables, and after each variable, we tell R what type of variable (e.g., numeric, string) it is. In the first example, the first variable is age, and we tell R that age is a numeric variable by setting it equal to 0. The second variable is called name, and it is denoted as a string variable by the empty quote marks.  In the second example, we list NULL first, indicating that we do not want the first variable to be read. After using the scan function, we use the sapply function, which makes a list out of a vector of names in x.
-
-# inputting a text file and outputting a list
-(x <- scan("http://www.ats.ucla.edu/stat/data/scan.txt", what = list(age = 0,
-    name = "")))
-## $age
-## [1] 12 24 35 20
-## 
-## $name
-## [1] "bobby"   "kate"    "david"   "michael"
-
-Data from clipboard
+Data from text files
 =========================================================
 
-from Rstudio
+As mentioned, data which is read into R through read.table() will be of data frame class.
+
+To avoid character columns being converted into factors, we can specify the stringsAsFactors argument here.
+
+```{r,echo=T}
+Table <- read.table("readThisTable.csv",sep=",",header=T,stringsAsFactors=F)
+```
+
+Other very useful functions for read table include:
+- **skip** - To set number of lines to skip when reading.
+- **comment.char** - To set the start identifier for lines not to be read.
+
+Data from file columns
 =========================================================
 
-Data from XLS
+read.table() function will by defualt read every row and column of a file.
+
+The **scan()** function allows for the selection of particular columns to be read into R and so can save memory when files are large. 
+
+
+```{r,echo=T}
+x <- scan("readThisTable.csv",sep=",",
+what = list("",NULL,NULL,NULL,NULL,NULL,NULL),skip=1)
+x[1:3]
+```
+
+Writing data to file
 =========================================================
 
-Data from dput
-=========================================================
+Once we have our data analysed in R, we will want to export it to a file. 
+
+The most common method is to use the write.table() function
+
+```{r,echo=T}
+write.table(Table,file="writeThisTable.csv",sep=",")
+```
+
+Since our data has column names but no row names, I will provide the arguments col.names and row.names to write.table()
+
+```{r,echo=T}
+write.table(Table,file="writeThisTable.csv", sep=",", row.names =F,col.names=T)
+```
+
 
 
 Plotting in R
@@ -2193,10 +2253,37 @@ Interpreting output of lm() (Per variable p-values and the F-statistic)
 summary(lmResult)
 ```
 
-http://rstudio-pubs-static.s3.amazonaws.com/23247_8af1a386e4184c95bb36ba7a6ea0f699.html
-
 The results from linear models also provides a measure of significance for a variable not being relevant in **Pr(>|t|)** column. A low p-value suggests the variable is useful in prediction of the dependent variable.
 
+
+Notes!
+=========================================================
+http://rstudio-pubs-static.s3.amazonaws.com/23247_8af1a386e4184c95bb36ba7a6ea0f699.html
+
+Good example for reproducibility!
+
+https://support.rstudio.com/hc/en-us/articles/200552086-Using-R-Markdown
+
+
+Add part of making notebooks from r scripts 
+http://rmarkdown.rstudio.com/r_notebook_format.html
+
+
+http://quadroideas.com/great-google-font-combinations-ready-use/
+
+
+2. Importing data files using the scan function
+
+The scan function is an extremely flexible tool for importing data.  Unlike the read.table function, however, which returns a data frame, the scan function returns a list or a vector. This makes the scan function less useful for inputting "rectangular" data such as the car data set that will been seen in later examples. In the previous example we input first numeric data and then string data directly from the console; in the following example, we input a text file. For the what option, we use list and then list the variables, and after each variable, we tell R what type of variable (e.g., numeric, string) it is. In the first example, the first variable is age, and we tell R that age is a numeric variable by setting it equal to 0. The second variable is called name, and it is denoted as a string variable by the empty quote marks.  In the second example, we list NULL first, indicating that we do not want the first variable to be read. After using the scan function, we use the sapply function, which makes a list out of a vector of names in x.
+
+# inputting a text file and outputting a list
+(x <- scan("http://www.ats.ucla.edu/stat/data/scan.txt", what = list(,
+    name = "")))
+## $age
+## [1] 12 24 35 20
+## 
+## $name
+## [1] "bobby"   "kate"    "david"   "michael"
 
 Maybe talk about using  
 
@@ -2217,4 +2304,15 @@ You can make comments in notes
 
 You can speed up by using certain order..
 
+Data from clipboard
+=========================================================
+
+from Rstudio
+=========================================================
+
+Data from XLS
+=========================================================
+
+Data from dput
+=========================================================
 
