@@ -41,7 +41,7 @@ What is R to you?
 In particular, [Robert Gentleman](http://www.gene.com/scientists/our-scientists/robert-gentleman) developed the **[Bioconductor](http://bioconductor.org/)** project where 100s of packages are directly related to Biology and analysis of associated high-throughput experiments.
 ***
 
-![alt text](RCitations.jpeg)
+![alt text](imgs/RCitations.jpeg)
 
 How to get R?
 ========================================================
@@ -55,8 +55,8 @@ Rstudio provides extended GUI and is also freely available from [Rstudio site](h
 ***We will be using Rstudio and R already installed on your machines.***
 
 ***
-![alt text](cran.jpeg)
-![alt text](rstudio.jpeg)
+![alt text](imgs/cran.jpeg)
+![alt text](imgs/rstudio.jpeg)
 
 A quick tour of Rstudio
 ========================================================
@@ -69,7 +69,7 @@ Four main panels
 
 ***
 
-![alt text](rstudioBlank.jpeg)
+![alt text](imgs/rstudioBlank.jpeg)
 
 
 R Basics

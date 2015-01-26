@@ -41,7 +41,7 @@ What is R to you?
 In particular, [Robert Gentleman](http://www.gene.com/scientists/our-scientists/robert-gentleman) developed the **[Bioconductor](http://bioconductor.org/)** project where 100s of packages are directly related to Biology and analysis of associated high-throughput experiments.
 ***
 
-![alt text](RCitations.jpeg)
+![alt text](imgs/RCitations.jpeg)
 
 How to get R?
 ========================================================
@@ -55,8 +55,8 @@ Rstudio provides extended GUI and is also freely available from [Rstudio site](h
 ***We will be using Rstudio and R already installed on your machines.***
 
 ***
-![alt text](cran.jpeg)
-![alt text](rstudio.jpeg)
+![alt text](imgs/cran.jpeg)
+![alt text](imgs/rstudio.jpeg)
 
 A quick tour of Rstudio
 ========================================================
@@ -69,7 +69,7 @@ Four main panels
 
 ***
 
-![alt text](rstudioBlank.jpeg)
+![alt text](imgs/rstudioBlank.jpeg)
 
 
 R Basics
@@ -1668,16 +1668,20 @@ Most of the time, you will not be generating data in R but will be importing dat
 A standard format for this data is a table
 
 
+```
+
+
 |Gene_Name | Sample_1.hi| Sample_2.hi| Sample_3.hi| Sample_4.low| Sample_5.low| Sample_1.low|
 |:---------|-----------:|-----------:|-----------:|------------:|------------:|------------:|
-|Gene_a    |    3.752367|    4.853861|    3.607263|     3.853637|     5.887618|     5.101951|
-|Gene_b    |    4.049016|    3.462264|    3.791943|     1.666407|     3.292474|     3.310644|
-|Gene_c    |    2.730952|    3.000348|    4.223289|     2.756465|     3.788959|     2.493706|
-|Gene_d    |    2.962650|    3.611771|    3.093945|     9.187103|     6.139143|     7.460040|
-|Gene_e    |    9.804542|   10.957274|   10.126536|     3.409751|     3.075932|     3.159790|
-|Gene_f    |   10.560819|    9.208478|    9.957277|     2.258216|     2.195940|     2.952456|
-|Gene_g    |   10.567476|   10.085956|   10.300767|     8.889260|     8.370269|     8.470803|
-|Gene_h    |   10.715686|    9.750546|    8.846629|    11.001076|    10.005059|    10.027232|
+|Gene_a    |       3.572|       4.561|       3.394|        3.858|        2.837|        4.229|
+|Gene_b    |       3.205|       4.087|       4.237|        2.272|        4.723|        2.558|
+|Gene_c    |       3.904|       3.792|       3.145|        4.424|        1.933|        3.916|
+|Gene_d    |       4.148|       4.971|       4.517|        8.411|        8.345|        7.825|
+|Gene_e    |      11.277|       9.428|       9.941|        4.844|        3.089|        3.483|
+|Gene_f    |       9.691|       8.847|      10.328|        3.024|        1.571|        3.691|
+|Gene_g    |      10.512|       8.113|      11.316|       10.546|       11.016|        9.919|
+|Gene_h    |       9.585|      10.183|      10.120|        9.172|       10.704|        8.547|
+```
 
 Data from text file
 =========================================================
@@ -1881,7 +1885,7 @@ cor(x,z)
 ```
 
 ```
-[1] -0.08016925
+[1] 0.1254
 ```
 
 ```r
@@ -1889,11 +1893,11 @@ cor(x,z,method="spearman")
 ```
 
 ```
-[1] -0.1394659
+[1] 0.07833
 ```
 ***
 
-![plot of chunk unnamed-chunk-83](introToR_Day1-figure/unnamed-chunk-83-1.png) ![plot of chunk unnamed-chunk-83](introToR_Day1-figure/unnamed-chunk-83-2.png) ![plot of chunk unnamed-chunk-83](introToR_Day1-figure/unnamed-chunk-83-3.png) 
+![plot of chunk unnamed-chunk-83](introToR_Day1-figure/unnamed-chunk-831.png) ![plot of chunk unnamed-chunk-83](introToR_Day1-figure/unnamed-chunk-832.png) ![plot of chunk unnamed-chunk-83](introToR_Day1-figure/unnamed-chunk-833.png) 
 
 
 Correlation (Continued)
@@ -1911,11 +1915,11 @@ minRep[1:2,]
 
 ```
      Sample_1.hi Sample_2.hi Sample_3.hi Sample_4.low Sample_5.low
-[1,]    3.752367    4.853861    3.607263     3.853637     5.887618
-[2,]    4.049016    3.462264    3.791942     1.666407     3.292474
+[1,]       3.572       4.561       3.394        3.858        2.837
+[2,]       3.205       4.087       4.237        2.272        4.723
      Sample_1.low
-[1,]     5.101951
-[2,]     3.310644
+[1,]        4.229
+[2,]        2.558
 ```
 
 
@@ -1925,19 +1929,19 @@ cor(minRep)
 
 ```
              Sample_1.hi Sample_2.hi Sample_3.hi Sample_4.low Sample_5.low
-Sample_1.hi    1.0000000   0.9702592   0.9739056    0.2913037    0.2487349
-Sample_2.hi    0.9702592   1.0000000   0.9664256    0.2898965    0.2391774
-Sample_3.hi    0.9739056   0.9664256   1.0000000    0.1878028    0.1268589
-Sample_4.low   0.2913037   0.2898965   0.1878028    1.0000000    0.9118030
-Sample_5.low   0.2487349   0.2391774   0.1268589    0.9118030    1.0000000
-Sample_1.low   0.3158330   0.2957444   0.1797336    0.9685900    0.9600385
+Sample_1.hi       1.0000      0.9509      0.9732       0.3973       0.2767
+Sample_2.hi       0.9509      1.0000      0.9434       0.3954       0.3320
+Sample_3.hi       0.9732      0.9434      1.0000       0.4438       0.3904
+Sample_4.low      0.3973      0.3954      0.4438       1.0000       0.9075
+Sample_5.low      0.2767      0.3320      0.3904       0.9075       1.0000
+Sample_1.low      0.3419      0.3577      0.4249       0.9795       0.9187
              Sample_1.low
-Sample_1.hi     0.3158330
-Sample_2.hi     0.2957444
-Sample_3.hi     0.1797336
-Sample_4.low    0.9685900
-Sample_5.low    0.9600385
-Sample_1.low    1.0000000
+Sample_1.hi        0.3419
+Sample_2.hi        0.3577
+Sample_3.hi        0.4249
+Sample_4.low       0.9795
+Sample_5.low       0.9187
+Sample_1.low       1.0000
 ```
 Correlation (Continued)
 =========================================================
@@ -1949,7 +1953,7 @@ axis(1,at=seq(0,1,length.out=6),colnames(minRep))
 axis(2,at=seq(0,1,length.out=6),colnames(minRep))
 ```
 
-![plot of chunk unnamed-chunk-86](introToR_Day1-figure/unnamed-chunk-86-1.png) 
+![plot of chunk unnamed-chunk-86](introToR_Day1-figure/unnamed-chunk-86.png) 
 Distributions
 =========================================================
 
@@ -1979,8 +1983,7 @@ rnorm(10,mean=8,sd=3)
 ```
 
 ```
- [1]  1.054013  8.106932  4.389569  6.741443  8.936189 11.098024 10.907964
- [8] 11.123267  8.810670  8.910460
+ [1]  7.130  3.303  8.779 10.339  8.154  8.976  5.526  7.072  9.256  9.304
 ```
 We can also use these functions to interrogate values assuming a normal distribution for the data.
 
@@ -1992,7 +1995,7 @@ dnorm(8,mean=8,sd=3)
 ```
 
 ```
-[1] 0.1329808
+[1] 0.133
 ```
 
 The probablity of a value being less than 8 for a distribution of mean 8 and standard deviation 3. 
@@ -2052,17 +2055,17 @@ tTestExample
 ```
 
 ```
-          A        B        C
-1  23.80896 39.45552 41.08648
-2  26.98276 40.42506 36.56318
-3  26.73283 38.32957 42.72490
-4  25.34862 38.78410 42.18997
-5  24.26592 39.60539 31.66133
-6  25.89132 38.82741 38.90524
-7  24.22023 39.59917 48.44096
-8  28.52951 41.93140 51.05909
-9  27.57035 40.72395 43.60552
-10 25.36871 40.34461 45.88667
+       A     B     C
+1  25.84 41.28 46.22
+2  24.86 39.26 38.71
+3  25.17 41.50 39.33
+4  27.96 38.68 43.96
+5  26.77 38.51 34.45
+6  26.40 39.75 39.39
+7  28.09 40.77 38.85
+8  26.35 40.27 44.12
+9  26.63 38.77 48.56
+10 24.74 40.49 36.67
 ```
 
 T-test example
@@ -2076,7 +2079,7 @@ var(tTestExample$A)
 ```
 
 ```
-[1] 2.4459
+[1] 1.366
 ```
 
 ```r
@@ -2084,7 +2087,7 @@ var(tTestExample$B)
 ```
 
 ```
-[1] 1.157867
+[1] 1.202
 ```
 
 ```r
@@ -2092,7 +2095,7 @@ var(tTestExample$C)
 ```
 
 ```
-[1] 32.02299
+[1] 19.96
 ```
  
 Now we can test for any differences in variance between A and B and A and C.
@@ -2107,13 +2110,13 @@ var.test(tTestExample$A,tTestExample$B)
 	F test to compare two variances
 
 data:  tTestExample$A and tTestExample$B
-F = 2.1124, num df = 9, denom df = 9, p-value = 0.2805
+F = 1.136, num df = 9, denom df = 9, p-value = 0.8525
 alternative hypothesis: true ratio of variances is not equal to 1
 95 percent confidence interval:
- 0.5246949 8.5045842
+ 0.2822 4.5736
 sample estimates:
 ratio of variances 
-          2.112418 
+             1.136 
 ```
 
 ```r
@@ -2125,13 +2128,13 @@ var.test(tTestExample$A,tTestExample$C)
 	F test to compare two variances
 
 data:  tTestExample$A and tTestExample$C
-F = 0.0764, num df = 9, denom df = 9, p-value = 0.000726
+F = 0.0684, num df = 9, denom df = 9, p-value = 0.0004668
 alternative hypothesis: true ratio of variances is not equal to 1
 95 percent confidence interval:
- 0.01897159 0.30750350
+ 0.01699 0.27541
 sample estimates:
 ratio of variances 
-        0.07637952 
+           0.06841 
 ```
 
 T-test example
@@ -2151,13 +2154,13 @@ Result
 	Two Sample t-test
 
 data:  tTestExample$A and tTestExample$B
-t = -23.2057, df = 18, p-value = 7.293e-15
+t = -26.93, df = 18, p-value = 5.369e-16
 alternative hypothesis: true difference in means is not equal to 0
 95 percent confidence interval:
- -15.19191 -12.66948
+ -14.71 -12.58
 sample estimates:
 mean of x mean of y 
- 25.87192  39.80262 
+    26.28     39.93 
 ```
 
 To compare groups of unequal variance then the var.equal argument may be set to FALSE (which is the default).
@@ -2173,13 +2176,13 @@ Result
 	Welch Two Sample t-test
 
 data:  tTestExample$A and tTestExample$C
-t = -8.8014, df = 10.367, p-value = 3.946e-06
+t = -10.1, df = 10.23, p-value = 1.217e-06
 alternative hypothesis: true difference in means is not equal to 0
 95 percent confidence interval:
- -20.45738 -12.22345
+ -17.99 -11.50
 sample estimates:
 mean of x mean of y 
- 25.87192  42.21234 
+    26.28     41.03 
 ```
 
 T-test example
@@ -2204,13 +2207,13 @@ Result
 	Two Sample t-test
 
 data:  Value by Group
-t = -23.2057, df = 18, p-value = 7.293e-15
+t = -26.93, df = 18, p-value = 5.369e-16
 alternative hypothesis: true difference in means is not equal to 0
 95 percent confidence interval:
- -15.19191 -12.66948
+ -14.71 -12.58
 sample estimates:
 mean in group A mean in group B 
-       25.87192        39.80262 
+          26.28           39.93 
 ```
 
 
@@ -2238,7 +2241,7 @@ To fit a linear regression we use a similar set of arguments as passed to the t-
 > abline(lmResult,col="red",lty=3,lwd=3)
 ```
 
-![plot of chunk unnamed-chunk-98](introToR_Day1-figure/unnamed-chunk-98-1.png) 
+![plot of chunk unnamed-chunk-98](introToR_Day1-figure/unnamed-chunk-98.png) 
 
 The lm() function
 =========================================================
@@ -2260,7 +2263,7 @@ lm(formula = Y ~ X, data = lmExample)
 
 Coefficients:
 (Intercept)            X  
-    46.3687       0.6476  
+       6.79         1.19  
 ```
 
 Printing the result from lm() shows the call to lm() and the coefficients including the intercept.
@@ -2276,7 +2279,7 @@ From this we know the formula for the line.
 > abline(lmResult,col="red",lty=3,lwd=3)
 ```
 
-![plot of chunk unnamed-chunk-100](introToR_Day1-figure/unnamed-chunk-100-1.png) 
+![plot of chunk unnamed-chunk-100](introToR_Day1-figure/unnamed-chunk-100.png) 
 
 Interpreting output of lm()
 =========================================================
@@ -2295,19 +2298,19 @@ Call:
 lm(formula = Y ~ X, data = lmExample)
 
 Residuals:
-    Min      1Q  Median      3Q     Max 
--42.234 -20.119   2.648  21.547  39.454 
+   Min     1Q Median     3Q    Max 
+ -38.0  -19.4   -2.2   19.9   39.8 
 
 Coefficients:
-            Estimate Std. Error t value Pr(>|t|)   
-(Intercept)  46.3687    16.5294   2.805  0.00606 **
-X             0.6476     0.2327   2.783  0.00646 **
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)     6.79      15.96    0.43     0.67    
+X               1.19       0.23    5.17  1.3e-06 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 23.67 on 98 degrees of freedom
-Multiple R-squared:  0.07324,	Adjusted R-squared:  0.06378 
-F-statistic: 7.745 on 1 and 98 DF,  p-value: 0.006463
+Residual standard error: 22.4 on 98 degrees of freedom
+Multiple R-squared:  0.214,	Adjusted R-squared:  0.206 
+F-statistic: 26.7 on 1 and 98 DF,  p-value: 1.26e-06
 ```
 
 
@@ -2321,19 +2324,19 @@ Call:
 lm(formula = Y ~ X, data = lmExample)
 
 Residuals:
-    Min      1Q  Median      3Q     Max 
--42.234 -20.119   2.648  21.547  39.454 
+   Min     1Q Median     3Q    Max 
+ -38.0  -19.4   -2.2   19.9   39.8 
 
 Coefficients:
-            Estimate Std. Error t value Pr(>|t|)   
-(Intercept)  46.3687    16.5294   2.805  0.00606 **
-X             0.6476     0.2327   2.783  0.00646 **
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)     6.79      15.96    0.43     0.67    
+X               1.19       0.23    5.17  1.3e-06 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 23.67 on 98 degrees of freedom
-Multiple R-squared:  0.07324,	Adjusted R-squared:  0.06378 
-F-statistic: 7.745 on 1 and 98 DF,  p-value: 0.006463
+Residual standard error: 22.4 on 98 degrees of freedom
+Multiple R-squared:  0.214,	Adjusted R-squared:  0.206 
+F-statistic: 26.7 on 1 and 98 DF,  p-value: 1.26e-06
 ```
 
 ***
@@ -2347,7 +2350,7 @@ To retrieve the residuals we can access the slot or use the resid() function.
 
 ```
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
--42.230 -20.120   2.648   0.000  21.550  39.450 
+  -38.0   -19.4    -2.2     0.0    19.9    39.8 
 ```
 
 ```r
@@ -2356,7 +2359,7 @@ To retrieve the residuals we can access the slot or use the resid() function.
 
 ```
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
--42.230 -20.120   2.648   0.000  21.550  39.450 
+  -38.0   -19.4    -2.2     0.0    19.9    39.8 
 ```
 Ideally you would want your residuals to be normally distributed around 0 indicating a good correspondence between predicted and actual values.
 
@@ -2370,19 +2373,19 @@ Call:
 lm(formula = Y ~ X, data = lmExample)
 
 Residuals:
-    Min      1Q  Median      3Q     Max 
--42.234 -20.119   2.648  21.547  39.454 
+   Min     1Q Median     3Q    Max 
+ -38.0  -19.4   -2.2   19.9   39.8 
 
 Coefficients:
-            Estimate Std. Error t value Pr(>|t|)   
-(Intercept)  46.3687    16.5294   2.805  0.00606 **
-X             0.6476     0.2327   2.783  0.00646 **
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)     6.79      15.96    0.43     0.67    
+X               1.19       0.23    5.17  1.3e-06 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 23.67 on 98 degrees of freedom
-Multiple R-squared:  0.07324,	Adjusted R-squared:  0.06378 
-F-statistic: 7.745 on 1 and 98 DF,  p-value: 0.006463
+Residual standard error: 22.4 on 98 degrees of freedom
+Multiple R-squared:  0.214,	Adjusted R-squared:  0.206 
+F-statistic: 26.7 on 1 and 98 DF,  p-value: 1.26e-06
 ```
 
 The **R-squared** value represents the proportion of variability in the response variable that is explained by the explanatory variable.
@@ -2403,19 +2406,19 @@ Call:
 lm(formula = Y ~ X, data = lmExample)
 
 Residuals:
-    Min      1Q  Median      3Q     Max 
--42.234 -20.119   2.648  21.547  39.454 
+   Min     1Q Median     3Q    Max 
+ -38.0  -19.4   -2.2   19.9   39.8 
 
 Coefficients:
-            Estimate Std. Error t value Pr(>|t|)   
-(Intercept)  46.3687    16.5294   2.805  0.00606 **
-X             0.6476     0.2327   2.783  0.00646 **
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)     6.79      15.96    0.43     0.67    
+X               1.19       0.23    5.17  1.3e-06 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 23.67 on 98 degrees of freedom
-Multiple R-squared:  0.07324,	Adjusted R-squared:  0.06378 
-F-statistic: 7.745 on 1 and 98 DF,  p-value: 0.006463
+Residual standard error: 22.4 on 98 degrees of freedom
+Multiple R-squared:  0.214,	Adjusted R-squared:  0.206 
+F-statistic: 26.7 on 1 and 98 DF,  p-value: 1.26e-06
 ```
 
 http://rstudio-pubs-static.s3.amazonaws.com/23247_8af1a386e4184c95bb36ba7a6ea0f699.html
