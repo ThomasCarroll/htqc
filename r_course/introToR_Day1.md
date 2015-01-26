@@ -1,6 +1,6 @@
 Introduction to R
 ========================================================
-author: Thomas Carroll
+author: Thomas Carroll, Sanjay Khadayate
 date: Februrary 8th
 width: 1440
 height: 1100
@@ -1853,7 +1853,7 @@ flatList
 
 Lists (Flattening lists to matrices)
 =========================================================
-A common step is to turn a list of standard results into matrix. This canbe done in a few steps in R.
+A common step is to turn a list of standard results into matrix. This can be done in a few steps in R.
 
 
 ```r
@@ -1896,14 +1896,14 @@ A standard format for this data is a table
 
 |Gene_Name | Sample_1.hi| Sample_2.hi| Sample_3.hi| Sample_4.low| Sample_5.low| Sample_1.low|
 |:---------|-----------:|-----------:|-----------:|------------:|------------:|------------:|
-|Gene_a    |       3.092|       2.748|       3.431|        2.717|        4.221|        3.695|
-|Gene_b    |       5.282|       3.538|       5.173|        5.218|        4.082|        6.466|
-|Gene_c    |       3.758|       3.830|       2.348|        2.675|        4.451|        3.814|
-|Gene_d    |       1.336|       3.946|       5.329|        6.627|       10.094|        9.581|
-|Gene_e    |      10.511|       7.726|       9.886|        2.937|        1.950|        3.722|
-|Gene_f    |      11.083|       8.878|       8.910|        5.340|        2.289|        3.566|
-|Gene_g    |      10.052|       8.615|       9.252|       10.650|       10.461|        9.274|
-|Gene_h    |       9.394|      10.224|      10.974|       10.696|        9.826|       11.537|
+|Gene_a    |       4.274|       4.906|       5.634|        4.591|       0.6031|        5.058|
+|Gene_b    |       3.708|       2.508|       2.745|        3.369|       2.2433|        2.928|
+|Gene_c    |       4.815|       5.399|       2.977|        4.495|       4.5667|        3.629|
+|Gene_d    |       3.673|       3.638|       2.720|        7.223|      10.2345|        6.585|
+|Gene_e    |      10.127|      10.630|      10.587|        3.948|       3.4224|        2.559|
+|Gene_f    |      10.134|       8.926|       9.131|        3.749|       3.2348|        1.974|
+|Gene_g    |       7.486|      10.215|      10.752|        6.898|      10.1872|        9.833|
+|Gene_h    |       7.932|       9.436|      10.150|       10.190|       9.8158|       10.284|
 ```
 
 Data from text file
@@ -1952,10 +1952,875 @@ Data from XLS
 Data from dput
 =========================================================
 
+
+Plotting in R
+========================================================
+type:section
+
+
+
+========================================================
+
+1.  Introduction
+
+2.  Base graphics
+  + Line Charts
+  + Bar Charts
+  + Histograms
+  + Pie Charts
+  + Dot charts
+  + Combining Plots
+     
+3.  Saving your plot
+
+4.	Lattice R package
+
+5.	ggplot2 R package
+
+
+Introduction
+========================================================
+R has excellent graphics and plotting capabilities. They are mostly found in following three sources.
+ + base graphics
+ + the lattice package
+ +  the ggplot2 package
+ 
+Lattice and ggplot2 packages are built on grid graphics package while the base graphics routines adopt a pen and paper model for plotting.
+
+
+Base Graphics
+========================================================
++ Line Charts
+
+First we'll produce a very simple graph using the values in the treatment vector:
+
+
+```r
+treatment <- c(0.02,1.8, 17.5, 55,75.7, 80)
+```
+
+Plot the treatment vector with default parameters
+
+
+```r
+plot(treatment)
+```
+
+Point Plot
+========================================================
+
+<img src="introToR_Day1-figure/unnamed-chunk-89.png" title="plot of chunk unnamed-chunk-89" alt="plot of chunk unnamed-chunk-89" width="1920px" />
+
+=======================================================
+Now, let's add a title, a line to connect the points, and some color:
+
+Plot treatment using blue points overlayed by a line
+
+
+```r
+plot(treatment, type="o", col="blue")
+```
+Create a title with a red, bold/italic font
+
+```r
+title(main="Treatment", col.main="red", font.main=4)
+```
+
+Line Plot
+========================================================
+<img src="introToR_Day1-figure/unnamed-chunk-92.png" title="plot of chunk unnamed-chunk-92" alt="plot of chunk unnamed-chunk-92" width="1920px" />
+
+========================================================
+Now let's add a red line for a control vector and specify the y-axis range directly so it will be large enough to fit the data:
+
+Define control vector
+
+```r
+control <- c(0, 20, 40, 60, 80,100)
+```
+
+Plot treatment using a y axis that ranges from 0 to 100
+
+```r
+plot(treatment, type="o", col="blue", ylim=c(0,100))
+```
+Plot control with red dashed line and square points
+
+```r
+lines(control, type="o", pch=22, lty=2, col="red")
+```
+
+
+==========================================================
+
+Create a title with a red, bold/italic font
+
+```r
+title(main="Expression Data", col.main="red", font.main=4)
+```
+
+<img src="introToR_Day1-figure/unnamed-chunk-97.png" title="plot of chunk unnamed-chunk-97" alt="plot of chunk unnamed-chunk-97" width="1920px" />
+
+==========================================================
+
+Next let's change the axes labels to match our data and add a legend. 
+We'll also compute the y-axis values using the max function 
+so any changes to our data will be automatically 
+reflected in our graph. 
+
+Calculate range from 0 to max value of data
+
+```r
+g_range <- range(0, treatment, control)
+```
+
+range returns a vector containing the minimum and maximum of all the given arguments.
+
+Plot treatment using y axis that ranges from 0 to max value in treatment or control vector.  Turn off axes and annotations (axis labels) so we can specify them ourselves.
+
+========================================================
+
+
+```r
+plot(treatment, type="o", col="blue", ylim=g_range,axes=FALSE, ann=FALSE)
+```
+
+Make x axis using labels
+
+
+```r
+axis(1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
+```
+
+Make y axis with horizontal labels that display ticks at every 20 marks. 
+
+
+```r
+axis(2, las=1, at=20*0:g_range[2])
+```
+
+Create box around plot
+
+
+```r
+box()
+```
+
+========================================================
+
+<img src="introToR_Day1-figure/unnamed-chunk-103.png" title="plot of chunk unnamed-chunk-103" alt="plot of chunk unnamed-chunk-103" width="1920px" />
+
+========================================================
+Calculate range from 0 to max value of data
+
+```r
+g_range <- range(0, treatment, control)
+```
+
+range returns a vector containing the minimum and maximum of all the given arguments.
+
+Plot treatment using y axis that ranges from 0 to max value in treatment or control vector.  Turn off axes and annotations (axis labels) so we can specify them ourselves.
+
+
+```r
+plot(treatment, type="o", col="blue", ylim=g_range,axes=FALSE, ann=FALSE)
+```
+
+========================================================
+
+Make x axis using labels
+
+```r
+axis(1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
+```
+
+Make y axis with horizontal labels that display ticks at every 20 marks. 
+
+
+```r
+axis(2, las=1, at=20*0:g_range[2])
+```
+
+Create box around plot
+
+```r
+box()
+```
+
+========================================================
+
+Plot control vector with red dashed line and square points
+
+
+```r
+lines(control, type="o", pch=22, lty=2, col="red")
+```
+
+Create a title with a red, bold/italic font
+
+```r
+title(main="Data", col.main="red", font.main=4)
+```
+
+Label the x and y axes with dark green text
+
+```r
+title(xlab="Days", col.lab=rgb(0,0.5,0))
+title(ylab="Values", col.lab=rgb(0,0.5,0))
+```
+
+========================================================
+
+Create a legend at (1, g_range[2]) that is slightly smaller (cex) and uses the same line colors and points used by the actual plots 
+
+
+```r
+legend(1, g_range[2], c("treatment","control"), cex=0.8, col=c("blue","red"), pch=21:22, lty=1:2);  
+```
+
+<img src="introToR_Day1-figure/unnamed-chunk-113.png" title="plot of chunk unnamed-chunk-113" alt="plot of chunk unnamed-chunk-113" width="1920px" />
+ 	
+	
+========================================================	
+	
+Bar Charts
+Let's start with a simple bar chart graphing the treatment vector: 
+Plot treatment
+
+
+```r
+barplot(treatment)
+```
+
+<img src="introToR_Day1-figure/unnamed-chunk-115.png" title="plot of chunk unnamed-chunk-115" alt="plot of chunk unnamed-chunk-115" width="1920px" />
+
+========================================================
+ 
+Let's now read the data from the example.txt data file, add labels, blue borders around the bars, and density lines: 
+
+Read values from tab-delimited example.txt
+
+```r
+data <- read.table("example.txt", header=T, sep="\t")
+```
+
+Plot treatment with specified labels for axes.  Use blue borders and diagonal lines in bars.
+
+
+```r
+barplot(data$treatment, main="Treatment", xlab="Days",ylab="values", names.arg=c("Mon","Tue","Wed","Thu","Fri","Sat"),  border="blue", density=c(10,20,30,40,50,60))
+```
+
+
+
+========================================================
+
+names.arg  is a vector of names to be plotted below each bar or group of bars. 
+density	a vector giving the density of shading lines, in lines per inch, for the bars or bar components.
+
+<img src="introToR_Day1-figure/unnamed-chunk-118.png" title="plot of chunk unnamed-chunk-118" alt="plot of chunk unnamed-chunk-118" width="1920px" />
+
+========================================================	
+Now let's plot the treatment data using some color and show a legend: 
+
+   
+Graph data with adjacent bars using colors
+
+
+```r
+barplot(as.matrix(data), main="Data", ylab= "Total", beside=TRUE, col= c("lightblue", "mistyrose", "lightcyan","lavender", "cornsilk","maroon"))
+```
+
+Place the legend at the top-left corner with no frame
+
+
+```r
+legend("topleft", c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8,bty="n", 
+fill=  c("lightblue", "mistyrose", "lightcyan","lavender", "cornsilk","maroon"));
+```
+
+========================================================
+
+<img src="introToR_Day1-figure/unnamed-chunk-121.png" title="plot of chunk unnamed-chunk-121" alt="plot of chunk unnamed-chunk-121" width="1920px" />
+
+========================================================	
+Histograms
+Let's start with a simple histogram plotting the distribution of the treatment vector: 
+
+Create a histogram for treatment
+
+```r
+hist(treatment)	
+```
+
+<img src="introToR_Day1-figure/unnamed-chunk-123.png" title="plot of chunk unnamed-chunk-123" alt="plot of chunk unnamed-chunk-123" width="1920px" />
+
+========================================================
+
+Concatenate the three vectors
+
+
+```r
+all <- c(data$control, data$treatment)
+```
+
+Create a histogram for data in light blue with the y axis ranging from 0-10
+
+```r
+hist(all, col="lightblue", ylim=c(0,10))
+```
+***
+<img src="introToR_Day1-figure/unnamed-chunk-126.png" title="plot of chunk unnamed-chunk-126" alt="plot of chunk unnamed-chunk-126" width="1920px" />
+
+======================================================== 	
+
+Now change the breaks so none of the values are grouped together and flip the y-axis labels horizontally. 
+
+Compute the largest value used in the data
+
+
+```r
+max_num <- max(all)
+```
+
+Create a histogram for data with fire colors, set breaks so each number   is in its own group, make x axis range from 0-max_num, disable right-closing  of cell intervals, set heading, and make  y-axis labels horizontal.
+
+========================================================
+
+
+```r
+hist(all, col=heat.colors(max_num), breaks=max_num, xlim=c(0,max_num), right=F, 
+main="Histogram", las=1)	
+```
+
+breaks: a single number giving the number of cells for the histogram,
+An open interval does not include its endpoints, and is indicated with parentheses.
+
+For example (0,1) means greater than 0 and less than 1. 
+
+A closed interval includes its endpoints, and is denoted with square brackets. 
+For example [0,1] means greater than or equal to 0 and less than or equal to 1.
+
+
+
+========================================================
+
+<img src="introToR_Day1-figure/unnamed-chunk-129.png" title="plot of chunk unnamed-chunk-129" alt="plot of chunk unnamed-chunk-129" width="1920px" />
+
+========================================================
+
+Now let's create uneven breaks and graph the probability density. 
+
+ Create uneven breaks
+
+```r
+brk <- c(0,30,40,50,60,80,100)
+```
+
+Create a histogram for all data with fire colours, set uneven breaks, make x axis range from 0-max_num, disable right-closing of cell intervals,  set heading, make y-axis labels horizontal, make axis labels smaller, make areas of each column proportional to the count
+
+========================================================
+
+
+```r
+hist(all, col=heat.colors(length(brk)), breaks=brk,xlim=c(0,max_num), right=F, main="Probability Density",las=1, cex.axis=0.8, freq=F)
+```
+
+ 		
+freq	logical; 
+if TRUE, the histogram graphic is a representation of frequencies
+
+if FALSE, probability densities, component density, are plotted
+
+<img src="introToR_Day1-figure/unnamed-chunk-132.png" title="plot of chunk unnamed-chunk-132" alt="plot of chunk unnamed-chunk-132" width="1920px" />
+
+
+========================================================
+Pie Charts
+Let's start with a simple pie chart graphing the treatment vector: 
+ Create a pie chart for treatment
+
+```r
+pie(treatment)
+```
+
+<img src="introToR_Day1-figure/unnamed-chunk-134.png" title="plot of chunk unnamed-chunk-134" alt="plot of chunk unnamed-chunk-134" width="1920px" />
+
+========================================================
+
+Now let's add a heading, change the colours, and define our own labels: 
+
+Create a pie chart with defined heading and  custom colours and labels
+
+```r
+pie(treatment, main="Treatment", col= c("lightblue", "mistyrose", "lightcyan","lavender", "cornsilk","maroon"),
+    labels=c("Mon","Tue","Wed","Thu","Fri","Sat"))	
+```
+
+<img src="introToR_Day1-figure/unnamed-chunk-136.png" title="plot of chunk unnamed-chunk-136" alt="plot of chunk unnamed-chunk-136" width="1920px" />
+
+========================================================
+
+Now let's change the colours, label using percentages, and create a legend: 
+Define some colours ideal for black & white print
+
+```r
+colors <- c("white","grey70","grey90","grey50","black")
+```
+
+Calculate the percentage for each day, rounded to one decimal place
+
+```r
+treatment_labels <- round(treatment/sum(treatment) * 100, 1)
+```
+
+Concatenate a '%' char after each value
+
+```r
+treatment_labels <- paste(treatment_labels, "%", sep="")
+```
+
+========================================================
+
+Create a pie chart with defined heading and custom colors and labels
+
+
+```r
+pie(treatment, main="treatment", col=colors, labels= treatment_labels,cex=0.8)
+```
+
+Create a legend at the right   
+
+```r
+legend(1.5, 0.5, c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8,fill=colors)	
+```
+
+========================================================
+
+<img src="introToR_Day1-figure/unnamed-chunk-142.png" title="plot of chunk unnamed-chunk-142" alt="plot of chunk unnamed-chunk-142" width="1920px" />
+
+========================================================
+Dot charts
+Let's start with a simple dot chart graphing the data: 
+
+Create a dot chart for data
+Function t returns the transpose of a matrix.
+
+```r
+dotchart(t(data))	
+```
+<img src="introToR_Day1-figure/unnamed-chunk-144.png" title="plot of chunk unnamed-chunk-144" alt="plot of chunk unnamed-chunk-144" width="1920px" />
+
+========================================================
+
+Let's make the dotchart a little more colorful: 
+
+Create a colored dotchart for autos with smaller labels
+
+```r
+dotchart(t(data), color=c("red","blue","darkgreen"),main="Dotchart", cex=0.8)	
+```
+<img src="introToR_Day1-figure/unnamed-chunk-146.png" title="plot of chunk unnamed-chunk-146" alt="plot of chunk unnamed-chunk-146" width="1920px" />
+
+Combining Plots
+======================================================== 
+
+
+R makes it easy to combine multiple plots into one overall graph, using either the par( ) or layout( ) function. 
+With the par( ) function, you can include the option mfrow=c(nrows, ncols) to create a matrix of nrows x ncols plots that are filled in by row.
+mfcol=c(nrows, ncols) fills in the matrix by columns.
+
+Define a layout with 2 rows and 2 columns
+
+
+```r
+par(mfrow=c(2,2))
+```
+
+
+========================================================
+
+Here, we will use different dataset with two columns each for treated and untreated samples.
+
+
+```r
+data1 <- read.table("gene_data.txt", header=T, sep="\t")
+head(data1)
+```
+
+```
+     ensembl_gene_id Untreated1 Untreated2 Treated1 Treated2
+1 ENSDARG00000093639     0.8617     1.9311   0.1042   0.1406
+2 ENSDARG00000094508     0.9858     2.0256   0.1550   0.2030
+3 ENSDARG00000095893     0.8499     1.9876   0.2318   0.2093
+4 ENSDARG00000095252     0.9243     2.0858   0.2562   0.2467
+5 ENSDARG00000078878     0.3572     0.4654   0.1167   0.0971
+6 ENSDARG00000079403     1.0604     1.2581   0.3885   0.3157
+```
+
+========================================================
+
+Plot histograms for different columns in the data frame separately. This is not very efficient. you would see how to do it more efficiently using for loop later on.
+
+
+```r
+hist(data1$Untreated1)
+hist(data1$Treated2)
+hist(data1$Untreated2)
+boxplot(data1$Treated1)
+```
+
+========================================================
+
+ 
+<img src="introToR_Day1-figure/unnamed-chunk-150.png" title="plot of chunk unnamed-chunk-150" alt="plot of chunk unnamed-chunk-150" width="1920px" />
+
+========================================================
+
+<img src="introToR_Day1-figure/unnamed-chunk-151.png" title="plot of chunk unnamed-chunk-151" alt="plot of chunk unnamed-chunk-151" width="1920px" />
+
+========================================================
+
+<img src="introToR_Day1-figure/unnamed-chunk-152.png" title="plot of chunk unnamed-chunk-152" alt="plot of chunk unnamed-chunk-152" width="1920px" />
+
+========================================================
+
+<img src="introToR_Day1-figure/unnamed-chunk-153.png" title="plot of chunk unnamed-chunk-153" alt="plot of chunk unnamed-chunk-153" width="1920px" />
+
+Saving your plots
+========================================================
+
+
+There are many different ways of saving your plots in R. 
+
+The only argument you would need is name of file in which you want to save the plot.
+
+Plotting commands then can be entered as usual.
+The output would be redirected to the file. 
+
+When you're done with your plotting commands, enter the dev.off() command. 
+
+
+
+
+```r
+bmp(filename, width = 480, height = 480, units = "px", point-size = 12)
+jpeg(filename, width = 480, height = 480, units = "px", point-size = 12, quality = 75)
+```
+
+========================================================
+
+Saving in bitmap format
+
+```r
+bmp(file = "control.bmp")
+plot(control)
+dev.off()
+```
+
+Saving in jpeg format
+
+```r
+jpeg(file = "control.jpg", quality = 20)
+plot(control)
+dev.off()
+```
+
+========================================================
+
+Saving in postscript format
+
+
+```r
+postscript(file = "control.ps")
+plot(control)
+dev.off()
+```
+
+
+```r
+saving in pdf format
+pdf(file = "control.pdf", paper = "A4")
+plot(control)
+dev.off()
+```
+
+Lattice R package
+========================================================
+
+
+
+Lattice is an excellent package for visualizing multivariate data. 
+It has great set of routines for quickly displaying complex data sets with ease. 
+
+Advantages of using lattice package are as following.
+
+Plots with lattice package usually look better.
+
+They can be extended in powerful ways.
+
+The resulting output can be annotated, edited and saved.
+
+========================================================
+
+Basic form for lattice function call is function.name (formula).
+
+The general arrangement of a formula in a lattice function is:
+           vertical.axis.variable ~ horizontal.axis.variable
+           
+Note that the tilde operator (i.e., ~) must be used in a lattice function call, even if the graph only   uses a single variable.
+
+For e.g., histogram(~data$x),  xyplot(data$y ~ data$x)
+
+========================================================
+
+Some of the functions available in lattice package are as following:
+Graphs for univariate data
+
+histogram(), densityplot(),bwplot()
+
+Graphs for showing quantiles of one or more distributions
+
+qqmath(),qq()
+
+Two-dimensional data
+
+xyplot() for creating scatterplots
+
+========================================================
+
+Let’s start by loading the lattice package. 
+
+
+```r
+library(lattice)
+```
+
+Read the data from file named gene_data.txt
+
+```r
+data <- read.table("gene_data.txt", header=T, sep="\t")
+```
+
+A simple scatter plot can be produced as,
+
+```r
+xyplot(Untreated2~Treated2, data=data)
+```
+
+========================================================
+
+<img src="introToR_Day1-figure/unnamed-chunk-162.png" title="plot of chunk unnamed-chunk-162" alt="plot of chunk unnamed-chunk-162" width="1920px" />
+
+
+
+========================================================
+
+or the output can be redirected to an object as, 
+
+```r
+tplot<-xyplot(Untreated2~Treated2, data=data)
+```
+
+and then printed as, 
+
+```r
+print(tplot)
+```
+
+<img src="introToR_Day1-figure/unnamed-chunk-165.png" title="plot of chunk unnamed-chunk-165" alt="plot of chunk unnamed-chunk-165" width="1920px" />
+***
+The object containing the plot can further be modified. for e.g.
+
+```r
+tplot2<-update(tplot, main="Drug treatment  in Cells" )
+               
+print(tplot2)
+```
+
+<img src="introToR_Day1-figure/unnamed-chunk-166.png" title="plot of chunk unnamed-chunk-166" alt="plot of chunk unnamed-chunk-166" width="1920px" />
+
+========================================================
+
+Box and whisker plot can be produced with bwplot function. Here, we are again using a singer data frame which is bundled with lattice package. You would have to load lattice package first before using this database.
+
+
+```r
+head(singer)
+```
+
+```
+  height voice.part
+1     64  Soprano 1
+2     62  Soprano 1
+3     66  Soprano 1
+4     65  Soprano 1
+5     60  Soprano 1
+6     61  Soprano 1
+```
+
+
+
+```r
+bwplot(voice.part ~ height, data=singer, xlab="Height (inches)")
+```
+
+========================================================
+
+A density plot can be drawn with densityplot function.
+
+```r
+densityplot( ~ height | voice.part, data = singer, layout = c(2, 4), xlab = "Height (inches)", bw = 5)
+```
+
+
+qqmath function is used to draw quantile-Quantile plots of a sample against a theoretical distribution.
+
+```r
+qqmath(~ rnorm(100), distribution = function(p) qt(p, df = 10))
+```
+
+ggplot2 R package
+========================================================
+
+Let's look at how to create a scatterplot in ggplot2. We'll use the iris data frame that's automatically loaded into R.
+What does the data frame contain? We can use the head function to look at the first few rows
+
+```r
+head(iris, n = 3)  
+```
+
+```
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+```
+
+========================================================
+
+ by default, head displays the first 6 rows. 
+
+```r
+head(iris, n = 10)    
+```
+
+ we can also explicitly set the number of rows to display
+
+(The data frame actually contains three types of species: setosa, versicolor, and virginica.)
+
+========================================================
+Let's plot Sepal.Length against Petal.Length using ggplot2's qplot() function.
+
+```r
+qplot(Sepal.Length, Petal.Length, data = iris)
+```
+
+Plot Sepal.Length vs. Petal.Length, using data from the `iris` data frame.
+First argument `Sepal.Length` goes on the x-axis.
+Second argument `Petal.Length` goes on the y-axis.
+ `data = iris` means to look for this data in the `iris` data frame.    
+
+ 
+
+To see where each species is located in this graph, we can color each point by adding a color = Species argument.
+
+```r
+qplot(Sepal.Length, Petal.Length, data = iris, color = Species) 
+```
+
+========================================================
+ 
+Similarly, we can let the size of each point denote petal width, by adding a size = Petal.Width argument.
+
+```r
+qplot(Sepal.Length, Petal.Length, data = iris, color = Species, size = Petal.Width)
+```
+
+We see that Iris setosa flowers have the narrowest petals.
+ 
+Finally, let's fix the axis labels and add a title to the plot.
+
+```r
+qplot(Sepal.Length, Petal.Length, data = iris, color = Species, xlab = "Sepal Length", ylab = "Petal Length", main = "Sepal vs. Petal Length in Fisher's Iris data")
+```
+
+
+
+
+Other common geoms
+========================================================
+
+
+
+In the scatterplot examples above, we implicitly used a point geom, the default when you supply two arguments to qplot().
+These two invocations are equivalent.
+
+
+```r
+qplot(Sepal.Length, Petal.Length, data = iris, geom = "point")
+qplot(Sepal.Length, Petal.Length, data = iris)
+```
+
+But we can also easily use other types of geoms to create more kinds of plots.
+Barcharts: geom = "bar"
+
+
+========================================================
+
+Let’s construct a data frame called movies.
+
+```r
+movies = data.frame(
+    director = c("spielberg", "spielberg", "spielberg", "jackson", "jackson"),
+    movie = c("jaws", "avatar", "schindler's list", "lotr", "king kong"),
+    minutes = c(124, 163, 195, 600, 187)
+)
+```
+
+Plot the number of movies each director has.
+
+```r
+qplot(director, data = movies, geom = "bar", ylab = "# movies")
+```
+
+========================================================
+By default, the height of each bar is simply a count. But we can also supply a different weight.
+Here the height of each bar is the total running time of the director's movies.
+
+
+```r
+qplot(director, weight = minutes, data = movies, geom = "bar", ylab = "total length (min.)")
+```
+
+Line charts: geom = "line"
+========================================================
+
+
+```r
+qplot(Sepal.Length, Petal.Length, data = iris, geom = "line", color = Species) 
+```
+
+`Orange` is another built-in data frame that describes the growth of orange trees.
+
+
+```r
+qplot(age, circumference, data = Orange, geom = "line", colour = Tree,
+    main = "How does orange tree circumference vary with age?")
+```
+
+We can also plot both points and lines.
+
+```r
+qplot(age, circumference, data = Orange, geom = c("point", "line"), colour = Tree)
+```
+
 Simple statistics in R
 =========================================================
 type:section
 id: stats
+
+
 
 Statistics in R
 =========================================================
@@ -2109,7 +2974,7 @@ cor(x,z)
 ```
 
 ```
-[1] -0.03357
+[1] -0.02373
 ```
 
 ```r
@@ -2117,11 +2982,11 @@ cor(x,z,method="spearman")
 ```
 
 ```
-[1] -0.05908
+[1] -0.01787
 ```
 ***
 
-![plot of chunk unnamed-chunk-93](introToR_Day1-figure/unnamed-chunk-931.png) ![plot of chunk unnamed-chunk-93](introToR_Day1-figure/unnamed-chunk-932.png) ![plot of chunk unnamed-chunk-93](introToR_Day1-figure/unnamed-chunk-933.png) 
+![plot of chunk unnamed-chunk-190](introToR_Day1-figure/unnamed-chunk-1901.png) ![plot of chunk unnamed-chunk-190](introToR_Day1-figure/unnamed-chunk-1902.png) ![plot of chunk unnamed-chunk-190](introToR_Day1-figure/unnamed-chunk-1903.png) 
 
 
 Correlation (Continued)
@@ -2139,11 +3004,11 @@ minRep[1:2,]
 
 ```
      Sample_1.hi Sample_2.hi Sample_3.hi Sample_4.low Sample_5.low
-[1,]       3.092       2.748       3.431        2.717        4.221
-[2,]       5.282       3.538       5.173        5.218        4.082
+[1,]       4.274       4.906       5.634        4.591       0.6031
+[2,]       3.708       2.508       2.745        3.368       2.2433
      Sample_1.low
-[1,]        3.695
-[2,]        6.466
+[1,]        5.058
+[2,]        2.928
 ```
 
 
@@ -2153,18 +3018,18 @@ cor(minRep)
 
 ```
              Sample_1.hi Sample_2.hi Sample_3.hi Sample_4.low Sample_5.low
-Sample_1.hi      1.00000      0.8972      0.8661       0.3717      -0.1502
-Sample_2.hi      0.89723      1.0000      0.9393       0.6377       0.2112
-Sample_3.hi      0.86609      0.9393      1.0000       0.6223       0.2040
-Sample_4.low     0.37172      0.6377      0.6223       1.0000       0.8247
-Sample_5.low    -0.15021      0.2112      0.2040       0.8247       1.0000
-Sample_1.low     0.01148      0.3576      0.4079       0.8933       0.9231
+Sample_1.hi      1.00000      0.9133      0.8820      0.01959       0.0424
+Sample_2.hi      0.91335      1.0000      0.9621      0.27018       0.2749
+Sample_3.hi      0.88204      0.9621      1.0000      0.29194       0.2263
+Sample_4.low     0.01959      0.2702      0.2919      1.00000       0.8422
+Sample_5.low     0.04240      0.2749      0.2263      0.84215       1.0000
+Sample_1.low    -0.06529      0.2733      0.3268      0.91339       0.8112
              Sample_1.low
-Sample_1.hi       0.01148
-Sample_2.hi       0.35758
-Sample_3.hi       0.40789
-Sample_4.low      0.89332
-Sample_5.low      0.92307
+Sample_1.hi      -0.06529
+Sample_2.hi       0.27331
+Sample_3.hi       0.32680
+Sample_4.low      0.91339
+Sample_5.low      0.81122
 Sample_1.low      1.00000
 ```
 Correlation (Continued)
@@ -2177,7 +3042,7 @@ axis(1,at=seq(0,1,length.out=6),colnames(minRep))
 axis(2,at=seq(0,1,length.out=6),colnames(minRep))
 ```
 
-![plot of chunk unnamed-chunk-96](introToR_Day1-figure/unnamed-chunk-96.png) 
+![plot of chunk unnamed-chunk-193](introToR_Day1-figure/unnamed-chunk-193.png) 
 Distributions
 =========================================================
 
@@ -2207,7 +3072,7 @@ rnorm(10,mean=8,sd=3)
 ```
 
 ```
- [1]  8.251  6.408 12.322  5.990 11.169  7.151 13.506  4.455 10.581 12.907
+ [1] 8.847 6.899 4.877 8.821 9.797 2.975 9.284 7.864 6.294 8.426
 ```
 We can also use these functions to interrogate values assuming a normal distribution for the data.
 
@@ -2280,16 +3145,16 @@ tTestExample
 
 ```
        A     B     C
-1  26.23 40.12 37.68
-2  24.01 39.22 40.02
-3  23.97 40.50 36.44
-4  26.50 39.20 34.05
-5  26.25 40.54 42.18
-6  27.11 40.52 39.08
-7  24.82 40.62 29.57
-8  25.00 39.20 34.92
-9  27.10 39.95 40.55
-10 26.06 39.66 41.21
+1  23.81 40.84 37.00
+2  24.98 40.06 39.70
+3  25.80 38.68 42.80
+4  24.06 40.64 41.58
+5  26.68 37.92 39.49
+6  25.93 42.47 35.41
+7  25.44 39.38 44.06
+8  25.44 40.14 40.12
+9  26.59 40.34 44.60
+10 26.14 39.35 44.60
 ```
 
 T-test example
@@ -2303,7 +3168,7 @@ var(tTestExample$A)
 ```
 
 ```
-[1] 1.374
+[1] 0.9419
 ```
 
 ```r
@@ -2311,7 +3176,7 @@ var(tTestExample$B)
 ```
 
 ```
-[1] 0.3563
+[1] 1.578
 ```
 
 ```r
@@ -2319,7 +3184,7 @@ var(tTestExample$C)
 ```
 
 ```
-[1] 15.16
+[1] 10.09
 ```
  
 Now we can test for any differences in variance between A and B and A and C.
@@ -2334,13 +3199,13 @@ var.test(tTestExample$A,tTestExample$B)
 	F test to compare two variances
 
 data:  tTestExample$A and tTestExample$B
-F = 3.858, num df = 9, denom df = 9, p-value = 0.05693
+F = 0.5969, num df = 9, denom df = 9, p-value = 0.454
 alternative hypothesis: true ratio of variances is not equal to 1
 95 percent confidence interval:
-  0.9583 15.5330
+ 0.1483 2.4032
 sample estimates:
 ratio of variances 
-             3.858 
+            0.5969 
 ```
 
 ```r
@@ -2352,13 +3217,13 @@ var.test(tTestExample$A,tTestExample$C)
 	F test to compare two variances
 
 data:  tTestExample$A and tTestExample$C
-F = 0.0907, num df = 9, denom df = 9, p-value = 0.001426
+F = 0.0934, num df = 9, denom df = 9, p-value = 0.001598
 alternative hypothesis: true ratio of variances is not equal to 1
 95 percent confidence interval:
- 0.02252 0.36502
+ 0.02319 0.37585
 sample estimates:
 ratio of variances 
-           0.09067 
+           0.09336 
 ```
 
 T-test example
@@ -2378,13 +3243,13 @@ Result
 	Two Sample t-test
 
 data:  tTestExample$A and tTestExample$B
-t = -34.25, df = 18, p-value < 2.2e-16
+t = -28.87, df = 18, p-value < 2.2e-16
 alternative hypothesis: true difference in means is not equal to 0
 95 percent confidence interval:
- -15.12 -13.37
+ -15.55 -13.44
 sample estimates:
 mean of x mean of y 
-    25.70     39.95 
+    25.49     39.98 
 ```
 
 To compare groups of unequal variance then the var.equal argument may be set to FALSE (which is the default).
@@ -2400,13 +3265,13 @@ Result
 	Welch Two Sample t-test
 
 data:  tTestExample$A and tTestExample$C
-t = -9.228, df = 10.62, p-value = 2.13e-06
+t = -14.71, df = 10.67, p-value = 2.013e-08
 alternative hypothesis: true difference in means is not equal to 0
 95 percent confidence interval:
- -14.709  -9.024
+ -17.77 -13.13
 sample estimates:
 mean of x mean of y 
-    25.70     37.57 
+    25.49     40.94 
 ```
 
 T-test example
@@ -2431,13 +3296,13 @@ Result
 	Two Sample t-test
 
 data:  Value by Group
-t = -34.25, df = 18, p-value < 2.2e-16
+t = -28.87, df = 18, p-value < 2.2e-16
 alternative hypothesis: true difference in means is not equal to 0
 95 percent confidence interval:
- -15.12 -13.37
+ -15.55 -13.44
 sample estimates:
 mean in group A mean in group B 
-          25.70           39.95 
+          25.49           39.98 
 ```
 
 
@@ -2465,7 +3330,7 @@ To fit a linear regression we use a similar set of arguments as passed to the t-
 > abline(lmResult,col="red",lty=3,lwd=3)
 ```
 
-![plot of chunk unnamed-chunk-108](introToR_Day1-figure/unnamed-chunk-108.png) 
+![plot of chunk unnamed-chunk-205](introToR_Day1-figure/unnamed-chunk-205.png) 
 
 The lm() function
 =========================================================
@@ -2487,7 +3352,7 @@ lm(formula = Y ~ X, data = lmExample)
 
 Coefficients:
 (Intercept)            X  
-      15.96         1.07  
+      29.44         0.87  
 ```
 
 Printing the result from lm() shows the call to lm() and the coefficients including the intercept.
@@ -2503,7 +3368,7 @@ From this we know the formula for the line.
 > abline(lmResult,col="red",lty=3,lwd=3)
 ```
 
-![plot of chunk unnamed-chunk-110](introToR_Day1-figure/unnamed-chunk-110.png) 
+![plot of chunk unnamed-chunk-207](introToR_Day1-figure/unnamed-chunk-207.png) 
 
 Interpreting output of lm()
 =========================================================
@@ -2523,18 +3388,18 @@ lm(formula = Y ~ X, data = lmExample)
 
 Residuals:
    Min     1Q Median     3Q    Max 
--39.05 -18.28   0.37  17.60  38.64 
+-39.66 -18.93   2.15  17.28  41.56 
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)    
-(Intercept)    15.96      13.64    1.17     0.24    
-X               1.07       0.19    5.63  1.8e-07 ***
+(Intercept)   29.444     18.112    1.63  0.10724    
+X              0.870      0.252    3.45  0.00082 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 22.1 on 98 degrees of freedom
-Multiple R-squared:  0.244,	Adjusted R-squared:  0.236 
-F-statistic: 31.6 on 1 and 98 DF,  p-value: 1.75e-07
+Residual standard error: 22.5 on 98 degrees of freedom
+Multiple R-squared:  0.108,	Adjusted R-squared:  0.0993 
+F-statistic: 11.9 on 1 and 98 DF,  p-value: 0.000824
 ```
 
 
@@ -2549,18 +3414,18 @@ lm(formula = Y ~ X, data = lmExample)
 
 Residuals:
    Min     1Q Median     3Q    Max 
--39.05 -18.28   0.37  17.60  38.64 
+-39.66 -18.93   2.15  17.28  41.56 
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)    
-(Intercept)    15.96      13.64    1.17     0.24    
-X               1.07       0.19    5.63  1.8e-07 ***
+(Intercept)   29.444     18.112    1.63  0.10724    
+X              0.870      0.252    3.45  0.00082 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 22.1 on 98 degrees of freedom
-Multiple R-squared:  0.244,	Adjusted R-squared:  0.236 
-F-statistic: 31.6 on 1 and 98 DF,  p-value: 1.75e-07
+Residual standard error: 22.5 on 98 degrees of freedom
+Multiple R-squared:  0.108,	Adjusted R-squared:  0.0993 
+F-statistic: 11.9 on 1 and 98 DF,  p-value: 0.000824
 ```
 
 ***
@@ -2574,7 +3439,7 @@ To retrieve the residuals we can access the slot or use the resid() function.
 
 ```
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
- -39.00  -18.30    0.37    0.00   17.60   38.60 
+ -39.70  -18.90    2.15    0.00   17.30   41.60 
 ```
 
 ```r
@@ -2583,7 +3448,7 @@ To retrieve the residuals we can access the slot or use the resid() function.
 
 ```
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
- -39.00  -18.30    0.37    0.00   17.60   38.60 
+ -39.70  -18.90    2.15    0.00   17.30   41.60 
 ```
 Ideally you would want your residuals to be normally distributed around 0 indicating a good correspondence between predicted and actual values.
 
@@ -2598,18 +3463,18 @@ lm(formula = Y ~ X, data = lmExample)
 
 Residuals:
    Min     1Q Median     3Q    Max 
--39.05 -18.28   0.37  17.60  38.64 
+-39.66 -18.93   2.15  17.28  41.56 
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)    
-(Intercept)    15.96      13.64    1.17     0.24    
-X               1.07       0.19    5.63  1.8e-07 ***
+(Intercept)   29.444     18.112    1.63  0.10724    
+X              0.870      0.252    3.45  0.00082 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 22.1 on 98 degrees of freedom
-Multiple R-squared:  0.244,	Adjusted R-squared:  0.236 
-F-statistic: 31.6 on 1 and 98 DF,  p-value: 1.75e-07
+Residual standard error: 22.5 on 98 degrees of freedom
+Multiple R-squared:  0.108,	Adjusted R-squared:  0.0993 
+F-statistic: 11.9 on 1 and 98 DF,  p-value: 0.000824
 ```
 
 The **R-squared** value represents the proportion of variability in the response variable that is explained by the explanatory variable.
@@ -2631,18 +3496,18 @@ lm(formula = Y ~ X, data = lmExample)
 
 Residuals:
    Min     1Q Median     3Q    Max 
--39.05 -18.28   0.37  17.60  38.64 
+-39.66 -18.93   2.15  17.28  41.56 
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)    
-(Intercept)    15.96      13.64    1.17     0.24    
-X               1.07       0.19    5.63  1.8e-07 ***
+(Intercept)   29.444     18.112    1.63  0.10724    
+X              0.870      0.252    3.45  0.00082 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 22.1 on 98 degrees of freedom
-Multiple R-squared:  0.244,	Adjusted R-squared:  0.236 
-F-statistic: 31.6 on 1 and 98 DF,  p-value: 1.75e-07
+Residual standard error: 22.5 on 98 degrees of freedom
+Multiple R-squared:  0.108,	Adjusted R-squared:  0.0993 
+F-statistic: 11.9 on 1 and 98 DF,  p-value: 0.000824
 ```
 
 http://rstudio-pubs-static.s3.amazonaws.com/23247_8af1a386e4184c95bb36ba7a6ea0f699.html
