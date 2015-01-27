@@ -156,7 +156,7 @@ if(x > 5){
   }
 ```
 
-elseif()
+ifelse()
 ======
 
 A useful function to evaluate condition statements over vectors is the ifelse() function.
@@ -307,6 +307,19 @@ for(i in 1:13){
   }
 }
 ```
+
+Functions to loop over data types
+================================
+
+There are functions which allow you to loop over a data type and apply a function to the subsection of that data.
+
+- **apply** - Apply function to rows or columns of a matrix/data frame and return results as a vector,matrix or list.
+
+- **lapply** - Apply function to every element of a vector or list and return results as a vector.
+
+- **sapply** - Apply function to every element of a vector or list and return results as a vector,matrix or list.
+
+
 
 Functions
 ===

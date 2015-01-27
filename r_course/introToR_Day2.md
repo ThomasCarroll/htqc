@@ -192,7 +192,7 @@ if(x > 5){
 5 is 5
 ```
 
-elseif()
+ifelse()
 ======
 
 A useful function to evaluate condition statements over vectors is the ifelse() function.
@@ -397,6 +397,19 @@ Number 9 is less than 10
 Number 10 is  10
 ```
 
+Functions to loop over data types
+================================
+
+There are functions which allow you to loop over a data type and apply a function to the subsection of that data.
+
+- **apply** - Apply function to rows or columns of a matrix/data frame and return results as a vector,matrix or list.
+
+- **lapply** - Apply function to every element of a vector or list and return results as a vector.
+
+- **sapply** - Apply function to every element of a vector or list and return results as a vector,matrix or list.
+
+
+
 Functions
 ===
 
@@ -412,7 +425,7 @@ mean(x)
 ```
 
 ```
-[1] 71.46982
+[1] 68.9536
 ```
 
 ```r
@@ -581,7 +594,7 @@ $Calculation
 [1] 100
 
 $DateRun
-[1] "Tue Jan 27 21:02:18 2015"
+[1] "Tue Jan 27 21:21:29 2015"
 ```
 
 Saving scripts
