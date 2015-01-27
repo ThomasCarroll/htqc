@@ -1,11 +1,15 @@
 Introduction to R, Day 2
 ========================================================
-author: Thomas Carroll
-date: 
-css:style.css
+author: Thomas Carroll, Sanjay Khadayate, Gopuraja Dharmalingam
+date: Februrary 2st
+width: 1440
+height: 1100
+autosize: true
 font-import: <link href='http://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
 font-family: 'Slabo 27px', serif;
-autosize:true
+css:style.css
+
+
 
 
 Recap -- 

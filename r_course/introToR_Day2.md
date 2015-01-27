@@ -1,11 +1,15 @@
 Introduction to R, Day 2
 ========================================================
-author: Thomas Carroll
-date: 
-css:style.css
+author: Thomas Carroll, Sanjay Khadayate, Gopuraja Dharmalingam
+date: Februrary 2st
+width: 1440
+height: 1100
+autosize: true
 font-import: <link href='http://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
 font-family: 'Slabo 27px', serif;
-autosize:true
+css:style.css
+
+
 
 
 Recap -- 
@@ -269,15 +273,15 @@ for(i in 1:length(x)){
 ```
 
 ```
-Number 1 in x is 3
+Number 1 in x is 11
 Letter 1 in the alphabet is a
-Number 2 in x is 9
+Number 2 in x is 24
 Letter 2 in the alphabet is b
-Number 3 in x is 20
+Number 3 in x is 13
 Letter 3 in the alphabet is c
-Number 4 in x is 7
+Number 4 in x is 9
 Letter 4 in the alphabet is d
-Number 5 in x is 24
+Number 5 in x is 18
 Letter 5 in the alphabet is e
 ```
 
@@ -350,7 +354,7 @@ mean(x)
 ```
 
 ```
-[1] 69.86902
+[1] 70.97933
 ```
 
 ```r
@@ -520,7 +524,7 @@ $Calculation
 [1] 100
 
 $DateRun
-[1] "Tue Jan 27 16:23:27 2015"
+[1] "Tue Jan 27 16:25:37 2015"
 ```
 
 ```r
