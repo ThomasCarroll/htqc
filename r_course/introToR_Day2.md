@@ -9,15 +9,49 @@ font-import: <link href='http://fonts.googleapis.com/css?family=Slabo+27px' rel=
 font-family: 'Slabo 27px', serif;
 css:style.css
 
-
-
-
-Recap -- 
+Overview
 ========================================================
+
+- [Recap](#/recap)
+- [Conditions and Loops](#/control)
+- [Defining functions](#/functions)
+- [Libraries and help](#/libraries)
+- [Writing scripts](#/scripts)
+- [Some tips](#/tips)
+
+
+
+
+Recap on what we have covered. 
+========================================================
+
+Day 1 covered introduction to R data types, inputing data, plotting and statistics.
+
+- [Background to R](#/background)
+- [Data types in R](#/datatypes)
+- [Reading and writing data in R](#/reading)
+- [Plotting in R](#/plotting)
+- [Statistics in R](#/stats)
+
+Recap on what we have covered. 
+========================================================
+
+R stores data in five main data types.
+
+- **Vector** - Ordered collection of single data type (numeric/character/logical).
+- **Matrix** - Table (ordered 2D collection) of single data type (numeric/character/logical).
+- **Factors** -Ordered collection of ordinal or nominal catagories.
+- **Data frame** - Table (ordered 2D array) of multiple data types of same length.
+- **List** - Ordered collection of multiple data types of differing length
+
+
+Conditions and Loop
+=====================
 
 Control Structure and Loops
 ========================================================
-We have looked at using logical vectors as a versatile way to index other data types
+
+We have looked at using logical vectors as a way to index other data types
 
 ```r
 x <- 1:10
@@ -28,35 +62,27 @@ x[x < 4]
 [1] 1 2 3
 ```
 
-Logicals have an important part in controlling how scripted procedures execute.
+Logicals are also used in controlling how scripted procedures execute.
 
 
 Two important control structures
 ========
 
-- Conditional branching (if,else ifelse)
-- Loops (for, while, switch)
+- Conditional branching (if,else)
+- Loops (for, while)
 
 **While** I'm analysing data, **if** I need to execute complex statistical procedures on the data I will use R **else** I will use a calculator.
 
 Conditional Branching.
 ========
 
-Conditional Branching is evaluation of a logical to determine whether a procedure is executed.
+Conditional Branching is evaluation of a logical to determine whether a chunk of code is executed.
 
-In the R we use the **if** statement with the logical to be evaluated in **()** and dependent statement to executed in **{}**.
+In the R we use the **if** statement with the logical to be evaluated in **()** and dependent code to be executed in **{}**.
 
-
-```r
-x <- T
-x
-```
-
-```
-[1] TRUE
-```
 
 ```r
+x <- TRUE
 if(x){
   message("x is true")
 }
@@ -67,36 +93,20 @@ x is true
 ```
 
 ```r
-x <- F
-x
-```
-
-```
-[1] FALSE
-```
-
-```r
+x <- FALSE
 if(x){
   message("x is true")
 }
 ```
-Evaluating in if() statments
+Evaluating in if() statements
 ====
 
-More often, we construct the logical value within **()** itself.
+More often, we construct the logical value within **()** itself.This can be term the **condition**. 
 
 
 ```r
 x <- 10
 y <- 4
-x > y
-```
-
-```
-[1] TRUE
-```
-
-```r
 if(x > y){
   message("The value of x is ",x," is greater than ", y)
 }
@@ -107,15 +117,16 @@ The value of x is 10 is greater than 4
 ```
 Here the message is printed because x is greater than y. 
 
+
 ```r
 y <- 20
 if(x > y){
   message("The value of x is ",x," is greater than ", y)
 }
 ```
-Here, x is not longer greater than y so no message is printed.
+Here, x is not longer greater than y, so no message is printed.
 
-We really still want a message telling us what was the result of the comparison even if it didn't pass criteria
+We really still want a message telling us what was the result of the condition.
 
 else following an if().
 ========================
@@ -142,6 +153,7 @@ if(x < 5){
 ```
 10 is greater than or equal to 5
 ```
+***
 
 ```r
 x <- 3
@@ -158,7 +170,7 @@ if(x < 5){
 
 
 
-ifelse()
+else if
 ===========
 
 We may wish to execute different procedures under multiple conditions. This can be control in R using the else if() following an initial if() statement.
@@ -273,15 +285,15 @@ for(i in 1:length(x)){
 ```
 
 ```
-Number 1 in x is 11
+Number 1 in x is 10
 Letter 1 in the alphabet is a
-Number 2 in x is 24
+Number 2 in x is 6
 Letter 2 in the alphabet is b
-Number 3 in x is 13
+Number 3 in x is 18
 Letter 3 in the alphabet is c
 Number 4 in x is 9
 Letter 4 in the alphabet is d
-Number 5 in x is 18
+Number 5 in x is 4
 Letter 5 in the alphabet is e
 ```
 
@@ -354,7 +366,7 @@ mean(x)
 ```
 
 ```
-[1] 70.97933
+[1] 67.88957
 ```
 
 ```r
@@ -369,7 +381,7 @@ plot(Y~X,data=lmExample,main="Line of best fit with lm()",
 abline(lmResult,col="red",lty=3,lwd=3)
 ```
 
-![plot of chunk unnamed-chunk-16](introToR_Day2-figure/unnamed-chunk-16-1.png) 
+![plot of chunk unnamed-chunk-17](introToR_Day2-figure/unnamed-chunk-17-1.png) 
 
 
 Defining your own functions
@@ -524,7 +536,7 @@ $Calculation
 [1] 100
 
 $DateRun
-[1] "Tue Jan 27 16:25:37 2015"
+[1] "Tue Jan 27 18:50:55 2015"
 ```
 
 ```r

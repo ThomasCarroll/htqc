@@ -1959,14 +1959,14 @@ A standard format for this data is a table
 
 |Gene_Name | Sample_1.hi| Sample_2.hi| Sample_3.hi| Sample_4.low| Sample_5.low| Sample_1.low|
 |:---------|-----------:|-----------:|-----------:|------------:|------------:|------------:|
-|Gene_a    |    2.638924|    3.112238|    4.281659|     3.820049|     4.962258|     4.294917|
-|Gene_b    |    6.183355|    5.516830|    3.909875|     4.065172|     2.836320|     4.771508|
-|Gene_c    |    3.776565|    4.820727|    3.220009|     3.325573|     6.259391|     5.118302|
-|Gene_d    |    3.726951|    2.285166|    4.078459|     7.471665|     7.020717|     6.112542|
-|Gene_e    |   12.803042|   10.211692|   11.139179|     2.604455|     3.643753|     3.476358|
-|Gene_f    |   10.385754|    9.491561|   11.327228|     3.264161|     3.273256|     5.596825|
-|Gene_g    |   10.185975|    8.695356|   11.488795|    10.103632|    12.432752|    10.348602|
-|Gene_h    |    8.857719|   10.032756|   10.321191|    10.822762|    11.616033|    10.404483|
+|Gene_a    |    1.434232|    3.847827|    4.753905|     2.023302|     4.815150|     4.983134|
+|Gene_b    |    6.920896|    4.375848|    4.174589|     3.335305|     3.322358|     3.401714|
+|Gene_c    |    4.418390|    3.436666|    4.504165|     2.777092|     3.217721|     3.672469|
+|Gene_d    |    3.358983|    2.071948|    3.126717|     7.960145|     7.549593|     8.420999|
+|Gene_e    |    8.789500|   10.075966|    8.757002|     2.375904|     2.655394|     3.280452|
+|Gene_f    |   10.101118|   10.319111|    9.910676|     2.681601|     1.191639|     2.323624|
+|Gene_g    |   11.026175|    8.747174|   11.023689|    10.182569|     9.975232|     8.990938|
+|Gene_h    |    9.758063|   11.570342|   10.958635|    10.557537|    10.285151|    11.131607|
 
 Data from text file
 =========================================================
@@ -1981,10 +1981,10 @@ Table[1:4,1:3]
 
 ```
   Gene_Name Sample_1.hi Sample_2.hi
-1    Gene_a    2.638924    3.112238
-2    Gene_b    6.183355    5.516830
-3    Gene_c    3.776565    4.820726
-4    Gene_d    3.726951    2.285166
+1    Gene_a    1.434232    3.847827
+2    Gene_b    6.920896    4.375848
+3    Gene_c    4.418390    3.436666
+4    Gene_d    3.358983    2.071948
 ```
 
 Here we have provided two arguments. 
@@ -2006,10 +2006,10 @@ Table[1:4,1:3]
 
 ```
        Sample_1.hi Sample_2.hi Sample_3.hi
-Gene_a    2.638924    3.112238    4.281659
-Gene_b    6.183355    5.516830    3.909875
-Gene_c    3.776565    4.820726    3.220009
-Gene_d    3.726951    2.285166    4.078459
+Gene_a    1.434232    3.847827    4.753905
+Gene_b    6.920896    4.375848    4.174589
+Gene_c    4.418390    3.436666    4.504165
+Gene_d    3.358983    2.071948    3.126717
 ```
 
 Data from text files
@@ -2062,7 +2062,7 @@ The **scan()** function allows for the selection of particular columns to be rea
 
 ```r
 x <- scan("readThisTable.csv",sep=",",
-what = list("",NULL,NULL,NULL,NULL,NULL,NULL),skip=1)
+what = c(list(""),rep(list(NULL), 6)),skip=1)
 x[1:3]
 ```
 
@@ -3136,7 +3136,7 @@ cor(x,z)
 ```
 
 ```
-[1] -0.03664879
+[1] -0.06435524
 ```
 ***
 ![plot of chunk unnamed-chunk-201](introToR_Day1-figure/unnamed-chunk-201-1.png) 
@@ -3150,8 +3150,8 @@ Often we wish to apply correlation analysis to all columns or rows in a matrix i
 
 | Sample_1.hi| Sample_2.hi| Sample_3.hi| Sample_4.low| Sample_5.low| Sample_1.low|
 |-----------:|-----------:|-----------:|------------:|------------:|------------:|
-|    2.638924|    3.112238|    4.281659|     3.820049|     4.962258|     4.294917|
-|    6.183355|    5.516830|    3.909875|     4.065172|     2.836320|     4.771508|
+|    1.434232|    3.847827|    4.753905|     2.023302|     4.815150|     4.983134|
+|    6.920896|    4.375848|    4.174589|     3.335305|     3.322358|     3.401714|
 
 
 ```r
@@ -3160,8 +3160,8 @@ cor(minRep)[1:2,2:5]
 
 ```
             Sample_2.hi Sample_3.hi Sample_4.low Sample_5.low
-Sample_1.hi   0.9378099   0.9238155    0.1010929   0.09921445
-Sample_2.hi   1.0000000   0.9145319    0.1819895   0.21397391
+Sample_1.hi   0.8672522   0.8813135    0.3951463    0.1766426
+Sample_2.hi   1.0000000   0.9516243    0.2711819    0.1361329
 ```
 
 Correlation (Continued)
@@ -3210,8 +3210,8 @@ rnorm(10,mean=8,sd=3)
 ```
 
 ```
- [1]  8.317725 13.486360  4.899664 11.232290  6.319372  6.491454  6.450621
- [8]  6.219691  9.954426 11.852046
+ [1]  6.035370 10.347328  7.206075  6.733497 11.880912  8.585432  2.489790
+ [8]  8.285526  5.831608  5.831726
 ```
 We can also use these functions to interrogate values assuming a normal distribution for the data.
 
@@ -3500,7 +3500,7 @@ lm(formula = Y ~ X, data = lmExample)
 
 Coefficients:
 (Intercept)            X  
-     17.874        1.007  
+    29.8174       0.8044  
 ```
 
 Printing the result from lm() shows the call to lm() and the coefficients including the intercept.
@@ -3540,19 +3540,19 @@ Call:
 lm(formula = Y ~ X, data = lmExample)
 
 Residuals:
-   Min     1Q Median     3Q    Max 
--38.33 -22.03  -0.08  19.60  41.30 
+    Min      1Q  Median      3Q     Max 
+-34.832 -15.702  -4.063  15.106  43.281 
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)    
-(Intercept)  17.8738    17.3888   1.028    0.307    
-X             1.0073     0.2473   4.074  9.4e-05 ***
+(Intercept)  29.8174    13.9581   2.136   0.0352 *  
+X             0.8044     0.1953   4.119 7.97e-05 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 24.33 on 98 degrees of freedom
-Multiple R-squared:  0.1448,	Adjusted R-squared:  0.1361 
-F-statistic: 16.59 on 1 and 98 DF,  p-value: 9.405e-05
+Residual standard error: 21.08 on 98 degrees of freedom
+Multiple R-squared:  0.1475,	Adjusted R-squared:  0.1388 
+F-statistic: 16.96 on 1 and 98 DF,  p-value: 7.969e-05
 ```
 
 
@@ -3566,19 +3566,19 @@ Call:
 lm(formula = Y ~ X, data = lmExample)
 
 Residuals:
-   Min     1Q Median     3Q    Max 
--38.33 -22.03  -0.08  19.60  41.30 
+    Min      1Q  Median      3Q     Max 
+-34.832 -15.702  -4.063  15.106  43.281 
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)    
-(Intercept)  17.8738    17.3888   1.028    0.307    
-X             1.0073     0.2473   4.074  9.4e-05 ***
+(Intercept)  29.8174    13.9581   2.136   0.0352 *  
+X             0.8044     0.1953   4.119 7.97e-05 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 24.33 on 98 degrees of freedom
-Multiple R-squared:  0.1448,	Adjusted R-squared:  0.1361 
-F-statistic: 16.59 on 1 and 98 DF,  p-value: 9.405e-05
+Residual standard error: 21.08 on 98 degrees of freedom
+Multiple R-squared:  0.1475,	Adjusted R-squared:  0.1388 
+F-statistic: 16.96 on 1 and 98 DF,  p-value: 7.969e-05
 ```
 
 ***
@@ -3591,8 +3591,8 @@ To retrieve the residuals we can access the slot or use the resid() function.
 ```
 
 ```
-     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
--38.33000 -22.03000  -0.07968   0.00000  19.60000  41.30000 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+-34.830 -15.700  -4.063   0.000  15.110  43.280 
 ```
 
 ```r
@@ -3600,8 +3600,8 @@ To retrieve the residuals we can access the slot or use the resid() function.
 ```
 
 ```
-     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
--38.33000 -22.03000  -0.07968   0.00000  19.60000  41.30000 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+-34.830 -15.700  -4.063   0.000  15.110  43.280 
 ```
 Ideally you would want your residuals to be normally distributed around 0 indicating a good correspondence between predicted and actual values.
 
@@ -3615,19 +3615,19 @@ Call:
 lm(formula = Y ~ X, data = lmExample)
 
 Residuals:
-   Min     1Q Median     3Q    Max 
--38.33 -22.03  -0.08  19.60  41.30 
+    Min      1Q  Median      3Q     Max 
+-34.832 -15.702  -4.063  15.106  43.281 
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)    
-(Intercept)  17.8738    17.3888   1.028    0.307    
-X             1.0073     0.2473   4.074  9.4e-05 ***
+(Intercept)  29.8174    13.9581   2.136   0.0352 *  
+X             0.8044     0.1953   4.119 7.97e-05 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 24.33 on 98 degrees of freedom
-Multiple R-squared:  0.1448,	Adjusted R-squared:  0.1361 
-F-statistic: 16.59 on 1 and 98 DF,  p-value: 9.405e-05
+Residual standard error: 21.08 on 98 degrees of freedom
+Multiple R-squared:  0.1475,	Adjusted R-squared:  0.1388 
+F-statistic: 16.96 on 1 and 98 DF,  p-value: 7.969e-05
 ```
 
 The **R-squared** value represents the proportion of variability in the response variable that is explained by the explanatory variable.
@@ -3648,19 +3648,19 @@ Call:
 lm(formula = Y ~ X, data = lmExample)
 
 Residuals:
-   Min     1Q Median     3Q    Max 
--38.33 -22.03  -0.08  19.60  41.30 
+    Min      1Q  Median      3Q     Max 
+-34.832 -15.702  -4.063  15.106  43.281 
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)    
-(Intercept)  17.8738    17.3888   1.028    0.307    
-X             1.0073     0.2473   4.074  9.4e-05 ***
+(Intercept)  29.8174    13.9581   2.136   0.0352 *  
+X             0.8044     0.1953   4.119 7.97e-05 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 24.33 on 98 degrees of freedom
-Multiple R-squared:  0.1448,	Adjusted R-squared:  0.1361 
-F-statistic: 16.59 on 1 and 98 DF,  p-value: 9.405e-05
+Residual standard error: 21.08 on 98 degrees of freedom
+Multiple R-squared:  0.1475,	Adjusted R-squared:  0.1388 
+F-statistic: 16.96 on 1 and 98 DF,  p-value: 7.969e-05
 ```
 
 The results from linear models also provides a measure of significance for a variable not being relevant in **Pr(>|t|)** column. A low p-value suggests the variable is useful in prediction of the dependent variable.

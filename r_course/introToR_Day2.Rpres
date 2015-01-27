@@ -9,68 +9,98 @@ font-import: <link href='http://fonts.googleapis.com/css?family=Slabo+27px' rel=
 font-family: 'Slabo 27px', serif;
 css:style.css
 
-
-
-
-Recap -- 
+Overview
 ========================================================
+
+- [Recap](#/recap)
+- [Conditions and Loops](#/control)
+- [Defining functions](#/functions)
+- [Libraries and help](#/libraries)
+- [Writing scripts](#/scripts)
+- [Some tips](#/tips)
+
+
+
+
+Recap on what we have covered. 
+========================================================
+
+Day 1 covered introduction to R data types, inputing data, plotting and statistics.
+
+- [Background to R](#/background)
+- [Data types in R](#/datatypes)
+- [Reading and writing data in R](#/reading)
+- [Plotting in R](#/plotting)
+- [Statistics in R](#/stats)
+
+Recap on what we have covered. 
+========================================================
+
+R stores data in five main data types.
+
+- **Vector** - Ordered collection of single data type (numeric/character/logical).
+- **Matrix** - Table (ordered 2D collection) of single data type (numeric/character/logical).
+- **Factors** -Ordered collection of ordinal or nominal catagories.
+- **Data frame** - Table (ordered 2D array) of multiple data types of same length.
+- **List** - Ordered collection of multiple data types of differing length
+
+
+Conditions and Loop
+=====================
 
 Control Structure and Loops
 ========================================================
-We have looked at using logical vectors as a versatile way to index other data types
+
+We have looked at using logical vectors as a way to index other data types
 ```{r}
 x <- 1:10
 x[x < 4]
 ```
 
-Logicals have an important part in controlling how scripted procedures execute.
+Logicals are also used in controlling how scripted procedures execute.
 
 
 Two important control structures
 ========
 
-- Conditional branching (if,else ifelse)
-- Loops (for, while, switch)
+- Conditional branching (if,else)
+- Loops (for, while)
 
 **While** I'm analysing data, **if** I need to execute complex statistical procedures on the data I will use R **else** I will use a calculator.
 
 Conditional Branching.
 ========
 
-Conditional Branching is evaluation of a logical to determine whether a procedure is executed.
+Conditional Branching is evaluation of a logical to determine whether a chunk of code is executed.
 
-In the R we use the **if** statement with the logical to be evaluated in **()** and dependent statement to executed in **{}**.
+In the R we use the **if** statement with the logical to be evaluated in **()** and dependent code to be executed in **{}**.
 
 ```{r,message=T}
-x <- T
-x
+x <- TRUE
 if(x){
   message("x is true")
 }
-x <- F
-x
+x <- FALSE
 if(x){
   message("x is true")
 }
 
 ```
-Evaluating in if() statments
+Evaluating in if() statements
 ====
 
-More often, we construct the logical value within **()** itself.
+More often, we construct the logical value within **()** itself.This can be term the **condition**. 
 
 ```{r,message=T}
 x <- 10
 y <- 4
-x > y
-
 if(x > y){
   message("The value of x is ",x," is greater than ", y)
 }
 ```
 Here the message is printed because x is greater than y. 
-```{r,message=T}
 
+```{r,message=T}
 y <- 20
 if(x > y){
   message("The value of x is ",x," is greater than ", y)
@@ -79,9 +109,9 @@ if(x > y){
 
 
 ```
-Here, x is not longer greater than y so no message is printed.
+Here, x is not longer greater than y, so no message is printed.
 
-We really still want a message telling us what was the result of the comparison even if it didn't pass criteria
+We really still want a message telling us what was the result of the condition.
 
 else following an if().
 ========================
@@ -95,6 +125,12 @@ if(x < 5){
    }else{
      message(x," is greater than or equal to 5")
 }
+```
+***
+
+With the addition of the else statement, when x is not greater than 5 the code following the else statement is executed.
+
+```{r,message=T}
 x <- 3
 if(x < 5){
   message(x, " is less than 5")
@@ -106,7 +142,7 @@ if(x < 5){
 
 
 
-ifelse()
+else if
 ===========
 
 We may wish to execute different procedures under multiple conditions. This can be control in R using the else if() following an initial if() statement.

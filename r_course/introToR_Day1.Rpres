@@ -1109,7 +1109,7 @@ The **scan()** function allows for the selection of particular columns to be rea
 
 ```{r,echo=T}
 x <- scan("readThisTable.csv",sep=",",
-what = list("",NULL,NULL,NULL,NULL,NULL,NULL),skip=1)
+what = c(list(""),rep(list(NULL), 6)),skip=1)
 x[1:3]
 ```
 
