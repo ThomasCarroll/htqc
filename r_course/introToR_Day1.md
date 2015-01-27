@@ -1959,14 +1959,14 @@ A standard format for this data is a table
 
 |Gene_Name | Sample_1.hi| Sample_2.hi| Sample_3.hi| Sample_4.low| Sample_5.low| Sample_1.low|
 |:---------|-----------:|-----------:|-----------:|------------:|------------:|------------:|
-|Gene_a    |    1.434232|    3.847827|    4.753905|     2.023302|     4.815150|     4.983134|
-|Gene_b    |    6.920896|    4.375848|    4.174589|     3.335305|     3.322358|     3.401714|
-|Gene_c    |    4.418390|    3.436666|    4.504165|     2.777092|     3.217721|     3.672469|
-|Gene_d    |    3.358983|    2.071948|    3.126717|     7.960145|     7.549593|     8.420999|
-|Gene_e    |    8.789500|   10.075966|    8.757002|     2.375904|     2.655394|     3.280452|
-|Gene_f    |   10.101118|   10.319111|    9.910676|     2.681601|     1.191639|     2.323624|
-|Gene_g    |   11.026175|    8.747174|   11.023689|    10.182569|     9.975232|     8.990938|
-|Gene_h    |    9.758063|   11.570342|   10.958635|    10.557537|    10.285151|    11.131607|
+|Gene_a    |    4.111851|    3.837019|    4.360628|     3.752517|     4.368069|     3.421009|
+|Gene_b    |    6.047822|    5.683518|    4.315889|     3.381136|     3.630273|     5.560802|
+|Gene_c    |    2.597068|    3.316301|    3.681509|     4.886520|     4.318289|     5.097783|
+|Gene_d    |    6.009197|    5.927419|    2.244702|     6.574108|     8.288831|     6.857291|
+|Gene_e    |   10.152509|   10.218200|   10.004835|     2.251603|     1.805168|     2.396295|
+|Gene_f    |   11.107869|    9.592153|   10.263975|     3.567560|     2.496475|     3.587755|
+|Gene_g    |    8.705787|    8.949422|    9.226990|    10.051516|     7.841664|     9.649869|
+|Gene_h    |    9.239039|    9.839734|   10.027812|    11.084444|     9.316200|     8.742943|
 
 Data from text file
 =========================================================
@@ -1981,10 +1981,10 @@ Table[1:4,1:3]
 
 ```
   Gene_Name Sample_1.hi Sample_2.hi
-1    Gene_a    1.434232    3.847827
-2    Gene_b    6.920896    4.375848
-3    Gene_c    4.418390    3.436666
-4    Gene_d    3.358983    2.071948
+1    Gene_a    4.111851    3.837018
+2    Gene_b    6.047822    5.683518
+3    Gene_c    2.597068    3.316300
+4    Gene_d    6.009197    5.927419
 ```
 
 Here we have provided two arguments. 
@@ -2006,10 +2006,10 @@ Table[1:4,1:3]
 
 ```
        Sample_1.hi Sample_2.hi Sample_3.hi
-Gene_a    1.434232    3.847827    4.753905
-Gene_b    6.920896    4.375848    4.174589
-Gene_c    4.418390    3.436666    4.504165
-Gene_d    3.358983    2.071948    3.126717
+Gene_a    4.111851    3.837018    4.360628
+Gene_b    6.047822    5.683518    4.315889
+Gene_c    2.597068    3.316300    3.681509
+Gene_d    6.009197    5.927419    2.244701
 ```
 
 Data from text files
@@ -2047,7 +2047,8 @@ Table[1:2,1:3]
 ```
 And the clipboard.(This is Windows version)
 
-```
+
+```r
 Table <- read.table(file="clipboard",sep=",",header=T)
 ```
 
@@ -2159,7 +2160,7 @@ plot(treatment)
 Point Plot
 ========================================================
 
-<img src="introToR_Day1-figure/unnamed-chunk-100-1.png" title="plot of chunk unnamed-chunk-100" alt="plot of chunk unnamed-chunk-100" width="1920px" />
+<img src="introToR_Day1-figure/unnamed-chunk-101-1.png" title="plot of chunk unnamed-chunk-101" alt="plot of chunk unnamed-chunk-101" width="1920px" />
 
 =======================================================
 Now, let's add a title, a line to connect the points, and some color:
@@ -2178,7 +2179,7 @@ title(main="Treatment", col.main="red", font.main=4)
 
 Line Plot
 ========================================================
-<img src="introToR_Day1-figure/unnamed-chunk-103-1.png" title="plot of chunk unnamed-chunk-103" alt="plot of chunk unnamed-chunk-103" width="1920px" />
+<img src="introToR_Day1-figure/unnamed-chunk-104-1.png" title="plot of chunk unnamed-chunk-104" alt="plot of chunk unnamed-chunk-104" width="1920px" />
 
 ========================================================
 Now let's add a red line for a control vector and specify the y-axis range directly so it will be large enough to fit the data:
@@ -2209,7 +2210,7 @@ Create a title with a red, bold/italic font
 title(main="Expression Data", col.main="red", font.main=4)
 ```
 
-<img src="introToR_Day1-figure/unnamed-chunk-108-1.png" title="plot of chunk unnamed-chunk-108" alt="plot of chunk unnamed-chunk-108" width="1920px" />
+<img src="introToR_Day1-figure/unnamed-chunk-109-1.png" title="plot of chunk unnamed-chunk-109" alt="plot of chunk unnamed-chunk-109" width="1920px" />
 
 ==========================================================
 
@@ -2258,7 +2259,7 @@ box()
 
 ========================================================
 
-<img src="introToR_Day1-figure/unnamed-chunk-114-1.png" title="plot of chunk unnamed-chunk-114" alt="plot of chunk unnamed-chunk-114" width="1920px" />
+<img src="introToR_Day1-figure/unnamed-chunk-115-1.png" title="plot of chunk unnamed-chunk-115" alt="plot of chunk unnamed-chunk-115" width="1920px" />
 
 ========================================================
 Calculate range from 0 to max value of data
@@ -2328,7 +2329,7 @@ Create a legend at (1, g_range[2]) that is slightly smaller (cex) and uses the s
 legend(1, g_range[2], c("treatment","control"), cex=0.8, col=c("blue","red"), pch=21:22, lty=1:2);  
 ```
 
-<img src="introToR_Day1-figure/unnamed-chunk-124-1.png" title="plot of chunk unnamed-chunk-124" alt="plot of chunk unnamed-chunk-124" width="1920px" />
+<img src="introToR_Day1-figure/unnamed-chunk-125-1.png" title="plot of chunk unnamed-chunk-125" alt="plot of chunk unnamed-chunk-125" width="1920px" />
  	
 	
 ========================================================	
@@ -2342,7 +2343,7 @@ Plot treatment
 barplot(treatment)
 ```
 
-<img src="introToR_Day1-figure/unnamed-chunk-126-1.png" title="plot of chunk unnamed-chunk-126" alt="plot of chunk unnamed-chunk-126" width="1920px" />
+<img src="introToR_Day1-figure/unnamed-chunk-127-1.png" title="plot of chunk unnamed-chunk-127" alt="plot of chunk unnamed-chunk-127" width="1920px" />
 
 ========================================================
  
@@ -2368,7 +2369,7 @@ barplot(data$treatment, main="Treatment", xlab="Days",ylab="values", names.arg=c
 names.arg  is a vector of names to be plotted below each bar or group of bars. 
 density	a vector giving the density of shading lines, in lines per inch, for the bars or bar components.
 
-<img src="introToR_Day1-figure/unnamed-chunk-129-1.png" title="plot of chunk unnamed-chunk-129" alt="plot of chunk unnamed-chunk-129" width="1920px" />
+<img src="introToR_Day1-figure/unnamed-chunk-130-1.png" title="plot of chunk unnamed-chunk-130" alt="plot of chunk unnamed-chunk-130" width="1920px" />
 
 ========================================================	
 Now let's plot the treatment data using some color and show a legend: 
@@ -2391,7 +2392,7 @@ fill=  c("lightblue", "mistyrose", "lightcyan","lavender", "cornsilk","maroon"))
 
 ========================================================
 
-<img src="introToR_Day1-figure/unnamed-chunk-132-1.png" title="plot of chunk unnamed-chunk-132" alt="plot of chunk unnamed-chunk-132" width="1920px" />
+<img src="introToR_Day1-figure/unnamed-chunk-133-1.png" title="plot of chunk unnamed-chunk-133" alt="plot of chunk unnamed-chunk-133" width="1920px" />
 
 ========================================================	
 Histograms
@@ -2403,7 +2404,7 @@ Create a histogram for treatment
 hist(treatment)	
 ```
 
-<img src="introToR_Day1-figure/unnamed-chunk-134-1.png" title="plot of chunk unnamed-chunk-134" alt="plot of chunk unnamed-chunk-134" width="1920px" />
+<img src="introToR_Day1-figure/unnamed-chunk-135-1.png" title="plot of chunk unnamed-chunk-135" alt="plot of chunk unnamed-chunk-135" width="1920px" />
 
 ========================================================
 
@@ -2420,7 +2421,7 @@ Create a histogram for data in light blue with the y axis ranging from 0-10
 hist(all, col="lightblue", ylim=c(0,10))
 ```
 ***
-<img src="introToR_Day1-figure/unnamed-chunk-137-1.png" title="plot of chunk unnamed-chunk-137" alt="plot of chunk unnamed-chunk-137" width="1920px" />
+<img src="introToR_Day1-figure/unnamed-chunk-138-1.png" title="plot of chunk unnamed-chunk-138" alt="plot of chunk unnamed-chunk-138" width="1920px" />
 
 ======================================================== 	
 
@@ -2455,7 +2456,7 @@ For example [0,1] means greater than or equal to 0 and less than or equal to 1.
 
 ========================================================
 
-<img src="introToR_Day1-figure/unnamed-chunk-140-1.png" title="plot of chunk unnamed-chunk-140" alt="plot of chunk unnamed-chunk-140" width="1920px" />
+<img src="introToR_Day1-figure/unnamed-chunk-141-1.png" title="plot of chunk unnamed-chunk-141" alt="plot of chunk unnamed-chunk-141" width="1920px" />
 
 ========================================================
 
@@ -2482,7 +2483,7 @@ if TRUE, the histogram graphic is a representation of frequencies
 
 if FALSE, probability densities, component density, are plotted
 
-<img src="introToR_Day1-figure/unnamed-chunk-143-1.png" title="plot of chunk unnamed-chunk-143" alt="plot of chunk unnamed-chunk-143" width="1920px" />
+<img src="introToR_Day1-figure/unnamed-chunk-144-1.png" title="plot of chunk unnamed-chunk-144" alt="plot of chunk unnamed-chunk-144" width="1920px" />
 
 
 ========================================================
@@ -2494,7 +2495,7 @@ Let's start with a simple pie chart graphing the treatment vector:
 pie(treatment)
 ```
 
-<img src="introToR_Day1-figure/unnamed-chunk-145-1.png" title="plot of chunk unnamed-chunk-145" alt="plot of chunk unnamed-chunk-145" width="1920px" />
+<img src="introToR_Day1-figure/unnamed-chunk-146-1.png" title="plot of chunk unnamed-chunk-146" alt="plot of chunk unnamed-chunk-146" width="1920px" />
 
 ========================================================
 
@@ -2507,7 +2508,7 @@ pie(treatment, main="Treatment", col= c("lightblue", "mistyrose", "lightcyan","l
     labels=c("Mon","Tue","Wed","Thu","Fri","Sat"))	
 ```
 
-<img src="introToR_Day1-figure/unnamed-chunk-147-1.png" title="plot of chunk unnamed-chunk-147" alt="plot of chunk unnamed-chunk-147" width="1920px" />
+<img src="introToR_Day1-figure/unnamed-chunk-148-1.png" title="plot of chunk unnamed-chunk-148" alt="plot of chunk unnamed-chunk-148" width="1920px" />
 
 ========================================================
 
@@ -2547,7 +2548,7 @@ legend(1.5, 0.5, c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8,fill=colors)
 
 ========================================================
 
-<img src="introToR_Day1-figure/unnamed-chunk-153-1.png" title="plot of chunk unnamed-chunk-153" alt="plot of chunk unnamed-chunk-153" width="1920px" />
+<img src="introToR_Day1-figure/unnamed-chunk-154-1.png" title="plot of chunk unnamed-chunk-154" alt="plot of chunk unnamed-chunk-154" width="1920px" />
 
 ========================================================
 Dot charts
@@ -2559,7 +2560,7 @@ Function t returns the transpose of a matrix.
 ```r
 dotchart(t(data))	
 ```
-<img src="introToR_Day1-figure/unnamed-chunk-155-1.png" title="plot of chunk unnamed-chunk-155" alt="plot of chunk unnamed-chunk-155" width="1920px" />
+<img src="introToR_Day1-figure/unnamed-chunk-156-1.png" title="plot of chunk unnamed-chunk-156" alt="plot of chunk unnamed-chunk-156" width="1920px" />
 
 ========================================================
 
@@ -2570,7 +2571,7 @@ Create a colored dotchart for autos with smaller labels
 ```r
 dotchart(t(data), color=c("red","blue","darkgreen"),main="Dotchart", cex=0.8)	
 ```
-<img src="introToR_Day1-figure/unnamed-chunk-157-1.png" title="plot of chunk unnamed-chunk-157" alt="plot of chunk unnamed-chunk-157" width="1920px" />
+<img src="introToR_Day1-figure/unnamed-chunk-158-1.png" title="plot of chunk unnamed-chunk-158" alt="plot of chunk unnamed-chunk-158" width="1920px" />
 
 Combining Plots
 ======================================================== 
@@ -2623,10 +2624,6 @@ boxplot(data1$Treated1)
 ========================================================
 
  
-<img src="introToR_Day1-figure/unnamed-chunk-161-1.png" title="plot of chunk unnamed-chunk-161" alt="plot of chunk unnamed-chunk-161" width="1920px" />
-
-========================================================
-
 <img src="introToR_Day1-figure/unnamed-chunk-162-1.png" title="plot of chunk unnamed-chunk-162" alt="plot of chunk unnamed-chunk-162" width="1920px" />
 
 ========================================================
@@ -2636,6 +2633,10 @@ boxplot(data1$Treated1)
 ========================================================
 
 <img src="introToR_Day1-figure/unnamed-chunk-164-1.png" title="plot of chunk unnamed-chunk-164" alt="plot of chunk unnamed-chunk-164" width="1920px" />
+
+========================================================
+
+<img src="introToR_Day1-figure/unnamed-chunk-165-1.png" title="plot of chunk unnamed-chunk-165" alt="plot of chunk unnamed-chunk-165" width="1920px" />
 
 Saving your plots
 ========================================================
@@ -2760,7 +2761,7 @@ xyplot(Untreated2~Treated2, data=data)
 
 ========================================================
 
-<img src="introToR_Day1-figure/unnamed-chunk-173-1.png" title="plot of chunk unnamed-chunk-173" alt="plot of chunk unnamed-chunk-173" width="1920px" />
+<img src="introToR_Day1-figure/unnamed-chunk-174-1.png" title="plot of chunk unnamed-chunk-174" alt="plot of chunk unnamed-chunk-174" width="1920px" />
 
 
 
@@ -2778,7 +2779,7 @@ and then printed as,
 print(tplot)
 ```
 
-<img src="introToR_Day1-figure/unnamed-chunk-176-1.png" title="plot of chunk unnamed-chunk-176" alt="plot of chunk unnamed-chunk-176" width="1920px" />
+<img src="introToR_Day1-figure/unnamed-chunk-177-1.png" title="plot of chunk unnamed-chunk-177" alt="plot of chunk unnamed-chunk-177" width="1920px" />
 ***
 The object containing the plot can further be modified. for e.g.
 
@@ -2788,7 +2789,7 @@ tplot2<-update(tplot, main="Drug treatment  in Cells" )
 print(tplot2)
 ```
 
-<img src="introToR_Day1-figure/unnamed-chunk-177-1.png" title="plot of chunk unnamed-chunk-177" alt="plot of chunk unnamed-chunk-177" width="1920px" />
+<img src="introToR_Day1-figure/unnamed-chunk-178-1.png" title="plot of chunk unnamed-chunk-178" alt="plot of chunk unnamed-chunk-178" width="1920px" />
 
 ========================================================
 
@@ -3136,10 +3137,10 @@ cor(x,z)
 ```
 
 ```
-[1] -0.06435524
+[1] 0.007961898
 ```
 ***
-![plot of chunk unnamed-chunk-201](introToR_Day1-figure/unnamed-chunk-201-1.png) 
+![plot of chunk unnamed-chunk-202](introToR_Day1-figure/unnamed-chunk-202-1.png) 
 
 
 Correlation (Continued)
@@ -3150,8 +3151,8 @@ Often we wish to apply correlation analysis to all columns or rows in a matrix i
 
 | Sample_1.hi| Sample_2.hi| Sample_3.hi| Sample_4.low| Sample_5.low| Sample_1.low|
 |-----------:|-----------:|-----------:|------------:|------------:|------------:|
-|    1.434232|    3.847827|    4.753905|     2.023302|     4.815150|     4.983134|
-|    6.920896|    4.375848|    4.174589|     3.335305|     3.322358|     3.401714|
+|    4.111851|    3.837019|    4.360628|     3.752517|     4.368069|     3.421009|
+|    6.047822|    5.683518|    4.315889|     3.381136|     3.630273|     5.560802|
 
 
 ```r
@@ -3160,8 +3161,8 @@ cor(minRep)[1:2,2:5]
 
 ```
             Sample_2.hi Sample_3.hi Sample_4.low Sample_5.low
-Sample_1.hi   0.8672522   0.8813135    0.3951463    0.1766426
-Sample_2.hi   1.0000000   0.9516243    0.2711819    0.1361329
+Sample_1.hi   0.9739739   0.8808776    0.1504303  -0.05810176
+Sample_2.hi   1.0000000   0.9055735    0.2865711   0.06212091
 ```
 
 Correlation (Continued)
@@ -3174,7 +3175,7 @@ axis(1,at=seq(0,1,length.out=6), colnames(minRep))
 axis(2,at=seq(0,1,length.out=6), colnames(minRep))
 ```
 ***
-<img src="introToR_Day1-figure/unnamed-chunk-206-1.png" title="plot of chunk unnamed-chunk-206" alt="plot of chunk unnamed-chunk-206" width="1920px" />
+<img src="introToR_Day1-figure/unnamed-chunk-207-1.png" title="plot of chunk unnamed-chunk-207" alt="plot of chunk unnamed-chunk-207" width="1920px" />
 
 Distributions
 =========================================================
@@ -3210,8 +3211,8 @@ rnorm(10,mean=8,sd=3)
 ```
 
 ```
- [1]  6.035370 10.347328  7.206075  6.733497 11.880912  8.585432  2.489790
- [8]  8.285526  5.831608  5.831726
+ [1] 8.043518 7.294967 3.701059 5.977129 6.719323 4.821539 6.263563
+ [8] 9.973544 3.646673 5.017044
 ```
 We can also use these functions to interrogate values assuming a normal distribution for the data.
 
@@ -3463,7 +3464,7 @@ R also provides a comprehensive set of tools for regression analysis including t
 
 To fit a linear regression we use a similar set of arguments as passed to the t-test fuction in the previous slide.
 
-
+I can actually define the model here right..y <- 10x + 50
 
 ```r
 > x=rnorm(100,70,10)
@@ -3478,7 +3479,7 @@ To fit a linear regression we use a similar set of arguments as passed to the t-
 > abline(lmResult,col="red",lty=3,lwd=3)
 ```
 
-![plot of chunk unnamed-chunk-218](introToR_Day1-figure/unnamed-chunk-218-1.png) 
+![plot of chunk unnamed-chunk-219](introToR_Day1-figure/unnamed-chunk-219-1.png) 
 
 The lm() function
 =========================================================
@@ -3500,7 +3501,7 @@ lm(formula = Y ~ X, data = lmExample)
 
 Coefficients:
 (Intercept)            X  
-    29.8174       0.8044  
+      8.339        1.130  
 ```
 
 Printing the result from lm() shows the call to lm() and the coefficients including the intercept.
@@ -3521,7 +3522,7 @@ We can add the line of best fit using **abline()**
 > abline(lmResult,col="red",lty=3,lwd=3)
 ```
 
-![plot of chunk unnamed-chunk-220](introToR_Day1-figure/unnamed-chunk-220-1.png) 
+![plot of chunk unnamed-chunk-221](introToR_Day1-figure/unnamed-chunk-221-1.png) 
 
 Interpreting output of lm()
 =========================================================
@@ -3541,18 +3542,18 @@ lm(formula = Y ~ X, data = lmExample)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--34.832 -15.702  -4.063  15.106  43.281 
+-36.912 -16.201  -1.743  14.211  43.122 
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)    
-(Intercept)  29.8174    13.9581   2.136   0.0352 *  
-X             0.8044     0.1953   4.119 7.97e-05 ***
+(Intercept)   8.3390    13.0811   0.637    0.525    
+X             1.1296     0.1847   6.117 1.95e-08 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 21.08 on 98 degrees of freedom
-Multiple R-squared:  0.1475,	Adjusted R-squared:  0.1388 
-F-statistic: 16.96 on 1 and 98 DF,  p-value: 7.969e-05
+Residual standard error: 22.06 on 98 degrees of freedom
+Multiple R-squared:  0.2763,	Adjusted R-squared:  0.269 
+F-statistic: 37.42 on 1 and 98 DF,  p-value: 1.955e-08
 ```
 
 
@@ -3567,18 +3568,18 @@ lm(formula = Y ~ X, data = lmExample)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--34.832 -15.702  -4.063  15.106  43.281 
+-36.912 -16.201  -1.743  14.211  43.122 
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)    
-(Intercept)  29.8174    13.9581   2.136   0.0352 *  
-X             0.8044     0.1953   4.119 7.97e-05 ***
+(Intercept)   8.3390    13.0811   0.637    0.525    
+X             1.1296     0.1847   6.117 1.95e-08 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 21.08 on 98 degrees of freedom
-Multiple R-squared:  0.1475,	Adjusted R-squared:  0.1388 
-F-statistic: 16.96 on 1 and 98 DF,  p-value: 7.969e-05
+Residual standard error: 22.06 on 98 degrees of freedom
+Multiple R-squared:  0.2763,	Adjusted R-squared:  0.269 
+F-statistic: 37.42 on 1 and 98 DF,  p-value: 1.955e-08
 ```
 
 ***
@@ -3592,7 +3593,7 @@ To retrieve the residuals we can access the slot or use the resid() function.
 
 ```
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
--34.830 -15.700  -4.063   0.000  15.110  43.280 
+-36.910 -16.200  -1.743   0.000  14.210  43.120 
 ```
 
 ```r
@@ -3601,7 +3602,7 @@ To retrieve the residuals we can access the slot or use the resid() function.
 
 ```
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
--34.830 -15.700  -4.063   0.000  15.110  43.280 
+-36.910 -16.200  -1.743   0.000  14.210  43.120 
 ```
 Ideally you would want your residuals to be normally distributed around 0 indicating a good correspondence between predicted and actual values.
 
@@ -3616,18 +3617,18 @@ lm(formula = Y ~ X, data = lmExample)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--34.832 -15.702  -4.063  15.106  43.281 
+-36.912 -16.201  -1.743  14.211  43.122 
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)    
-(Intercept)  29.8174    13.9581   2.136   0.0352 *  
-X             0.8044     0.1953   4.119 7.97e-05 ***
+(Intercept)   8.3390    13.0811   0.637    0.525    
+X             1.1296     0.1847   6.117 1.95e-08 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 21.08 on 98 degrees of freedom
-Multiple R-squared:  0.1475,	Adjusted R-squared:  0.1388 
-F-statistic: 16.96 on 1 and 98 DF,  p-value: 7.969e-05
+Residual standard error: 22.06 on 98 degrees of freedom
+Multiple R-squared:  0.2763,	Adjusted R-squared:  0.269 
+F-statistic: 37.42 on 1 and 98 DF,  p-value: 1.955e-08
 ```
 
 The **R-squared** value represents the proportion of variability in the response variable that is explained by the explanatory variable.
@@ -3649,18 +3650,18 @@ lm(formula = Y ~ X, data = lmExample)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--34.832 -15.702  -4.063  15.106  43.281 
+-36.912 -16.201  -1.743  14.211  43.122 
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)    
-(Intercept)  29.8174    13.9581   2.136   0.0352 *  
-X             0.8044     0.1953   4.119 7.97e-05 ***
+(Intercept)   8.3390    13.0811   0.637    0.525    
+X             1.1296     0.1847   6.117 1.95e-08 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 21.08 on 98 degrees of freedom
-Multiple R-squared:  0.1475,	Adjusted R-squared:  0.1388 
-F-statistic: 16.96 on 1 and 98 DF,  p-value: 7.969e-05
+Residual standard error: 22.06 on 98 degrees of freedom
+Multiple R-squared:  0.2763,	Adjusted R-squared:  0.269 
+F-statistic: 37.42 on 1 and 98 DF,  p-value: 1.955e-08
 ```
 
 The results from linear models also provides a measure of significance for a variable not being relevant in **Pr(>|t|)** column. A low p-value suggests the variable is useful in prediction of the dependent variable.

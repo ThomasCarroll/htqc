@@ -43,6 +43,31 @@ R stores data in five main data types.
 - **Data frame** - Table (ordered 2D array) of multiple data types of same length.
 - **List** - Ordered collection of multiple data types of differing length
 
+Recap.
+========================================================
+
+Data can be read into R as a table with the **read.table()** function and written to file with the **write.table()** function.
+
+
+```r
+Table <- read.table("readThisTable.csv",sep=",",header=T,row.names=1)
+Table[1:3,]
+```
+
+```
+       Sample_1.hi Sample_2.hi Sample_3.hi Sample_4.low Sample_5.low
+Gene_a    1.434232    3.847827    4.753905     2.023302     4.815150
+Gene_b    6.920896    4.375848    4.174589     3.335305     3.322358
+Gene_c    4.418390    3.436666    4.504165     2.777092     3.217721
+       Sample_1.low
+Gene_a     4.983134
+Gene_b     3.401714
+Gene_c     3.672469
+```
+
+```r
+write.table(Table,file="writeThisTable.csv", sep=",", row.names =F,col.names=T)
+```
 
 Conditions and Loop
 =====================
@@ -454,9 +479,170 @@ apply(matExample,2,mean)
 
 Additional arguments
 =====================
+Additional arguments to be used by the function in the apply loop can be specified after the function argument. 
+
+Arguments may be ordered as if passed to function directly. For **paste()** function however this isn't possible.
+
+
+
+```r
+apply(matExample,1,paste,collapse=";")
+```
+
+```
+[1] "1;2" "3;4"
+```
 
 lapply()
 ====
+
+Similar to apply, **lapply** applies a function to every element of a vector or list. 
+
+**lapply** returns a list object containing the results of evaluating the function.
+
+
+```r
+lapply(c(1,2),mean)
+```
+
+```
+[[1]]
+[1] 1
+
+[[2]]
+[1] 2
+```
+***
+As with apply() additional arguments can be supplied after the function name argument.
+
+
+```r
+lapply(list(1,NA,2),mean,na.rm=T)
+```
+
+```
+[[1]]
+[1] 1
+
+[[2]]
+[1] NaN
+
+[[3]]
+[1] 2
+```
+
+sapply
+=====
+
+**sapply** (*smart apply*) acts as lapply but attempts to return the results as the most appropriate data type.
+
+Here sapply returns a vector where lapply would return lists.
+
+```r
+exampleVector <- c(1,2,3,4,5)
+exampleList <- list(1,2,3,4,5)
+sapply(exampleVector,mean,na.rm=T)
+```
+
+```
+[1] 1 2 3 4 5
+```
+
+```r
+sapply(exampleList,mean,na.rm=T)
+```
+
+```
+[1] 1 2 3 4 5
+```
+
+sapply
+=====
+
+In this example lapply returns a list of vectors from the quantile function.
+
+
+```r
+exampleList <- list(row1=1:5, row2=6:10, row3=11:15)
+exampleList
+```
+
+```
+$row1
+[1] 1 2 3 4 5
+
+$row2
+[1]  6  7  8  9 10
+
+$row3
+[1] 11 12 13 14 15
+```
+
+***
+
+```r
+lapply(exampleList,quantile)
+```
+
+```
+$row1
+  0%  25%  50%  75% 100% 
+   1    2    3    4    5 
+
+$row2
+  0%  25%  50%  75% 100% 
+   6    7    8    9   10 
+
+$row3
+  0%  25%  50%  75% 100% 
+  11   12   13   14   15 
+```
+
+sapply
+=====
+
+Here is an example of sapply parsing a result from the quantile function in a *smart* way.
+
+When a function always returns a vector of the same length, sapply will create a matrix with elements by column.
+
+
+```r
+sapply(exampleList,quantile)
+```
+
+```
+     row1 row2 row3
+0%      1    6   11
+25%     2    7   12
+50%     3    8   13
+75%     4    9   14
+100%    5   10   15
+```
+
+sapply
+=====
+
+When sapply cannot parse the result to a vector or matrix, a list will be returned.
+
+```r
+exampleList <- list(df=data.frame(sample=paste0("patient",1:2), data=c(1,12)), vec=c(1,3,4,5))
+sapply(exampleList,summary)
+```
+
+```
+$df
+      sample       data      
+ patient1:1   Min.   : 1.00  
+ patient2:1   1st Qu.: 3.75  
+              Median : 6.50  
+              Mean   : 6.50  
+              3rd Qu.: 9.25  
+              Max.   :12.00  
+
+$vec
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   1.00    2.50    3.50    3.25    4.25    5.00 
+```
 
 Functions
 ===
@@ -473,7 +659,7 @@ mean(x)
 ```
 
 ```
-[1] 70.16568
+[1] 69.93308
 ```
 
 ```r
@@ -488,7 +674,7 @@ plot(Y~X,data=lmExample,main="Line of best fit with lm()",
 abline(lmResult,col="red",lty=3,lwd=3)
 ```
 
-![plot of chunk unnamed-chunk-23](introToR_Day2-figure/unnamed-chunk-23-1.png) 
+![plot of chunk unnamed-chunk-33](introToR_Day2-figure/unnamed-chunk-33-1.png) 
 
 
 Defining your own functions
@@ -642,7 +828,7 @@ $Calculation
 [1] 100
 
 $DateRun
-[1] "Tue Jan 27 22:12:06 2015"
+[1] "Tue Jan 27 23:28:43 2015"
 ```
 
 Saving scripts
@@ -756,6 +942,10 @@ Do i show that dimnames actually can set dimension names?
 
 Some tips for speed comparisons..
 
+Question?
+Why can't you use na.rm=T in mean as an ordered unnamed arguments?
 
 Getting help
 
+
+Should i talk about append in write.table?
