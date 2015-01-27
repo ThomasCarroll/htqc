@@ -15,9 +15,8 @@ Overview
 - [Recap](#/recap)
 - [Conditions and Loops](#/control)
 - [Defining functions](#/functions)
-- [Libraries and help](#/libraries)
 - [Writing scripts](#/scripts)
-- [Some tips](#/tips)
+- [Libraries](#/libraries)
 
 
 
@@ -146,7 +145,7 @@ else if
 ===========
 
 We may wish to execute different procedures under multiple conditions. This can be control in R using the else if() following an initial if() statement.
-```{r}
+```{r, message=TRUE}
 x <- 5
 if(x > 5){
   message(x," is greater than 5")
@@ -169,7 +168,7 @@ message(x)
 
 The ifelse() functions take the arguments of the condition to evaluate, the action if the condition is true and the action when condition is false.
 
-```{r}
+```{r, message=TRUE}
 ifelse(x <= 3,"lessOrEqual","more") 
 ```
 
@@ -193,11 +192,10 @@ While loops
 =====
 
 While loops are most useful if you know the condition will be satisified but are not sure when. (i.e. Looking for a when a number first occurs in a list).
-```{r}
-i <- 0
+```{r, message=TRUE}
 x <- 1
 while(x != 3){
-  message(x[i])
+  message("x is ",x," ")
   x <- x+1
 }
 message("Finally x is 3")
@@ -208,38 +206,60 @@ For loops
 
 
 For loops allow the user to cycle through a range of values applying an operation for every value.
-.
-Here we cycle through x and print out its value
-```{r}
-x <- 1:10
+
+Here we cycle through a numeric vector and print out its value
+```{r, message=TRUE}
+x <- 1:5
 for(i in x){
-  message(i)
+  message("Loop",i," ", appendLF = F)
 }
 ```
+***
+Similarly we can cycle through other vector types (or lists)
+```{r, message=TRUE}
+x <- toupper(letters[1:5])
+for(i in x){
+  message("Loop",i," ", appendLF = F)
+}
+```
+
+
 
 
 Looping through indices
 =====
 
-In sme occasions we may wish to keep track of the position in x we are evaluating. A common pactice is loop though all possible index positions of x using the expression **1:length(x)**.
+We may wish to keep track of the position in x we are evaluating to retrieve the same index in other variables. A common practice is loop though all possible index positions of x using the expression **1:length(x)**.
 
 ```{r,message=T}
-x <- sample(1:24,5)
-y <- letters
-1:length(x)
-
-for(i in 1:length(x)){
-  message("Number ",i," in x is ",x[i])
-  message("Letter ",i," in the alphabet is ",y[i]) 
+geneName <- c("Ikzf1","Myc","Igll1")
+expression <- c(10.4,4.3,6.5)
+1:length(geneName)
+for(i in 1:length(geneName)){
+  message(geneName[i]," has an RPKM of ",expression[i])
 }
 ```
 
 Loops and conditionals
 =======================
-
+Left:60%
 Loops can be combined with conditional statements to allow for complex control of their execution over R objects. 
 
-```{r}
+```{r,echo=T,eval=F}
+x <- 1:13
+
+for(i in 1:13){
+  if(i > 10){
+    message("Number ",i," is greater than 10")
+  }else if(i == 10){
+    message("Number ",i," is  10") 
+  }else{
+    message("Number ",i," is less than  10") 
+  }
+}
+```
+***
+```{r,message=T,echo=F}
 x <- 1:13
 
 for(i in 1:13){
@@ -258,7 +278,22 @@ Breaking loops
 
 We can use conditionals to exit a loop if a condition is satisfied, just a while loop.
 
-```{r,message=T}
+```{r,message=T,eval=F}
+x <- 1:13
+
+for(i in 1:13){
+  if(i < 10){
+    message("Number ",i," is less than 10")
+  }else if(i == 10){
+    message("Number ",i," is  10")
+    break
+  }else{
+    message("Number ",i," is greater than  10") 
+  }
+}
+```
+***
+```{r,message=T,eval=T,echo=F}
 x <- 1:13
 
 for(i in 1:13){
@@ -303,11 +338,21 @@ Although we have access to many built functions in R, there will be many complex
 
 For these tasks we can construct your own functions with **function()**
 
-To define a function we need to define 
+```
+Function_Name <- function(Arguments){
+      Result <- Arguments
+  return(Result)
+}
+```
+
+Defining your own functions
+======
+
+To define a function with **function()** we need to decide 
 - the argument names within **()**
 - the expression to be evaluated within **{}** 
 - the variable the function will be assigned to with **<-**.
-- the data that should be output from the function using **return()** 
+- the output from the function using **return()** 
 
 **Function_name** <- function(**Argument1**,**Argument2**){ **Expression**}
 
@@ -319,17 +364,15 @@ myFirstFunction <- function(myArgument1,myArgument2){
 myFirstFunction(4,5)
 ```
 
-User functions extend the
-capabilities of R by adapting or creating new tasks that are tailored
-to your specific requirements.
 
 Default arguments
 ====
 
-In some functions a default value for an argument may be used.
+In functions, a default value for an argument may be used.
 This allows the function to provide a value for an argument when the user does not specify one.
 
-Default arguments can be specified by assigning a value
+Default arguments can be specified by assigning a value to the argument with **=** operator
+
 ```{r,message=T}
 
 mySecondFunction <- function(myArgument1,myArgument2=10){
@@ -357,7 +400,6 @@ mySecondFunction <- function(myArgument1,myArgument2){
   }
   return(myResult)
 }
-mySecondFunction(4,5)
 mySecondFunction(4)
 ```
 
@@ -365,7 +407,7 @@ mySecondFunction(4)
 Returning objects from functions
 ====
 
-We have seen a function returns the value within the return() function.If no return is specified, the result of last line evaluated in the function.
+We have seen a function returns the value within the return() function.If no return is specified, the result of last line evaluated in the function is returned.
 
 ```{r,message=T}
 myforthFunction <- function(myArgument1,myArgument2=10){
@@ -390,18 +432,94 @@ Returning lists from functions
 The return() function can only return one R object at a time. To return multiple data objects from one function call, a list can be used to contain other data objects.
 
 ```{r,message=T}
-mySixFunction <- function(arg1,arg2){
+mySixthFunction <- function(arg1,arg2){
   result1 <- arg1*arg2
   result2 <- date()
   return(list(Calculation=result1,DateRun=result2))
 }
-result <- mySixFunction(10,10)
-
+result <- mySixthFunction(10,10)
 result
-c(class(result$Calculation),class(result$DateRun))
 ```
 
+Saving scripts
+============
+
+Once we have got our functions together and know how we want to analyse our data, we can save our analysis as a **script**. By convention R scripts typically end in **.r** or **.R**
+
+To save a file in RStudio.
+
+
+**-> File -> Save as**
+
+
+To open a previous R script
+
+**->File -> Open File..**
+
+To save all the objects (workspace) with extension **.RData**
+
+**->Session -> Save workspace as**
+
+Sourcing scripts.
+======
+
+R scripts allow us to save and reuse custom functions we have written.  To run the code from an R script we can use the **source()** function with the name of the R script as the argument. 
+
+The file **dayOfWeek.r** contains a simple R script to tell you what day it is after your marathon R coding session.
+
+```
+#Contents of dayOfWeak.r
+dayOfWeak <- function(){
+  return(gsub(" .*","",date()))  
+}
+```
+```{r}
+source("dayOfWeak.R")
+dayOfWeak()
+```
+
+Rscript
 ====
+
+R scripts can be run non-interactively from the command line with the **Rscript** command, usually with the option **--vanilla** to avoid saving or restoring workspaces. All messages/warnings/errors will be output to the console.
+
+```
+Rscript --vanilla myscript.r
+```
+
+An alternative to Rscript is **R CMD BATCH**. Here all messages/warnings/errors are directed to a file and the processing time appended.
+
+```
+R CMD BATCH myscript.r
+```
+
+Sending arguments to Rscript
+====
+
+To provide arguments to an R script at the command line we must add **commandArgs()** function to parse command line arguments.
+
+```{r,eval=F}
+args <- commandArgs(TRUE)
+myFirstArgument <- args[1]
+myFirstArgument
+as.numeric(myFirstArgument
+```
+
+```
+'10'
+```
+```{r,eval=F}
+as.numeric(myFirstArgument)
+```
+```
+10
+```
+Since vectors can only be one type, all command line arguments are strings and must be converted to numeric if needed with **as.numeric()**
+
+Two tips
+====
+Vectorisation
+Matrices to hold number only tables.
 
 If we want to return a mix of different data types back from a function, we will use a list.
 
@@ -415,6 +533,7 @@ Defining functions can
 - Increase reproducibility. 
 
 
+Nice for them to correct my slide by looping thorugh named vector.
 
 Easy to read
 x <- 1:40

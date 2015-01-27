@@ -2246,7 +2246,7 @@ R also provides a comprehensive set of tools for regression analysis including t
 
 To fit a linear regression we use a similar set of arguments as passed to the t-test fuction in the previous slide.
 
-
+I can actually define the model here right..y <- 10x + 50
 ```{r,echo=T,prompt=T}
 x=rnorm(100,70,10)
 y <- jitter(x,amount=40)+20
