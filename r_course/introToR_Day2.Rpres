@@ -319,7 +319,38 @@ There are functions which allow you to loop over a data type and apply a functio
 
 - **sapply** - Apply function to every element of a vector or list and return results as a vector,matrix or list.
 
+apply()
+=========
 
+The **apply()** function applys a function to the rows or columns of a matrix. The arguments **FUN** specifies the function to apply and **MARGIN** whether to apply the functions by rows/columns or both.
+
+```
+apply(DATA,MARGIN,FUN,...)
+```
+
+- **DATA** - A matrix (or something to be coerced into a matrix)
+- **MARGIN** - 1 for rows, 2 for columns, (1,2) for cells
+
+apply()
+====
+```{r}
+matExample <- matrix(c(1:4),nrow=2,ncol=2,byrow=T)
+matExample
+```
+Get the mean of rows
+```{r}
+apply(matExample,1,mean)
+```
+Get the mean of columns
+```{r}
+apply(matExample,2,mean)
+```
+
+Additional arguments
+=====================
+
+lapply()
+====
 
 Functions
 ===
@@ -554,7 +585,7 @@ y <- 5:35
 
 Harder to read
 
-
+Do i show that dimnames actually can set dimension names?
 
 Some tips for speed comparisons..
 

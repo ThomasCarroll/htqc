@@ -408,7 +408,55 @@ There are functions which allow you to loop over a data type and apply a functio
 
 - **sapply** - Apply function to every element of a vector or list and return results as a vector,matrix or list.
 
+apply()
+=========
 
+The **apply()** function applys a function to the rows or columns of a matrix. The arguments **FUN** specifies the function to apply and **MARGIN** whether to apply the functions by rows/columns or both.
+
+```
+apply(DATA,MARGIN,FUN,...)
+```
+
+- **DATA** - A matrix (or something to be coerced into a matrix)
+- **MARGIN** - 1 for rows, 2 for columns, (1,2) for cells
+
+apply()
+====
+
+```r
+matExample <- matrix(c(1:4),nrow=2,ncol=2,byrow=T)
+matExample
+```
+
+```
+     [,1] [,2]
+[1,]    1    2
+[2,]    3    4
+```
+Get the mean of rows
+
+```r
+apply(matExample,1,mean)
+```
+
+```
+[1] 1.5 3.5
+```
+Get the mean of columns
+
+```r
+apply(matExample,2,mean)
+```
+
+```
+[1] 2 3
+```
+
+Additional arguments
+=====================
+
+lapply()
+====
 
 Functions
 ===
@@ -425,7 +473,7 @@ mean(x)
 ```
 
 ```
-[1] 70.48462
+[1] 70.16568
 ```
 
 ```r
@@ -440,7 +488,7 @@ plot(Y~X,data=lmExample,main="Line of best fit with lm()",
 abline(lmResult,col="red",lty=3,lwd=3)
 ```
 
-![plot of chunk unnamed-chunk-20](introToR_Day2-figure/unnamed-chunk-20-1.png) 
+![plot of chunk unnamed-chunk-23](introToR_Day2-figure/unnamed-chunk-23-1.png) 
 
 
 Defining your own functions
@@ -594,7 +642,7 @@ $Calculation
 [1] 100
 
 $DateRun
-[1] "Tue Jan 27 21:25:21 2015"
+[1] "Tue Jan 27 22:12:06 2015"
 ```
 
 Saving scripts
@@ -704,7 +752,7 @@ y <- 5:35
 
 Harder to read
 
-
+Do i show that dimnames actually can set dimension names?
 
 Some tips for speed comparisons..
 
