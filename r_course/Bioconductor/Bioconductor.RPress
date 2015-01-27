@@ -51,6 +51,8 @@ library("GenomicRanges")
 
 Basic classes of BioC packages
 ========================================================
+class: small
+
 - General infrastructure
     - Biobase, IRanges, GenomicRanges, Biostrings, BSgenome, GenomicFeatures
 - Annotation
@@ -76,6 +78,7 @@ Basic classes of BioC packages
 
 BioC packages for NGS Data Analysis
 ========================================================
+class: small-code
 - <b>Data structures</b>: IRanges, GenomicRanges, Biostrings, BSgenome
 - <b>Input/Ouput</b>: ShortRead, Rsamtools, GenomicAlignments and rtracklayer (GTF,GFF,BED)
 - <b>Annotation</b>: GenomicFeatures, BSgenome, biomaRt, TxDb.\*, org.\*
@@ -205,13 +208,15 @@ GRL <- GRangesList("Peak1" = gr1, "Peak2" = gr2)
 Operations on GenomicRanges
 ========================================================
 
-Operations       Functions/methods
-----------      -----------------------------------------
-Accessors       start, end, ranges, strand, width, names, mcols, length
-Extraction      GR[i], GRL[[i]], head, tail
-Set operations  reduce, disjoin
-Overlaps        findOverlaps, subsetByOverlaps, countOverlaps, nearest, precede, follow
-Arithmetic      shift, resize, distance, distanceToNearest
+<b>Accessors:</b> start, end, ranges, strand, width, names, mcols, length
+
+<b>Extraction:</b> GR[i], GRL[[i]], head, tail
+
+<b>Set operations:</b> reduce, disjoin
+
+<b>Overlaps:</b> findOverlaps, subsetByOverlaps, countOverlaps, nearest, precede, follow
+
+<b>Arithmetic:</b> shift, resize, distance, distanceToNearest
 
 
 
@@ -294,23 +299,26 @@ BAM/SAM
 ========================================================
 BAM/SAM consist two sections: Header and Alignment
 
-Header: Meta data (reference genome, aligner), starts with “@”
+Header section: 
 
-Alignment:
+Meta data (reference genome, aligner), starts with “@”
 
-Name            Values
-----------      -----------------------------------------
-QNAME           ID of the read (“query”)
-FLAG            alignment flags
-RNAME           ID of the reference (typically: chromosome name)
-POS             Position in reference (1-based, left side)
-MAPQ            Mapping quality (as Phred score)
-CIGAR           Alignment description (mismatch, gaps etc.)
-RNEXT           Mate/next read reference sequence name
-MPOS            Mate/next read position
-TLEN            observed Template Length
-SEQ             sequence of the read
-QUAL            quality string of the read
+BAM/SAM
+========================================================
+Alignment section:
+
+<b>QNAME:</b> ID of the read (“query”)<br>
+<b>FLAG:</b>  alignment flags<br>
+<b>RNAME:</b> ID of the reference (typically: chromosome name)<br>
+<b>POS:</b>   Position in reference (1-based, left side)<br>
+<b>MAPQ:</b>  Mapping quality (as Phred score)<br>
+<b>CIGAR:</b> Alignment description (mismatch, gaps etc.)<br>
+<b>RNEXT:</b> Mate/next read reference sequence name<br>
+<b>MPOS:</b>  Mate/next read position<br>
+<b>TLEN:</b>  observed Template Length<br>
+<b>SEQ:</b>   sequence of the read<br>
+<b>QUAL:</b>  quality string of the read<br>
+
 
 
 
