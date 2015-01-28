@@ -92,11 +92,11 @@ Data types in R
 id: datatypes
 type: section
 
-- Simple Calculations
+- Simple calculations
 - Variables
 - Vectors
 - Lists
-- matrices
+- Matrices
 - Data frames
 
 
@@ -451,16 +451,12 @@ x[x > 4 & !x < 7]
 Time for an exercise!
 ========================================================
 
-- Create a vector called "Counts" containing values 4000,2000,3008,4089,1055
-- Name this vector with gene names Pax5, Oct4, Sox2, Med2, Jrd2
-- Create a vector called "gene.lengths" with same names but values 2000,200,3000,201.
-- Calculate counts per gene length for every gene.
-- Identify gene with counts greater than the average.
+Exercise on vectors can be found [here](vector_exercise.html)
 
 Answers to exercise.
 ========================================================
 
-Answers to this exercise (or at least one possible answer!) can be found here!
+Answers can be found here  [here](vector_answers.html)
 
 matrices (1/)
 ========================================================
@@ -652,11 +648,15 @@ narrowMatrix
 narrowMatrix[,2] *2
 ```
 
-Time for a second exercise!
+Time for an exercise!
 ========================================================
 
-Answers to exercise
+Exercise on vectors can be found [here](matrices_exercise.html)
+
+Answers to exercise.
 ========================================================
+
+Answers can be found here  [here](matrices_answers.html)
 
 
 Factors (1/6)
