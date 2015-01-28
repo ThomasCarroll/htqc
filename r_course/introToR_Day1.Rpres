@@ -915,11 +915,15 @@ mergedDF <- merge(dfExample,dfExample2,by=1,all=F)
 mergedDF
 ```
 
-Exercise
-=========
+Time for an exercise!
+========================================================
 
-Answers to Excercise
-====================
+Exercise on data frames and factors can be found [here](matrices_exercise.html)
+
+Answers to exercise.
+========================================================
+
+Answers can data frames and factorsbe found here  [here](matrices_answers.html)
 
 
 Lists
