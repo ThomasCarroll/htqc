@@ -438,12 +438,12 @@ sapply(exampleList,summary)
 Time for an exercise!
 ========================================================
 
-Exercise on vectors can be found [here](matrices_exercise.html)
+Exercise on loops and conditional branching can be found [here](loopsconditions_exercise.html)
 
 Answers to exercise.
 ========================================================
 
-Answers can be found here  [here](matrices_answers.html)
+Answers can be found here  [here](loopsconditions_answers.html)
 
 
 Functions

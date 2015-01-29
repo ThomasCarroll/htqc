@@ -1,0 +1,55 @@
+---
+title: "Conditional branching and looping in R answers"
+author: "MRC CSC"
+date: "01/01/2015"
+output: html_document
+---
+
+These exercises cover the sections of Statistics in R [Introduction to R]("introToR_Day1.html").
+
+-- Calculate the factorial (factorial of 3 = 3+2+1) of 10 using a loop.
+
+```{r,message=T}
+
+for(x in 1:10){
+  if(x == 1){
+    factorialAnswer <- 1
+  }else{
+    factorialAnswer <- factorialAnswer * x 
+  }
+}
+factorialAnswer
+```
+-- Adjusting your answer from before, what is the first that number has a factorial greater than 1000.
+```{r,message=T}
+
+factorialAnswer <- 0
+count <- 0
+
+while(factorialAnswer <= 1000){
+  count <- count+1
+  if(count == 1){
+    factorialAnswer <- 1
+  }else{
+    factorialAnswer <- factorialAnswer * count 
+  }
+}
+count
+```
+
+-- Using an ifelse() expression, create a factor from a vector of 1 to 40 where all numbers less than 10 are "small",10 to 30 are "mid",31 to 40 are "big"
+
+```{r,message=T}
+condExercise <- 1:40
+condExercise
+vectorResult <- ifelse(condExercise<10,"small",ifelse(condExercise < 31,"mid","big"))
+temp <- factor(vectorResult,levels=c("small","mid","big"),order=T)
+temp
+```
+
+-- loop through list and print results under different conditions.
+Create a list of 100 elements each with 10 numbers drawn from a normal distribution
+
+-- Read in right files and merge
+-- loop through matrix to get medians and normalise.
+-- If a gene is above a certain level do something else and write to matrix

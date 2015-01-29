@@ -647,12 +647,12 @@ $vec
 Time for an exercise!
 ========================================================
 
-Exercise on vectors can be found [here](matrices_exercise.html)
+Exercise on loops and conditional branching can be found [here](loopsconditions_exercise.html)
 
 Answers to exercise.
 ========================================================
 
-Answers can be found here  [here](matrices_answers.html)
+Answers can be found here  [here](loopsconditions_answers.html)
 
 
 Functions
@@ -670,7 +670,7 @@ mean(x)
 ```
 
 ```
-[1] 69.79634
+[1] 69.46879
 ```
 
 ```r
@@ -839,7 +839,7 @@ $Calculation
 [1] 100
 
 $DateRun
-[1] "Thu Jan 29 15:53:35 2015"
+[1] "Thu Jan 29 15:56:37 2015"
 ```
 
 Saving scripts
