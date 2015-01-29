@@ -20,7 +20,7 @@ for(x in 1:10){
 }
 factorialAnswer
 ```
--- Adjusting your answer from before, what is the first that number has a factorial greater than 1000.
+-- Adjusting your answer from before, what is the first number that has a factorial greater than 1000.
 ```{r,message=T}
 
 factorialAnswer <- 0
@@ -51,5 +51,7 @@ temp
 Create a list of 100 elements each with 10 numbers drawn from a normal distribution
 
 -- Read in right files and merge
+
+
 -- loop through matrix to get medians and normalise.
 -- If a gene is above a certain level do something else and write to matrix
