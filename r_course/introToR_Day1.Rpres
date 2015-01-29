@@ -2148,12 +2148,6 @@ The value for which i have a 50 percent being greater than given a normal distri
 qnorm(0.5,mean=8,sd=3)
 ```
 
-Exercises
-===========
-
-Answers to exercises.
-=====================
-
 Statistical tests
 =========================================================
 
@@ -2200,6 +2194,39 @@ Now we can test for any differences in variances between A and B and A and C wit
 ```{r}
 var.test(tTestExample$A,tTestExample$B)
 var.test(tTestExample$A,tTestExample$C)
+```
+
+R objects (s3 and s4)
+=========================================================
+Left:30%
+The data type holding the result **var.test()** is a little more complex than the data types we have looked. 
+
+In R, special objects (S3 or S4 objects) can be created which have methods associated to them. The result from var.test is an object of class **htest**.
+
+Since we have come across this before, in order to discover its structure we can use the **str()** function with the object of interest as the argument.
+***
+```{r}
+result <- var.test(tTestExample$A, tTestExample$B)
+str(result)
+```
+
+R objects (s3 and s4)
+=========================================================
+Now we know the structure and class of the htest object we can access the **slots** realting to information we want just as with a named list.
+
+The p-value
+```{r}
+result$p.value
+```
+
+The statistic
+```{r}
+result$statistic
+```
+
+The data used in function call
+```{r}
+result$data.name
 ```
 
 T-test example
@@ -2250,16 +2277,13 @@ R also provides a comprehensive set of tools for regression analysis including t
 
 To fit a linear regression we use a similar set of arguments as passed to the t-test fuction in the previous slide.
 
-I can actually define the model here right..y <- 10x + 50
 ```{r,echo=T,prompt=T}
-x=rnorm(100,70,10)
-y <- jitter(x,amount=40)+20
-lmExample <- data.frame(X=x,Y=y)
+lmExample <- read.table("lmExample.txt",h=T,sep="\t")
 ```
 ```{r,echo=T,prompt=T}
 lmResult <- lm(Y~X,data=lmExample)
 plot(Y~X,data=lmExample,main="Line of best fit with lm()",
-     xlim=c(0,150),ylim=c(0,150))
+     xlim=c(0,150),ylim=c(0,200))
 abline(lmResult,col="red",lty=3,lwd=3)
 ```
 
@@ -2282,13 +2306,13 @@ The lm() function
 
 From the previous slides we now know the formula for the line.
 
-**Y = -9.09 + 1.14*X**
+**Y = 7.001 + 1.972*X**
 
 We can add the line of best fit using **abline()**
 
 ```{r,echo=T,prompt=T}
 plot(Y~X,data=lmExample,main="Line of best fit with lm()",
-     xlim=c(0,100),ylim=c(0,100))
+     xlim=c(0,100),ylim=c(0,200))
 abline(lmResult,col="red",lty=3,lwd=3)
 ```
 
@@ -2329,7 +2353,7 @@ summary(lmResult)
 
 The **R-squared** value represents the proportion of variability in the response variable that is explained by the explanatory variable.
 
-A high **R-squared** value indicates a good correspondence between the predictor and dependent variables.
+A high **R-squared** here indicates that the line fits closely to the data.
 
 Interpreting output of lm() (Per variable p-values and the F-statistic)
 =========================================================
