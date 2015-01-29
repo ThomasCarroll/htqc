@@ -12,6 +12,7 @@ These exercises cover the  sections of [Introduction to R]("introToR_Day1.html")
 Have a look at all files in notepad or excel before attempting to read.
 
 - Read in the tab delimited file "GeneExpression.txt"
+
 - Find the mean expression of all samples.
 
 - Read in the tab delimited file "GeneExpressionWithMethods.txt". This file contains information on analysis steps used to produce file.

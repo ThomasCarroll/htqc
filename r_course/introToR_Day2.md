@@ -1,7 +1,6 @@
-Introduction to R, Day 2
+Introduction to R, Session 2
 ========================================================
 author: Computational Biology Week
-date: Februrary 2st
 width: 1440
 height: 1100
 autosize: true
@@ -675,7 +674,7 @@ mean(x)
 ```
 
 ```
-[1] 71.39019
+[1] 69.79879
 ```
 
 ```r
@@ -844,7 +843,7 @@ $Calculation
 [1] 100
 
 $DateRun
-[1] "Thu Jan 29 23:13:37 2015"
+[1] "Thu Jan 29 23:21:38 2015"
 ```
 
 Scope

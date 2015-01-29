@@ -1,7 +1,6 @@
-Introduction to R
+Introduction to R, Session 1
 ========================================================
-author: Thomas Carroll, Sanjay Khadayate, Gopuraja Dharmalingam
-date: Februrary 1st
+author: Computational Biology Week
 width: 1440
 height: 1100
 autosize: true
@@ -768,12 +767,12 @@ x[x > 4 & !x < 7]
 Time for an exercise!
 ========================================================
 
-Exercise on vectors can be found [here](vector_exercise.html)
+Exercise on vectors can be found [here](exercises/vector_exercise.html)
 
 Answers to exercise.
 ========================================================
 
-Answers can be found here  [here](vector_answers.html)
+Answers can be found here  [here](answers/vector_answers.html)
 
 matrices (1/)
 ========================================================
@@ -1242,12 +1241,12 @@ Error in narrowMatrix[, 2] * 2: non-numeric argument to binary operator
 Time for an exercise!
 ========================================================
 
-Exercise on vectors can be found [here](matrices_exercise.html)
+Exercise on vectors can be found [here](exercises/matrices_exercise.html)
 
 Answers to exercise.
 ========================================================
 
-Answers can be found here  [here](matrices_answers.html)
+Answers can be found here  [here](answers/matrices_answers.html)
 
 
 Factors (1/6)
@@ -1764,12 +1763,12 @@ mergedDF
 Time for an exercise!
 ========================================================
 
-Exercise on data frames and factors can be found [here](matrices_exercise.html)
+Exercise on data frames and factors can be found [here](exercises/factorsAndDataframes_exercise.html)
 
 Answers to exercise.
 ========================================================
 
-Answers can data frames and factorsbe found here  [here](matrices_answers.html)
+Answers can be found here  [here](answers/factorsAndDataframes_answers.html)
 
 
 Lists
@@ -1996,14 +1995,14 @@ A standard format for this data is a table
 
 |Gene_Name | Sample_1.hi| Sample_2.hi| Sample_3.hi| Sample_4.low| Sample_5.low| Sample_1.low|
 |:---------|-----------:|-----------:|-----------:|------------:|------------:|------------:|
-|Gene_a    |    2.890984|    4.308684|    3.614260|     4.001598|     3.304848|     3.918886|
-|Gene_b    |    4.006146|    4.625643|    3.122634|     1.539482|     3.123632|     5.508983|
-|Gene_c    |    2.919710|    1.778963|    2.138220|     4.754870|     3.374997|     3.684059|
-|Gene_d    |    3.316696|    3.476257|    3.302165|     8.545018|     6.139762|     8.139053|
-|Gene_e    |   10.454615|   10.120345|    9.512973|     2.934145|     1.901225|     2.916372|
-|Gene_f    |   12.731144|   10.765498|   10.778950|     4.469524|     4.516209|     2.948347|
-|Gene_g    |    9.338728|    9.991373|    9.786037|     9.582472|     8.760215|     8.243748|
-|Gene_h    |   10.007523|    8.439556|   10.016018|     8.637562|    11.277834|    10.206815|
+|Gene_a    |    5.457789|    1.619319|    4.441929|     5.711578|     4.649543|     3.158155|
+|Gene_b    |    1.783052|    4.133761|    5.965229|     2.472260|     3.720616|     3.143116|
+|Gene_c    |    2.132356|    2.861307|    3.054357|     3.281197|     4.584803|     4.636415|
+|Gene_d    |    5.109837|    4.295423|    4.867111|     9.490199|     6.789359|     7.717244|
+|Gene_e    |   10.369733|    9.739275|    8.329301|     3.487725|     3.687073|     4.693249|
+|Gene_f    |    9.581390|   10.043750|    9.309314|     3.878767|     3.145258|     3.359279|
+|Gene_g    |    8.980380|   10.938152|   10.348802|     9.055959|     9.746698|    10.143789|
+|Gene_h    |   10.415037|    9.206309|    8.836513|     8.974971|    11.102309|    11.287705|
 
 Data from text file
 =========================================================
@@ -2134,11 +2133,15 @@ Since our data has column names but no row names, I will provide the arguments c
 write.table(Table,file="data/writeThisTable.csv", sep=",", row.names =F,col.names=T)
 ```
 
-Exercise
-========
+Time for an exercise!
+========================================================
 
-Answers
-=======
+Exercise on reading and writing data can be found [here](exercises/DataInputOutput_exercise.html)
+
+Answers to exercise.
+========================================================
+
+Answers can be found here  [here](answers/DataInputOutput_answers.html)
 
 
 Plotting in R
@@ -3174,7 +3177,7 @@ cor(x,z)
 ```
 
 ```
-[1] -0.01731759
+[1] 0.07810955
 ```
 ***
 ![plot of chunk unnamed-chunk-204](introToR_Day1-figure/unnamed-chunk-204-1.png) 
@@ -3188,8 +3191,8 @@ Often we wish to apply correlation analysis to all columns or rows in a matrix i
 
 | Sample_1.hi| Sample_2.hi| Sample_3.hi| Sample_4.low| Sample_5.low| Sample_1.low|
 |-----------:|-----------:|-----------:|------------:|------------:|------------:|
-|    2.890984|    4.308684|    3.614260|     4.001598|     3.304848|     3.918886|
-|    4.006146|    4.625643|    3.122634|     1.539482|     3.123632|     5.508983|
+|    5.457789|    1.619319|    4.441929|     5.711578|     4.649543|     3.158155|
+|    1.783052|    4.133761|    5.965229|     2.472260|     3.720616|     3.143116|
 
 
 ```r
@@ -3198,8 +3201,8 @@ cor(minRep)[1:2,2:5]
 
 ```
             Sample_2.hi Sample_3.hi Sample_4.low Sample_5.low
-Sample_1.hi    0.960208   0.9776501    0.1665599    0.3194427
-Sample_2.hi    1.000000   0.9721985    0.1581274    0.2894231
+Sample_1.hi   0.8553563   0.8364593    0.3695461    0.3834859
+Sample_2.hi   1.0000000   0.9574727    0.2349556    0.3603539
 ```
 
 Correlation (Continued)
@@ -3248,8 +3251,8 @@ rnorm(10,mean=8,sd=3)
 ```
 
 ```
- [1]  9.371843 11.494115  7.330717  3.594831 10.065677 10.329720  5.004292
- [8] 13.631312  9.582516  9.556455
+ [1]  5.484417 11.440452 11.090665  8.992815  7.155247 10.069193  3.936759
+ [8] 10.372043  9.506874  3.893899
 ```
 We can also use these functions to interrogate values assuming a normal distribution for the data.
 
@@ -3550,10 +3553,6 @@ mean in group A mean in group B
        26.50152        40.39804 
 ```
 
-Exercises
-==========
-
-
 
 Regression and linear models
 =========================================================
@@ -3766,12 +3765,12 @@ The results from linear models also provides a measure of significance for a var
 Time for an exercise!
 ========================================================
 
-Exercise on statistics can be found [here](Statistics_Exercise.html)
+Exercise on statistics can be found [here](exercises/Statistics_Exercise.html)
 
 Answers to exercise.
 ========================================================
 
-Answers can be found here  [here](Statistics_Answers.html)
+Answers can be found here  [here](answers/Statistics_Answers.html)
 
 End of Session 1
 ====

@@ -1,7 +1,6 @@
-Introduction to R
+Introduction to R, Session 1
 ========================================================
-author: Thomas Carroll, Sanjay Khadayate, Gopuraja Dharmalingam
-date: Februrary 1st
+author: Computational Biology Week
 width: 1440
 height: 1100
 autosize: true
@@ -474,12 +473,12 @@ x[x > 4 & !x < 7]
 Time for an exercise!
 ========================================================
 
-Exercise on vectors can be found [here](vector_exercise.html)
+Exercise on vectors can be found [here](exercises/vector_exercise.html)
 
 Answers to exercise.
 ========================================================
 
-Answers can be found here  [here](vector_answers.html)
+Answers can be found here  [here](answers/vector_answers.html)
 
 matrices (1/)
 ========================================================
@@ -674,12 +673,12 @@ narrowMatrix[,2] *2
 Time for an exercise!
 ========================================================
 
-Exercise on vectors can be found [here](matrices_exercise.html)
+Exercise on vectors can be found [here](exercises/matrices_exercise.html)
 
 Answers to exercise.
 ========================================================
 
-Answers can be found here  [here](matrices_answers.html)
+Answers can be found here  [here](answers/matrices_answers.html)
 
 
 Factors (1/6)
@@ -941,12 +940,12 @@ mergedDF
 Time for an exercise!
 ========================================================
 
-Exercise on data frames and factors can be found [here](matrices_exercise.html)
+Exercise on data frames and factors can be found [here](exercises/factorsAndDataframes_exercise.html)
 
 Answers to exercise.
 ========================================================
 
-Answers can data frames and factorsbe found here  [here](matrices_answers.html)
+Answers can be found here  [here](answers/factorsAndDataframes_answers.html)
 
 
 Lists
@@ -1157,11 +1156,15 @@ Since our data has column names but no row names, I will provide the arguments c
 write.table(Table,file="data/writeThisTable.csv", sep=",", row.names =F,col.names=T)
 ```
 
-Exercise
-========
+Time for an exercise!
+========================================================
 
-Answers
-=======
+Exercise on reading and writing data can be found [here](exercises/DataInputOutput_exercise.html)
+
+Answers to exercise.
+========================================================
+
+Answers can be found here  [here](answers/DataInputOutput_answers.html)
 
 
 Plotting in R
@@ -2286,10 +2289,6 @@ result <- t.test(Value~Group,longFrame,alternative ="two.sided",
 result
 ```
 
-Exercises
-==========
-
-
 
 Regression and linear models
 =========================================================
@@ -2390,12 +2389,12 @@ The results from linear models also provides a measure of significance for a var
 Time for an exercise!
 ========================================================
 
-Exercise on statistics can be found [here](Statistics_Exercise.html)
+Exercise on statistics can be found [here](exercises/Statistics_Exercise.html)
 
 Answers to exercise.
 ========================================================
 
-Answers can be found here  [here](Statistics_Answers.html)
+Answers can be found here  [here](answers/Statistics_Answers.html)
 
 End of Session 1
 ====
