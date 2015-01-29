@@ -387,6 +387,29 @@ Similarly, when a calculation can not be perfomed, R will input a **NaN** value.
 
 **NA** values allow for R to handle missing data correctly but requires different handling than standard numeric or character values. We will discuss handling **NA** values later.
 
+The unique() function
+====================
+
+The unique() function can be used to retrieve all unique character values from a character vector.
+
+```{r}
+geneList <- c("Gene1","Gene2","Gene3","Gene4","Gene5","Gene1","Gene3")
+unique(geneList)
+```
+
+The %in% operator
+====================
+
+A common task in R is to subset one character vector by another character vector.
+
+The **%in%** operator can be used to subset the values within one character vector by those characters which are present in a second vectpr. 
+
+```{r}
+geneList <- c("Gene1","Gene2","Gene3","Gene4","Gene5","Gene1","Gene3")
+secondGeneList <- c("Gene5","Gene3")
+geneList[geneList %in% secondGeneList]
+```
+
 
 Vectors (10/13). Logical vectors
 ========================================================
@@ -1997,7 +2020,7 @@ patientType <- factor(rep(c("male","female"),2))
 survivalTime <- c(1,30,2,20)
 dfExample <- data.frame(Name=patientName,Type=patientType,Survival_Time=survivalTime)
 ```
-table() provides a breakdown of frequency of occurrence of all unique values in vector.
+The table() provides a breakdown of frequency of occurrence of all unique values in vector or factor.
 ```{r}
 table(patientType)
 ```

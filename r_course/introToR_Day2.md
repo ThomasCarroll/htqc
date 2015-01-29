@@ -1,6 +1,6 @@
 Introduction to R, Day 2
 ========================================================
-author: Thomas Carroll, Sanjay Khadayate, Gopuraja Dharmalingam
+author: Computational Biology Week
 date: Februrary 2st
 width: 1440
 height: 1100
@@ -655,6 +655,10 @@ Answers to exercise.
 
 Answers can be found here  [here](conditionsAndLoops_Answers.html)
 
+Functions
+=====================
+type:section
+
 
 Functions
 ===
@@ -671,7 +675,7 @@ mean(x)
 ```
 
 ```
-[1] 70.99986
+[1] 70.85549
 ```
 
 ```r
@@ -840,7 +844,7 @@ $Calculation
 [1] 100
 
 $DateRun
-[1] "Thu Jan 29 21:08:56 2015"
+[1] "Thu Jan 29 21:40:25 2015"
 ```
 
 Time for an exercise!
@@ -852,6 +856,10 @@ Answers to exercise.
 ========================================================
 
 Answers can be found here  [here](Functions_Answers.html)
+
+Scripts
+=====================
+type:section
 
 
 Saving scripts
@@ -936,7 +944,21 @@ as.numeric(myFirstArgument)
 ```
 Since vectors can only be one type, all command line arguments are strings and must be converted to numeric if needed with **as.numeric()**
 
+Getting help
+====
+
+- Google
+- Local friendly bioinformaticians and computational biologists.
+- [Stackoverflow](http://stackoverflow.com/)
+- [R-help](https://stat.ethz.ch/mailman/listinfo/r-help)
+
+The end
+====
+
 Two tips
+====
+
+
 ====
 Vectorisation
 Matrices to hold number only tables.
