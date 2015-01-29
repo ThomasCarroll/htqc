@@ -2411,6 +2411,7 @@ The **F-statistic** is the result on an F-test on the model where the model is c
 
 If the p-value from F-statistic is small, the model can be considered a good fit of the data.
 
+Should i mention unique() function.!!!!!
 
 Could have noice bit on 1 - pf(sm$fstatistic[1]?
 

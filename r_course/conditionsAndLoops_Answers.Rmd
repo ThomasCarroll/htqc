@@ -88,7 +88,7 @@ summary(Annotation$Pathway)
 cor(annotatedExpression[,grep("ExpressionResults",colnames(annotatedExpression))])
 
 ```
--- For every gene, perform a t-test and write out the t-statistic (assuming equal variance), log2 fold change, pvalue and gene annotation to a file.
+-- For every gene, perform a t-test and write out the t-statistic (assuming unequal variance), log2 fold change, pvalue and gene annotation to a file.
 ```{r,message=T}
 indexGroupOne <- grep("[1-5].txt",colnames(annotatedExpression))
 indexGroupTwo <- grep("[6-9,0].txt",colnames(annotatedExpression))

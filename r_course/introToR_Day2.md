@@ -69,8 +69,9 @@ Gene_c     5.087282
 write.table(Table,file="writeThisTable.csv", sep=",", row.names =F,col.names=T)
 ```
 
-Conditions and Loop
+Conditions and Loops
 =====================
+type:section
 
 Control Structure and Loops
 ========================================================
@@ -670,7 +671,7 @@ mean(x)
 ```
 
 ```
-[1] 69.2187
+[1] 70.99986
 ```
 
 ```r
@@ -839,8 +840,19 @@ $Calculation
 [1] 100
 
 $DateRun
-[1] "Thu Jan 29 18:22:53 2015"
+[1] "Thu Jan 29 21:08:56 2015"
 ```
+
+Time for an exercise!
+========================================================
+
+Exercise on loops and conditional branching can be found [here](Functions_Exercises.html)
+
+Answers to exercise.
+========================================================
+
+Answers can be found here  [here](Functions_Answers.html)
+
 
 Saving scripts
 ============
@@ -869,15 +881,15 @@ R scripts allow us to save and reuse custom functions we have written.  To run t
 The file **dayOfWeek.r** contains a simple R script to tell you what day it is after your marathon R coding session.
 
 ```
-#Contents of dayOfWeak.r
-dayOfWeak <- function(){
+#Contents of dayOfWeek.r
+dayOfWeek <- function(){
   return(gsub(" .*","",date()))  
 }
 ```
 
 ```r
-source("dayOfWeak.R")
-dayOfWeak()
+source("dayOfWeek.R")
+dayOfWeek()
 ```
 
 ```

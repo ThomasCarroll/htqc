@@ -21,5 +21,5 @@ These exercises cover the sections of Statistics in R [Introduction to R]("intro
 
 -- Look at the correlation between samples. Do any samples show a higher degree of correlation.
 
--- For every gene, perform a t-test and write out the t-statistic (assuming equal variance), log2 fold change, pvalue and gene annotation to a file.
+-- For every gene, perform a t-test and write out the t-statistic (assuming unequal variance), log2 fold change, pvalue and gene annotation to a file.
 
