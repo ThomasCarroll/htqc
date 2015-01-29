@@ -49,11 +49,11 @@ Recap.
 Data can be read into R as a table with the **read.table()** function and written to file with the **write.table()** function.
 
 ```{r,echo=T,eval=T}
-Table <- read.table("readThisTable.csv",sep=",",header=T,row.names=1)
+Table <- read.table("data/readThisTable.csv",sep=",",header=T,row.names=1)
 Table[1:3,]
 ```
 ```{r,echo=T,eval=F}
-write.table(Table,file="writeThisTable.csv", sep=",", row.names =F,col.names=T)
+write.table(Table,file="data/writeThisTable.csv", sep=",", row.names =F,col.names=T)
 ```
 
 Conditions and Loops
@@ -439,12 +439,12 @@ sapply(exampleList,summary)
 Time for an exercise!
 ========================================================
 
-Exercise on loops and conditional branching can be found [here](conditionsAndLoops_Exercises.html)
+Exercise on loops and conditional branching can be found [here](exercises/conditionsAndLoops_Exercises.html)
 
 Answers to exercise.
 ========================================================
 
-Answers can be found here  [here](conditionsAndLoops_Answers.html)
+Answers can be found here  [here](answers/conditionsAndLoops_Answers.html)
 
 Functions
 =====================
@@ -584,6 +584,23 @@ result <- mySixthFunction(10,10)
 result
 ```
 
+Scope
+======
+
+When arguments are created within a function, they only exist with that function and disappear once function is complete.
+
+```{r,message=T,error=TRUE}
+mySeventhFunction <- function(arg1,arg2){
+  internalValue <- arg1*arg2
+  return(internalValue)
+}
+result <- mySeventhFunction(10,10)
+internalValue
+arg1
+```
+
+
+
 Time for an exercise!
 ========================================================
 
@@ -592,7 +609,7 @@ Exercise on loops and conditional branching can be found [here](Functions_Exerci
 Answers to exercise.
 ========================================================
 
-Answers can be found here  [here](Functions_Answers.html)
+Answers can be found here  [here](answers/Functions_Answers.html)
 
 Scripts
 =====================
@@ -623,7 +640,7 @@ Sourcing scripts.
 
 R scripts allow us to save and reuse custom functions we have written.  To run the code from an R script we can use the **source()** function with the name of the R script as the argument. 
 
-The file **dayOfWeek.r** contains a simple R script to tell you what day it is after your marathon R coding session.
+The file **dayOfWeek.r** in the "scripts" directory contains a simple R script to tell you what day it is after your marathon R coding session.
 
 ```
 #Contents of dayOfWeek.r
@@ -632,7 +649,7 @@ dayOfWeek <- function(){
 }
 ```
 ```{r}
-source("dayOfWeek.R")
+source("scripts/dayOfWeek.R")
 dayOfWeek()
 ```
 
@@ -674,6 +691,35 @@ as.numeric(myFirstArgument)
 ```
 Since vectors can only be one type, all command line arguments are strings and must be converted to numeric if needed with **as.numeric()**
 
+Loading libraries
+================
+
+Libraries can be loaded using the library() function with an argument of the name of the library
+
+```{r,eval=F}
+library(ggplot2)
+```
+
+You can see what libraries are available in the Packages panel or by the  library() function with no arguments supplied
+
+```{r,eval=F}
+library()
+```
+
+Installing libraries
+================
+
+Libraries can be installed through the R studio menu
+
+**-> Tools -> Install packages ..**
+
+Or by using the install.packages() command
+
+```{r,eval=F}
+install.packages("Hmisc")
+```
+
+
 Getting help
 ====
 
@@ -688,39 +734,3 @@ The end
 Two tips
 ====
 
-
-====
-Vectorisation
-Matrices to hold number only tables.
-
-If we want to return a mix of different data types back from a function, we will use a list.
-
-
-Its a good idea to have some simple checking of the arguments you have.
-A useful function pt
-
-Defining functions can
-- Make code more accessible.
-- Streamline repetitive tasks.
-- Increase reproducibility. 
-
-
-Nice for them to correct my slide by looping thorugh named vector.
-
-Easy to read
-x <- 1:40
-y <- 5:35
-
-Harder to read
-
-Do i show that dimnames actually can set dimension names?
-
-Some tips for speed comparisons..
-
-Question?
-Why can't you use na.rm=T in mean as an ordered unnamed arguments?
-
-Getting help
-
-
-Should i talk about append in write.table?

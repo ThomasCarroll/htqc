@@ -50,23 +50,23 @@ Data can be read into R as a table with the **read.table()** function and writte
 
 
 ```r
-Table <- read.table("readThisTable.csv",sep=",",header=T,row.names=1)
+Table <- read.table("data/readThisTable.csv",sep=",",header=T,row.names=1)
 Table[1:3,]
 ```
 
 ```
        Sample_1.hi Sample_2.hi Sample_3.hi Sample_4.low Sample_5.low
-Gene_a    3.642335    2.373444    4.100282     4.450083     5.634615
-Gene_b    2.710982    5.136311    3.693499     3.938709     3.925926
-Gene_c    3.880894    4.176079    4.770827     4.449945     2.829173
+Gene_a    4.570237    3.230467    3.351827     3.930877     4.098247
+Gene_b    3.561733    3.632285    3.587523     4.185287     1.380976
+Gene_c    3.797274    2.874462    4.016916     4.175772     1.988263
        Sample_1.low
-Gene_a     1.641996
-Gene_b     2.565137
-Gene_c     5.087282
+Gene_a     4.418726
+Gene_b     5.936990
+Gene_c     3.780917
 ```
 
 ```r
-write.table(Table,file="writeThisTable.csv", sep=",", row.names =F,col.names=T)
+write.table(Table,file="data/writeThisTable.csv", sep=",", row.names =F,col.names=T)
 ```
 
 Conditions and Loops
@@ -648,12 +648,12 @@ $vec
 Time for an exercise!
 ========================================================
 
-Exercise on loops and conditional branching can be found [here](conditionsAndLoops_Exercises.html)
+Exercise on loops and conditional branching can be found [here](exercises/conditionsAndLoops_Exercises.html)
 
 Answers to exercise.
 ========================================================
 
-Answers can be found here  [here](conditionsAndLoops_Answers.html)
+Answers can be found here  [here](answers/conditionsAndLoops_Answers.html)
 
 Functions
 =====================
@@ -675,7 +675,7 @@ mean(x)
 ```
 
 ```
-[1] 70.85549
+[1] 71.39019
 ```
 
 ```r
@@ -844,8 +844,37 @@ $Calculation
 [1] 100
 
 $DateRun
-[1] "Thu Jan 29 21:40:25 2015"
+[1] "Thu Jan 29 23:13:37 2015"
 ```
+
+Scope
+======
+
+When arguments are created within a function, they only exist with that function and disappear once function is complete.
+
+
+```r
+mySeventhFunction <- function(arg1,arg2){
+  internalValue <- arg1*arg2
+  return(internalValue)
+}
+result <- mySeventhFunction(10,10)
+internalValue
+```
+
+```
+Error in eval(expr, envir, enclos): object 'internalValue' not found
+```
+
+```r
+arg1
+```
+
+```
+Error in eval(expr, envir, enclos): object 'arg1' not found
+```
+
+
 
 Time for an exercise!
 ========================================================
@@ -855,7 +884,7 @@ Exercise on loops and conditional branching can be found [here](Functions_Exerci
 Answers to exercise.
 ========================================================
 
-Answers can be found here  [here](Functions_Answers.html)
+Answers can be found here  [here](answers/Functions_Answers.html)
 
 Scripts
 =====================
@@ -886,7 +915,7 @@ Sourcing scripts.
 
 R scripts allow us to save and reuse custom functions we have written.  To run the code from an R script we can use the **source()** function with the name of the R script as the argument. 
 
-The file **dayOfWeek.r** contains a simple R script to tell you what day it is after your marathon R coding session.
+The file **dayOfWeek.r** in the "scripts" directory contains a simple R script to tell you what day it is after your marathon R coding session.
 
 ```
 #Contents of dayOfWeek.r
@@ -896,7 +925,7 @@ dayOfWeek <- function(){
 ```
 
 ```r
-source("dayOfWeek.R")
+source("scripts/dayOfWeek.R")
 dayOfWeek()
 ```
 
@@ -944,6 +973,38 @@ as.numeric(myFirstArgument)
 ```
 Since vectors can only be one type, all command line arguments are strings and must be converted to numeric if needed with **as.numeric()**
 
+Loading libraries
+================
+
+Libraries can be loaded using the library() function with an argument of the name of the library
+
+
+```r
+library(ggplot2)
+```
+
+You can see what libraries are available in the Packages panel or by the  library() function with no arguments supplied
+
+
+```r
+library()
+```
+
+Installing libraries
+================
+
+Libraries can be installed through the R studio menu
+
+**-> Tools -> Install packages ..**
+
+Or by using the install.packages() command
+
+
+```r
+install.packages("Hmisc")
+```
+
+
 Getting help
 ====
 
@@ -958,39 +1019,3 @@ The end
 Two tips
 ====
 
-
-====
-Vectorisation
-Matrices to hold number only tables.
-
-If we want to return a mix of different data types back from a function, we will use a list.
-
-
-Its a good idea to have some simple checking of the arguments you have.
-A useful function pt
-
-Defining functions can
-- Make code more accessible.
-- Streamline repetitive tasks.
-- Increase reproducibility. 
-
-
-Nice for them to correct my slide by looping thorugh named vector.
-
-Easy to read
-x <- 1:40
-y <- 5:35
-
-Harder to read
-
-Do i show that dimnames actually can set dimension names?
-
-Some tips for speed comparisons..
-
-Question?
-Why can't you use na.rm=T in mean as an ordered unnamed arguments?
-
-Getting help
-
-
-Should i talk about append in write.table?

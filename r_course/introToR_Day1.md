@@ -1996,14 +1996,14 @@ A standard format for this data is a table
 
 |Gene_Name | Sample_1.hi| Sample_2.hi| Sample_3.hi| Sample_4.low| Sample_5.low| Sample_1.low|
 |:---------|-----------:|-----------:|-----------:|------------:|------------:|------------:|
-|Gene_a    |    2.813221|    4.477360|    5.585460|     3.496351|     4.447186|     3.002715|
-|Gene_b    |    4.845800|    4.538805|    4.346729|     3.654133|     2.553654|     3.721216|
-|Gene_c    |    4.546400|    4.260950|    2.843111|     5.321348|     5.258879|     4.196734|
-|Gene_d    |    4.932881|    5.221487|    4.744996|    10.080049|     8.273141|     7.559191|
-|Gene_e    |    9.460555|    8.888629|   10.117415|     1.431865|     3.949127|     4.171971|
-|Gene_f    |   11.476019|    9.805319|    9.860044|     2.295386|     2.604261|     2.475474|
-|Gene_g    |   10.606937|   10.499015|    9.507814|    11.524830|    10.165622|    10.277750|
-|Gene_h    |   10.187421|   10.090746|    8.244003|    10.005792|     9.351572|    10.525349|
+|Gene_a    |    2.890984|    4.308684|    3.614260|     4.001598|     3.304848|     3.918886|
+|Gene_b    |    4.006146|    4.625643|    3.122634|     1.539482|     3.123632|     5.508983|
+|Gene_c    |    2.919710|    1.778963|    2.138220|     4.754870|     3.374997|     3.684059|
+|Gene_d    |    3.316696|    3.476257|    3.302165|     8.545018|     6.139762|     8.139053|
+|Gene_e    |   10.454615|   10.120345|    9.512973|     2.934145|     1.901225|     2.916372|
+|Gene_f    |   12.731144|   10.765498|   10.778950|     4.469524|     4.516209|     2.948347|
+|Gene_g    |    9.338728|    9.991373|    9.786037|     9.582472|     8.760215|     8.243748|
+|Gene_h    |   10.007523|    8.439556|   10.016018|     8.637562|    11.277834|    10.206815|
 
 Data from text file
 =========================================================
@@ -2012,16 +2012,16 @@ Tables from text files can be read with **read.table()** function
 
 
 ```r
-Table <- read.table("readThisTable.csv",sep=",",header=T)
+Table <- read.table("data/readThisTable.csv",sep=",",header=T)
 Table[1:4,1:3]
 ```
 
 ```
   Gene_Name Sample_1.hi Sample_2.hi
-1    Gene_a    2.813221    4.477360
-2    Gene_b    4.845800    4.538805
-3    Gene_c    4.546400    4.260951
-4    Gene_d    4.932882    5.221487
+1    Gene_a    4.570237    3.230467
+2    Gene_b    3.561733    3.632285
+3    Gene_c    3.797274    2.874462
+4    Gene_d    3.398242    4.415202
 ```
 
 Here we have provided two arguments. 
@@ -2037,16 +2037,16 @@ The **row.names** argument can be used to specify a column to use as row names f
 
 
 ```r
-Table <- read.table("readThisTable.csv",sep=",",header=T,row.names=1)
+Table <- read.table("data/readThisTable.csv",sep=",",header=T,row.names=1)
 Table[1:4,1:3]
 ```
 
 ```
        Sample_1.hi Sample_2.hi Sample_3.hi
-Gene_a    2.813221    4.477360    5.585460
-Gene_b    4.845800    4.538805    4.346729
-Gene_c    4.546400    4.260951    2.843111
-Gene_d    4.932882    5.221487    4.744996
+Gene_a    4.570237    3.230467    3.351827
+Gene_b    3.561733    3.632285    3.587523
+Gene_c    3.797274    2.874462    4.016916
+Gene_d    3.398242    4.415202    4.893561
 ```
 
 Data from text files
@@ -2058,7 +2058,7 @@ To avoid character columns being converted into factors, we can specify the **st
 
 
 ```r
-Table <- read.table("readThisTable.csv",sep=",",header=T,stringsAsFactors=F)
+Table <- read.table("data/readThisTable.csv",sep=",",header=T,stringsAsFactors=F)
 ```
 
 Other very useful functions for read table include:
@@ -2099,7 +2099,7 @@ The **scan()** function allows for the selection of particular columns to be rea
 
 
 ```r
-x <- scan("readThisTable.csv",sep=",",
+x <- scan("data/readThisTable.csv",sep=",",
 what = c(list(""),rep(list(NULL), 6)),skip=1)
 x[1:3]
 ```
@@ -2124,14 +2124,14 @@ The most common method is to use the write.table() function
 
 
 ```r
-write.table(Table,file="writeThisTable.csv",sep=",")
+write.table(Table,file="data/writeThisTable.csv",sep=",")
 ```
 
 Since our data has column names but no row names, I will provide the arguments col.names and row.names to write.table()
 
 
 ```r
-write.table(Table,file="writeThisTable.csv", sep=",", row.names =F,col.names=T)
+write.table(Table,file="data/writeThisTable.csv", sep=",", row.names =F,col.names=T)
 ```
 
 Exercise
@@ -2389,7 +2389,7 @@ Let's now read the data from the example.txt data file, add labels, blue borders
 Read values from tab-delimited example.txt
 
 ```r
-data <- read.table("example.txt", header=T, sep="\t")
+data <- read.table("data/example.txt", header=T, sep="\t")
 ```
 
 Plot treatment with specified labels for axes.  Use blue borders and diagonal lines in bars.
@@ -2632,7 +2632,7 @@ Here, we will use different dataset with two columns each for treated and untrea
 
 
 ```r
-data1 <- read.table("gene_data.txt", header=T, sep="\t")
+data1 <- read.table("data/gene_data.txt", header=T, sep="\t")
 head(data1)
 ```
 
@@ -2787,7 +2787,7 @@ library(lattice)
 Read the data from file named gene_data.txt
 
 ```r
-data <- read.table("gene_data.txt", header=T, sep="\t")
+data <- read.table("data/gene_data.txt", header=T, sep="\t")
 ```
 
 A simple scatter plot can be produced as,
@@ -3174,7 +3174,7 @@ cor(x,z)
 ```
 
 ```
-[1] -0.1348877
+[1] -0.01731759
 ```
 ***
 ![plot of chunk unnamed-chunk-204](introToR_Day1-figure/unnamed-chunk-204-1.png) 
@@ -3188,8 +3188,8 @@ Often we wish to apply correlation analysis to all columns or rows in a matrix i
 
 | Sample_1.hi| Sample_2.hi| Sample_3.hi| Sample_4.low| Sample_5.low| Sample_1.low|
 |-----------:|-----------:|-----------:|------------:|------------:|------------:|
-|    2.813221|    4.477360|    5.585460|     3.496351|     4.447186|     3.002715|
-|    4.845800|    4.538805|    4.346729|     3.654133|     2.553654|     3.721216|
+|    2.890984|    4.308684|    3.614260|     4.001598|     3.304848|     3.918886|
+|    4.006146|    4.625643|    3.122634|     1.539482|     3.123632|     5.508983|
 
 
 ```r
@@ -3198,8 +3198,8 @@ cor(minRep)[1:2,2:5]
 
 ```
             Sample_2.hi Sample_3.hi Sample_4.low Sample_5.low
-Sample_1.hi   0.9720458   0.8878554    0.1454850    0.2365197
-Sample_2.hi   1.0000000   0.9238822    0.2476476    0.3713847
+Sample_1.hi    0.960208   0.9776501    0.1665599    0.3194427
+Sample_2.hi    1.000000   0.9721985    0.1581274    0.2894231
 ```
 
 Correlation (Continued)
@@ -3248,8 +3248,8 @@ rnorm(10,mean=8,sd=3)
 ```
 
 ```
- [1] 11.359375 11.987956  3.847234  5.990436  9.368312  6.326177  3.636521
- [8]  6.129624  4.812730  5.231515
+ [1]  9.371843 11.494115  7.330717  3.594831 10.065677 10.329720  5.004292
+ [8] 13.631312  9.582516  9.556455
 ```
 We can also use these functions to interrogate values assuming a normal distribution for the data.
 
@@ -3313,7 +3313,7 @@ To perform a t-test we will read in some datasets, test that the variances of th
 
 
 ```r
-tTestExample <- read.table("tTestData.csv",sep=",",header=T)
+tTestExample <- read.table("data/tTestData.csv",sep=",",header=T)
 tTestExample
 ```
 
@@ -3566,7 +3566,7 @@ To fit a linear regression we use a similar set of arguments as passed to the t-
 
 
 ```r
-> lmExample <- read.table("lmExample.txt",h=T,sep="\t")
+> lmExample <- read.table("data/lmExample.txt",h=T,sep="\t")
 ```
 
 ```r
@@ -3773,66 +3773,5 @@ Answers to exercise.
 
 Answers can be found here  [here](Statistics_Answers.html)
 
-Notes!
-=========================================================
-http://rstudio-pubs-static.s3.amazonaws.com/23247_8af1a386e4184c95bb36ba7a6ea0f699.html
-
-Good example for reproducibility!
-
-Talk about t() function
-
-https://support.rstudio.com/hc/en-us/articles/200552086-Using-R-Markdown
-
-
-Add part of making notebooks from r scripts 
-http://rmarkdown.rstudio.com/r_notebook_format.html
-
-
-http://quadroideas.com/great-google-font-combinations-ready-use/
-
-
-2. Importing data files using the scan function
-
-The scan function is an extremely flexible tool for importing data.  Unlike the read.table function, however, which returns a data frame, the scan function returns a list or a vector. This makes the scan function less useful for inputting "rectangular" data such as the car data set that will been seen in later examples. In the previous example we input first numeric data and then string data directly from the console; in the following example, we input a text file. For the what option, we use list and then list the variables, and after each variable, we tell R what type of variable (e.g., numeric, string) it is. In the first example, the first variable is age, and we tell R that age is a numeric variable by setting it equal to 0. The second variable is called name, and it is denoted as a string variable by the empty quote marks.  In the second example, we list NULL first, indicating that we do not want the first variable to be read. After using the scan function, we use the sapply function, which makes a list out of a vector of names in x.
-
-# inputting a text file and outputting a list
-(x <- scan("http://www.ats.ucla.edu/stat/data/scan.txt", what = list(,
-    name = "")))
-## $age
-## [1] 12 24 35 20
-## 
-## $name
-## [1] "bobby"   "kate"    "david"   "michael"
-
-Maybe talk about using  
-
-The **F-statistic** is the result on an F-test on the model where the model is compared to a model with fewer parameters.
-
-If the p-value from F-statistic is small, the model can be considered a good fit of the data.
-
-Should i mention unique() function.!!!!!
-
-Could have noice bit on 1 - pf(sm$fstatistic[1]?
-
-http://cran.r-project.org/doc/contrib/Torfs+Brauer-Short-R-Intro.pdf
-
-https://gist.github.com/hanbzu/6864862
-
-http://cran.r-project.org/doc/contrib/Baggott-refcard-v2.pdf
-
-You can make comments in notes
-
-You can speed up by using certain order..
-
-Data from clipboard
-=========================================================
-
-from Rstudio
-=========================================================
-
-Data from XLS
-=========================================================
-
-Data from dput
-=========================================================
-
+End of Session 1
+====
