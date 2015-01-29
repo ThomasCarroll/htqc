@@ -26,8 +26,8 @@ unique(keys(org.Mm.eg.db,keytype="CHR"))
 ```
 
 3. Retrieve gene name, chromosome and Ensembl gene identifiers for “HEBP2” and “PRND” from org.Hs.eg.db
-
 -------------------------------------------------------------------------------------
+
 ```{r, echo=TRUE, eval=TRUE, message=FALSE, collapse=TRUE}
 select(org.Hs.eg.db,keys=c("HEBP2","PRND"),keytype="SYMBOL",
        columns=c("GENENAME","CHR","ENSEMBL"))
@@ -51,8 +51,8 @@ head(chr2Genes)
 Tips:
 
 * You can select main chromosomes and "protein coding" genes by using appropriate filter and value.
-* Search for "biotype" in available filters using grep()
-* Run filterOptions("biotype",selectedmart) to see the accepted values for "biotype" filter
+* Search for "biotype" in available filters using `grep()`
+* Run `filterOptions("biotype",selectedmart)` to see the accepted values for "biotype" filter
 * When multiple filters specified, "values" argument should be a list of vectors; each vector corresponds to each specified filter.
 * Annotation fields to retrieve: "chromosome_name", "start_position", "end_position",
 "ensembl_gene_id", "strand", "external_gene_name"
@@ -65,7 +65,7 @@ ensembl <- useMart("ensembl") # select ensembl
 ens_datasets <- listDatasets(ensembl) # list datasets 
 ens_human <- useDataset("hsapiens_gene_ensembl",mart=ensembl) # select human dataset
 ens_human_Attr <- listAttributes(ens_human) # list available annotation
-ens_human_filters <- listFilters(ens_human) # list availabel filters
+ens_human_filters <- listFilters(ens_human) # list available filters
 availFilters <- filterOptions("biotype",ens_human) # Displays accepted values for "biotype"
 
 hg19Gene <- getBM(
@@ -107,7 +107,7 @@ chr1genes <- subset(hg19Gene.GR,start>1544000 & end<2371000 & seqnames=="chr1")
 
 
 
-7. Create a GRanges of Transcription start sites (1 bp range) for the GRanes object created in Q5.
+7. Create a GRanges of Transcription start sites (1 bp range) for the GRanges object created in Q5.
 ---------------------------------------------------------------------------------
 
 Tip:
@@ -137,7 +137,7 @@ hg19Promoters
 9. Import ELF1 binding sites in K562 cell from Encode (ELF1_K562.bed) and create GRanges object. 
 -------------------------------------------------------------------------------
 
-Tip:
+Tips:
 
 * Import the ELF1 binding sites using `import.bed()` function from `rtracklayer` package and compare it with the above GRanges object
 * Find ELF1 binding sites overlap with promoters (TSS ± 1kb) using `findOverlaps` and `subsetByOverlaps`
@@ -181,7 +181,9 @@ TranscrtipsByGene <- transcriptsBy(hg19txdb,by="gene") # inspect the output
 
 11. Retrieve 200 bp upstream promoter sequences for the given gene symbols `AQP1, ASNSP2, KPNA2, FRMD4A, NSUN5, VAC14` from Ensembl human biomart
 ----------------------------------------------------------------------------------
-Tip: 
+
+Tips: 
+
 * Read documentation for `getSequence`
 * Use `type="hgnc_symbol"` and `seqType="coding_gene_flank"`
 
