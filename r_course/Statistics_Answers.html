@@ -230,7 +230,7 @@ lmXY</code></pre>
 <pre class="r"><code>summary(lmXZ)$r.squared</code></pre>
 <pre><code>## [1] 0.9222796</code></pre>
 <ul>
-<li>Predict values for Y and Z when X is 100</li>
+<li>Predict values for X when Y is 100 and when Z is 100</li>
 </ul>
 <pre class="r"><code>str(lmXY)</code></pre>
 <pre><code>## List of 12
@@ -290,11 +290,11 @@ lmXY</code></pre>
 ##   .. .. ..- attr(*, &quot;dataClasses&quot;)= Named chr [1:2] &quot;numeric&quot; &quot;numeric&quot;
 ##   .. .. .. ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;x&quot; &quot;y&quot;
 ##  - attr(*, &quot;class&quot;)= chr &quot;lm&quot;</code></pre>
-<pre class="r"><code>predictedY &lt;- unname(lmXY$coefficients[1] + lmXY$coefficients[2]*100)
-predictedZ &lt;- unname(lmXZ$coefficients[1] + lmXZ$coefficients[2]*100)
-predictedY</code></pre>
+<pre class="r"><code>predictedXfromY &lt;- unname(lmXY$coefficients[1] + lmXY$coefficients[2]*100)
+predictedXfromZ &lt;- unname(lmXZ$coefficients[1] + lmXZ$coefficients[2]*100)
+predictedXfromY</code></pre>
 <pre><code>## [1] 13.84769</code></pre>
-<pre class="r"><code>predictedZ</code></pre>
+<pre class="r"><code>predictedXfromZ</code></pre>
 <pre><code>## [1] -39.66735</code></pre>
 
 
