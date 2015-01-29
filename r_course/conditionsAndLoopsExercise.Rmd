@@ -50,8 +50,18 @@ temp
 -- loop through list and print results under different conditions.
 Create a list of 100 elements each with 10 numbers drawn from a normal distribution
 
--- Read in right files and merge
+-- Read in all files from expression directory with .txt extension and create a table of gene expression results. Add annotation from Annotation.txt.
+```{r,message=T}
+for(i in 1:10){
+  write.table(cbind(paste0("Gene_",1:2000),c(rnorm(500,6,1),rnorm(500,10,1),rnorm(500,8,1),rnorm(500,3,1))),file=paste0("ExpressionResults_Sample",i,".txt"),col.names=F,row.names=F,quote=F,sep="\t")
+}
+filesToRead <- dir("ExpressionResults/",pattern = "*\\.txt")
+for(i in 1:fileToRead){
+  write.table(read.delim("ExpressionResults_Sample",i),col.names=F,row.names=F,quote=F,sep="\t")
+}
 
+
+```
 
 -- loop through matrix to get medians and normalise.
 -- If a gene is above a certain level do something else and write to matrix
