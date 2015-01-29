@@ -435,6 +435,17 @@ exampleList <- list(df=data.frame(sample=paste0("patient",1:2), data=c(1,12)), v
 sapply(exampleList,summary)
 ```
 
+Time for an exercise!
+========================================================
+
+Exercise on vectors can be found [here](matrices_exercise.html)
+
+Answers to exercise.
+========================================================
+
+Answers can be found here  [here](matrices_answers.html)
+
+
 Functions
 ===
 

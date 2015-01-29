@@ -56,13 +56,13 @@ Table[1:3,]
 
 ```
        Sample_1.hi Sample_2.hi Sample_3.hi Sample_4.low Sample_5.low
-Gene_a    4.111851    3.837018    4.360628     3.752517     4.368069
-Gene_b    6.047822    5.683518    4.315889     3.381136     3.630273
-Gene_c    2.597068    3.316300    3.681509     4.886520     4.318289
+Gene_a    3.642335    2.373444    4.100282     4.450083     5.634615
+Gene_b    2.710982    5.136311    3.693499     3.938709     3.925926
+Gene_c    3.880894    4.176079    4.770827     4.449945     2.829173
        Sample_1.low
-Gene_a     3.421009
-Gene_b     5.560802
-Gene_c     5.097783
+Gene_a     1.641996
+Gene_b     2.565137
+Gene_c     5.087282
 ```
 
 ```r
@@ -644,6 +644,17 @@ $vec
    1.00    2.50    3.50    3.25    4.25    5.00 
 ```
 
+Time for an exercise!
+========================================================
+
+Exercise on vectors can be found [here](matrices_exercise.html)
+
+Answers to exercise.
+========================================================
+
+Answers can be found here  [here](matrices_answers.html)
+
+
 Functions
 ===
 
@@ -659,7 +670,7 @@ mean(x)
 ```
 
 ```
-[1] 69.51633
+[1] 69.79634
 ```
 
 ```r
@@ -828,7 +839,7 @@ $Calculation
 [1] 100
 
 $DateRun
-[1] "Wed Jan 28 00:56:42 2015"
+[1] "Thu Jan 29 15:53:35 2015"
 ```
 
 Saving scripts
@@ -870,7 +881,7 @@ dayOfWeak()
 ```
 
 ```
-[1] "Wed"
+[1] "Thu"
 ```
 
 Rscript
