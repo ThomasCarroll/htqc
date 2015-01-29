@@ -179,6 +179,8 @@ mm9genes.GR <- GRanges(seqnames=mm9genes$chr,
 
 Another option: <b>makeGRangesFromDataFrame()</b> 
 
+Converting GRanges object to data frame: <b>as.data.frame(GRanges)</b>
+
 Constructing GRanges object from data frame
 ========================================================
 ```{r, echo=TRUE, eval=TRUE,  message=FALSE}
@@ -231,12 +233,17 @@ Operations on GenomicRanges
 head(ranges(gr1))
 start(gr1)
 width(gr1)
-gr1[5:7]
 ```
 
 Operations on GenomicRanges
 ========================================================
-```{r, echo=TRUE, eval=TRUE,  message=FALSE}
+Subsetting GRanges
+```{r, echo=TRUE, eval=TRUE, message=FALSE}
+gr1[seqnames(gr1)=="chr1"]
+```
+
+Merge overlapping intervals
+```{r, echo=TRUE, eval=TRUE, message=FALSE}
 reduce(gr1)
 ```
 
@@ -252,6 +259,16 @@ findOverlaps(gr1,gr2,ignore.strand=F)
 ```
 
 Output of findOverlaps is a 'Hits' object indicating which of the query and subject overlap.
+
+Finding overlapping regions
+========================================================
+Convert the 'Hits' object to 2 column matrix using <b>as.matrix()</b>. Values in the first column are index of the query and values in second column are index of the subject.
+
+```{r, echo=TRUE, eval=TRUE, message=FALSE}
+gr1_overlaps.m <- as.matrix(gr1_overlaps)
+gr1[gr1_overlaps.m[,1], ]
+```
+
 
 Finding overlapping regions
 ========================================================
