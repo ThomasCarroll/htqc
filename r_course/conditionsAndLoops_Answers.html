@@ -145,7 +145,7 @@ for(i in fileRead){
 ## 1                      5.329258                      6.167451
 ## 2                      6.649428                      6.213910
 ## 3                      6.653152                      3.992555</code></pre>
-<p>Add annotation from Annotation.txt. How do the pathway information for genes compare between expression table and annotation table.</p>
+<p>– Add annotation from Annotation.txt. How do the pathway information for genes compare between expression table and annotation table.</p>
 <pre class="r"><code>Annotation &lt;- read.table(&quot;ExpressionResults/Annotation.ann&quot;,sep=&quot;\t&quot;,h=T)
 annotatedExpression &lt;- merge(Annotation,mergedTable,by=1,all.x=F,all.y=T)
 annotatedExpression[1:2,]</code></pre>
