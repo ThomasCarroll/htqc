@@ -2364,12 +2364,15 @@ summary(lmResult)
 
 The results from linear models also provides a measure of significance for a variable not being relevant in **Pr(>|t|)** column. A low p-value suggests the variable is useful in prediction of the dependent variable.
 
-Exercise
-==============
+Time for an exercise!
+========================================================
 
+Exercise on statistics can be found [here](Statistics_Exercise.html)
 
-Answers to Exercise
-====================
+Answers to exercise.
+========================================================
+
+Answers can be found here  [here](Statistics_Answers.html)
 
 Notes!
 =========================================================
