@@ -1776,17 +1776,18 @@ It has great set of routines for quickly displaying complex data sets with ease.
 
 Advantages of using lattice package are as following.
 
-Plots with lattice package usually look better.
+-Plots with lattice package usually look better.
 
-They can be extended in powerful ways.
+-They can be extended in powerful ways.
 
-The resulting output can be annotated, edited and saved.
+-The resulting output can be annotated, edited and saved.
 
 ========================================================
 
 Basic form for lattice function call is function.name (formula).
 
 The general arrangement of a formula in a lattice function is:
+
            vertical.axis.variable ~ horizontal.axis.variable
            
 Note that the tilde operator (i.e., ~) must be used in a lattice function call, even if the graph only   uses a single variable.
@@ -1796,15 +1797,21 @@ For e.g., histogram(~data$x),  xyplot(data$y ~ data$x)
 ========================================================
 
 Some of the functions available in lattice package are as following:
+
 Graphs for univariate data
+
 
 histogram(), densityplot(),bwplot()
 
+
 Graphs for showing quantiles of one or more distributions
+
 
 qqmath(),qq()
 
+
 Two-dimensional data
+
 
 xyplot() for creating scatterplots
 
