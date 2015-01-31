@@ -1691,27 +1691,14 @@ boxplot(data1$Treated1)
 ========================================================
 
  
-```{r,echo=FALSE,fig.width=8,fig.height=5,dpi=300,out.width="1920px",height="1080px"}
+```{r,echo=FALSE,fig.width=8,fig.height=5,dpi=1500,out.width="490px",height="270px"}
 hist(data1$Untreated1)
-```
-
-========================================================
-
-```{r,echo=FALSE,fig.width=8,fig.height=5,dpi=300,out.width="1920px",height="1080px"} 
 hist(data1$Treated2)
-```
-
-========================================================
-
-```{r,echo=FALSE,fig.width=8,fig.height=5,dpi=300,out.width="1920px",height="1080px"}
 hist(data1$Untreated2)
-```
-
-========================================================
-
-```{r,echo=FALSE,fig.width=8,fig.height=5,dpi=300,out.width="1920px",height="1080px"}
 boxplot(data1$Treated1)
 ```
+
+========================================================
 
 Saving your plots
 ========================================================
