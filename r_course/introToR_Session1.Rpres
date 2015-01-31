@@ -1785,19 +1785,19 @@ For e.g., histogram(~data$x),  xyplot(data$y ~ data$x)
 
 Some of the functions available in lattice package are as following:
 
-Graphs for univariate data
+-Graphs for univariate data
 
 
 histogram(), densityplot(),bwplot()
 
 
-Graphs for showing quantiles of one or more distributions
+-Graphs for showing quantiles of one or more distributions
 
 
 qqmath(),qq()
 
 
-Two-dimensional data
+-Two-dimensional data
 
 
 xyplot() for creating scatterplots
@@ -1867,6 +1867,13 @@ bwplot(voice.part ~ height, data=singer, xlab="Height (inches)")
 
 ========================================================
 
+```{r,echo=FALSE,fig.width=8,fig.height=5,dpi=300,out.width="1920px",height="1080px"}
+bwplot(voice.part ~ height, data=singer, xlab="Height (inches)")
+```
+
+
+========================================================
+
 A density plot can be drawn with densityplot function.
 ```{r,eval=FALSE}
 densityplot( ~ height | voice.part, data = singer, layout = c(2, 4), xlab = "Height (inches)", bw = 5)
@@ -1878,6 +1885,15 @@ qqmath function is used to draw quantile-Quantile plots of a sample against a th
 qqmath(~ rnorm(100), distribution = function(p) qt(p, df = 10))
  
 ```
+
+========================================================
+
+```{r,echo=FALSE,fig.width=8,fig.height=5,dpi=300,out.width="1920px",height="1080px"}
+qqmath(~ rnorm(100), distribution = function(p) qt(p, df = 10))
+```
+
+
+========================================================
 
 ggplot2 R package
 ========================================================
