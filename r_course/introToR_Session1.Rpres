@@ -1924,7 +1924,15 @@ Similarly, we can let the size of each point denote petal width, by adding a siz
 qplot(Sepal.Length, Petal.Length, data = iris, color = Species, size = Petal.Width)
 ```
 
+========================================================
+```{r,echo=FALSE,fig.width=4,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
+qplot(Sepal.Length, Petal.Length, data = iris, color = Species, size = Petal.Width)
+```
+
 We see that Iris setosa flowers have the narrowest petals.
+========================================================
+
+
  
 Finally, let's fix the axis labels and add a title to the plot.
 ```{r,eval=FALSE}
@@ -1989,11 +1997,25 @@ qplot(age, circumference, data = Orange, geom = "line", colour = Tree,
     main = "How does orange tree circumference vary with age?")
 ```
 
+========================================================
+
+```{r,echo=FALSE,fig.width=4,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
+qplot(age, circumference, data = Orange, geom = "line", colour = Tree,
+    main = "Does tree circumference vary with age?")
+```
+
+========================================================
+
 We can also plot both points and lines.
 ```{r,eval=FALSE}
 qplot(age, circumference, data = Orange, geom = c("point", "line"), colour = Tree)
 ```
+========================================================
+```{r,echo=FALSE,fig.width=4,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
+qplot(age, circumference, data = Orange, geom = c("point", "line"), colour = Tree)
+```
 
+========================================================
 Time for an exercise!
 ========================================================
 Exercise on Plotting can be found [here](exercises/Plotting_exercise.html)
