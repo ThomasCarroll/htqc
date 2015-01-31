@@ -1691,14 +1691,12 @@ boxplot(data1$Treated1)
 ========================================================
 
  
-```{r,echo=FALSE,fig.width=8,fig.height=5,dpi=1500,out.width="490px",height="270px"}
+```{r,echo=FALSE,fig.width=8,fig.height=5,dpi=300,out.width="490px",height="270px"}
 hist(data1$Untreated1)
 hist(data1$Treated2)
 hist(data1$Untreated2)
 boxplot(data1$Treated1)
 ```
-
-========================================================
 
 Saving your plots
 ========================================================
@@ -1893,8 +1891,6 @@ qqmath(~ rnorm(100), distribution = function(p) qt(p, df = 10))
 ```
 
 
-========================================================
-
 ggplot2 R package
 ========================================================
 
@@ -1947,6 +1943,8 @@ qplot(Sepal.Length, Petal.Length, data = iris, color = Species, size = Petal.Wid
 ```
 
 We see that Iris setosa flowers have the narrowest petals.
+
+
 ========================================================
 
 
@@ -2027,10 +2025,15 @@ We can also plot both points and lines.
 ```{r,eval=FALSE}
 qplot(age, circumference, data = Orange, geom = c("point", "line"), colour = Tree)
 ```
+
 ========================================================
 ```{r,echo=FALSE,fig.width=4,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
 qplot(age, circumference, data = Orange, geom = c("point", "line"), colour = Tree)
 ```
+
+Summary
+========================================================
+
 
 ========================================================
 Time for an exercise!
