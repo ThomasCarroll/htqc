@@ -1901,6 +1901,7 @@ ggplot2 R package
 Let's look at how to create a scatterplot in ggplot2. We'll use the iris data frame that's automatically loaded into R.
 What does the data frame contain? We can use the head function to look at the first few rows
 ```{r}
+library(ggplot2)
 head(iris, n = 3)  
 ```
 
