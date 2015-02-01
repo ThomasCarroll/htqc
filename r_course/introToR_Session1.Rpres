@@ -1549,6 +1549,7 @@ pie(treatment, main="Treatment", col= c("lightblue", "mistyrose", "lightcyan","l
 ========================================================
 
 Now let's change the colours, label using percentages, and create a legend: 
+
 Define some colours ideal for black & white print
 ```{r}
 colors <- c("white","grey70","grey90","grey50","black")
@@ -1636,7 +1637,8 @@ head(data1)
 
 ========================================================
 
-Plot histograms for different columns in the data frame separately. This is not very efficient. you would see how to do it more efficiently using for loop later on.
+Plot histograms for different columns in the data frame separately. This is not very efficient. 
+You could also do it more efficiently using for loop.
 
 ```{r,eval=FALSE}
 hist(data1$Untreated1)
@@ -1700,9 +1702,10 @@ postscript(file = "control.ps")
 plot(control)
 dev.off()
 ```
+saving in pdf format
 
 ```{r,eval=FALSE}
-saving in pdf format
+
 pdf(file = "control.pdf", paper = "A4")
 plot(control)
 dev.off()
