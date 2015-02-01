@@ -1294,49 +1294,6 @@ range returns a vector containing the minimum and maximum of all the given argum
 
 Plot treatment using y axis that ranges from 0 to max value in treatment or control vector.  Turn off axes and annotations (axis labels) so we can specify them ourselves.
 
-========================================================
-
-```{r,eval=FALSE}
-plot(treatment, type="o", col="blue", ylim=g_range,axes=FALSE, ann=FALSE)
-```
-
-Make x axis using labels
-
-```{r,eval=FALSE}
-axis(1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
-```
-
-Make y axis with horizontal labels that display ticks at every 20 marks. 
-
-```{r,eval=FALSE}
-axis(2, las=1, at=20*0:g_range[2])
-```
-
-Create box around plot
-
-```{r,eval=FALSE}
-box()
-```
-
-========================================================
-
-```{r,echo=FALSE,fig.width=8,fig.height=4.5,dpi=300,out.width="1920px",height="1080px"}
-plot(treatment, type="o", col="blue", ylim=g_range,axes=FALSE, ann=FALSE)
-axis(1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
-axis(2, las=1, at=20*0:g_range[2])
-box()
-```
-
-========================================================
-Calculate range from 0 to max value of data
-```{r}
-g_range <- range(0, treatment, control)
-```
-
-range returns a vector containing the minimum and maximum of all the given arguments.
-
-Plot treatment using y axis that ranges from 0 to max value in treatment or control vector.  Turn off axes and annotations (axis labels) so we can specify them ourselves.
-
 ```{r,eval=FALSE}
 plot(treatment, type="o", col="blue", ylim=g_range,axes=FALSE, ann=FALSE)
 ```
