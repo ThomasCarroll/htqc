@@ -1993,11 +1993,13 @@ qplot(age, circumference, data = Orange, geom = c("point", "line"), colour = Tre
 
 Summary
 ========================================================
-- Graphical capabilities of R are outstanding.
+- Visualization of data through charts and graphs is an essential 
+part of data analysis process, so R has excellent tools for creating 
+graphics.
 - There are many different ways of making plots in R
-including base graphics and in R packages.
+including base graphics and R packages such as lattics and ggplot2.
 - Use vast arrays of R packages available to create 
-public quality graphs.
+publication quality graphs.
 
 ========================================================
 Time for an exercise!
