@@ -120,12 +120,12 @@ The **sqrt(25)** demostrates the use of functions in R. A function performs a co
 
 In R, arguments are provided to a function within the parenthesis -- **( )** -- that follows the function name. So **sqrt(*ARGUMENT*)** will provide the square root of the value of ***ARGUMENT***.
 
-Other examples of functions include **mean()**, **sum()**, **max()**. 
+Other examples of functions include **min()**, **sum()**, **max()**. 
 
 Note multiple arguments are separated by a comma.
 
 ```{r}
-mean(2,4,6)
+min(2,4,6)
 sum(2,4,6)
 max(2,4,6)
 ```
@@ -150,11 +150,11 @@ Lets run **?sqrt** in RStudio and look at the help.
 Using functions (Arguments have names and order)
 ========================================================
 
-With functions such as mean() and sqrt(), the arguments to be provided are obvious and the order of these arguments doesnt matter.
+With functions such as min() and sqrt(), the arguments to be provided are obvious and the order of these arguments doesnt matter.
 
 ```{r}
-mean(5,4,6)
-mean(6,4,5)
+min(5,4,6)
+min(6,4,5)
 ```
 
 Many functions however have an order to their arguments.

@@ -374,20 +374,39 @@ rMarkdown. Placing code and output together
 The code within the **{r}** code block will by default appear in a separate block to results output. To force code and output to appear in the same block the **collapse** option should be specified 
 ```
 
-'''{r,tidy=T} 
-temp <- rnorm(100)
+'''{r,collapse=T} 
+temp <- rnorm(10)
 temp
 '''
 
 ```
 
+rMarkdown. Inserting tables.
+=======
 
-results == asis
-===
+The results of printing data frames or matrices in the console aren't neat.
 
-kable
-===
+We can insert HTML tables into Markdown by setting the **results** option to **asis** and using the knitr function **kable()**
 
+```
+
+'''{r,results='asis'} 
+temp <- rnorm(10)
+temp2 <- rnorm(10)
+dfExample <- cbind(temp,temp2)
+kable(dfExample)
+'''
+
+```
+rMarkdown. Evaluating code in markdown.
+=======
+
+In may be useful to report the results of R within the block of Markdown. This can be done adding the code to evalulate within **'r '**
+
+```
+Here is some freeform _markdown_ and the first result from an rnorm call is 'r rnorm(3)[1]'
+
+```
 cache
 ==
 
