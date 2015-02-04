@@ -891,10 +891,9 @@ hljs.initHighlightingOnLoad();
 <section data-transition="linear" data-transition-speed="default">
 <h3>Reproducible Research in R</h3>
 <div class="slideContent" >
-<p>Try to think:<br/>
-Sometime in the future, I, or my successor, will need to understand what analysis i did here.</p>
+<p>Sometime in the future, I, or my successor, will need to understand what analysis i did here.</p>
 
-<p>Using RStudio to make reproducible documents is very easy so why not?</p>
+<p>Using RStudio to make reproducible documents is very easy, so why not?</p>
 
 </div>
 
@@ -1037,14 +1036,17 @@ myRandNumbers &lt;- rnorm(100,10,2)
 hist(myRandNumbers)
 </code></pre>
 
-<p>We will look at more options to pass to R code later.</p>
-
 </div>
 
 </section>
 <section data-transition="linear" data-transition-speed="default">
 <h3>Exercise</h3>
 <div class="slideContent" >
+<ul>
+<li>Have at the example notebook script &ldquo;scriptWithNotebookExamples.r&rdquo; in scripts directory.</li>
+<li>Open scriptToConvertToNote.r in scripts directory and save as new name.</li>
+<li>Add notes to this script and compile with render() function or through RStudio.</li>
+</ul>
 
 </div>
 
@@ -1288,7 +1290,7 @@ hist(rnorm(1000))
 <div class="slideContent" >
 <p>Options may be included in the R code chunks. </p>
 
-<p>An import option is to choose whether code will be run or is meant for display only. This can be controlled with the <strong>eval</strong> option. TRUE will evaluate the code.</p>
+<p>An important option is to choose whether code will be run or is meant for display only. This can be controlled with the <strong>eval</strong> option. TRUE will evaluate the code.</p>
 
 <pre><code>
 &#39;&#39;&#39;{r,eval=F} 
@@ -1547,6 +1549,17 @@ output:
 <section data-transition="linear" data-transition-speed="default">
 <h3>Exercises</h3>
 <div class="slideContent" >
+<ul>
+<li>Open up markdownExampleDefaultStyles.Rmd and markdownExample.Rmd in the scripts directory. Have a look at the rMarkdown examples here and the resulting output html files.</li>
+</ul>
+
+<p><a href="scripts/markdownExampleDefaultStyles.html">Example HTML Default style.</a><br/>
+<a href="scripts/markdownExample.html">Example HTML with extra style.</a></p>
+
+<ul>
+<li><p>Open scriptToConvertToRMarkdown.r in scripts directory and save as new name.</p></li>
+<li><p>Convert this script to an Rmarkdown document using the render() function or inside RStudio.</p></li>
+</ul>
 
 </div>
 

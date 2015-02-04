@@ -21,11 +21,10 @@ Reproducible Research
 
 Reproducible Research in R
 ========================================================
-
-Try to think:  
+  
 Sometime in the future, I, or my successor, will need to understand what analysis i did here.
 
-Using RStudio to make reproducible documents is very easy so why not?
+Using RStudio to make reproducible documents is very easy, so why not?
 
 
 
@@ -151,11 +150,14 @@ myRandNumbers <- rnorm(100,10,2)
 hist(myRandNumbers)
 ```
 
-We will look at more options to pass to R code later.
 
 Exercise
 ========
 
+
+- Have at the example notebook script "scriptWithNotebookExamples.r" in scripts directory.
+- Open scriptToConvertToNote.r in scripts directory and save as new name.
+- Add notes to this script and compile with render() function or through RStudio.
 
 Markdown
 ===============
@@ -347,7 +349,7 @@ rMarkdown. Controlling R code output - eval
 =======
 Options may be included in the R code chunks. 
 
-An import option is to choose whether code will be run or is meant for display only. This can be controlled with the **eval** option. TRUE will evaluate the code.
+An important option is to choose whether code will be run or is meant for display only. This can be controlled with the **eval** option. TRUE will evaluate the code.
 
 ```
 
@@ -568,3 +570,13 @@ http://rstudio.github.io/packrat/
 
 Exercises
 ===
+
+- Open up markdownExampleDefaultStyles.Rmd and markdownExample.Rmd in the scripts directory. Have a look at the rMarkdown examples here and the resulting output html files.
+
+[Example HTML Default style.](scripts/markdownExampleDefaultStyles.html)  
+[Example HTML with extra style.](scripts/markdownExample.html)
+
+- Open scriptToConvertToRMarkdown.r in scripts directory and save as new name.
+
+- Convert this script to an Rmarkdown document using the render() function or inside RStudio.
+
