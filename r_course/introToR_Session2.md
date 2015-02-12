@@ -1054,3 +1054,5 @@ The end
 Two tips
 ====
 
+Use vectorisation
+Keep 2D numeric data in matrices
