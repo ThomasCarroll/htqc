@@ -1,5 +1,7 @@
 ---
-title: Introduction to R, Session 2 
+title: Reproducible R
+author: http://mrccsc.github.io/r_course/reproducibleR.html
+date:
 output: 
   html_document:
     css: styleHTML.css
@@ -7,1093 +9,624 @@ output:
     toc_depth: 2
 ---
 
+
  
-###Recap on what we have covered.  
+##Reproducible Research 
+
+ 
+   
+   
+   
+>"Let us change our traditional attitude to the construction of programs: Instead of imagining that our main task is to instruct a computer what to do, let us concentrate rather on explaining to humans what we want the computer to do." 
+ -- Donald E. Knuth, Literate Programming, 1984 
+  
+ 
+###Reproducible Research in R 
+
+ 
+   
+Sometime in the future, I, or my successor, will need to understand what analysis i did here. 
+ 
+Using RStudio to make reproducible documents is very easy, so why not? 
+ 
+ 
+ 
+###A very quick reproducible document in R 
 
  
  
-Session 1 covered introduction to R data types, inputing data, plotting and statistics. 
- 
-- [Background to R](#/background) 
-- [Data types in R](#/datatypes) 
-- [Reading and writing data in R](#/reading) 
-- [Plotting in R](#/plotting) 
-- [Statistics in R](#/stats) 
- 
-###Recap (1/3)  
-
+- Find your R script of interest. 
+- Add the sessionInfo() function to the last line. 
+- Click the "Compile Notebook function" -> Select HTML document as output format. 
  
  
-R stores data in five main data types. 
- 
-- **Vector** - Ordered collection of single data type (numeric/character/logical). 
-- **Matrix** - Table (ordered 2D collection) of single data type (numeric/character/logical). 
-- **Factors** -Ordered collection of ordinal or nominal catagories. 
-- **Data frame** - Table (ordered 2D array) of multiple data types of same length. 
-- **List** - Ordered collection of multiple data types of differing length 
- 
-###Recap.(2/3) 
-
- 
- 
-Data can be read into R as a table with the **read.table()** function and written to file with the **write.table()** function. 
- 
- 
-```r 
-Table <- read.table("data/readThisTable.csv",sep=",",header=T,row.names=1) 
-Table[1:3,] 
-``` 
- 
-``` 
-       Sample_1.hi Sample_2.hi Sample_3.hi Sample_4.low Sample_5.low 
-Gene_a    4.570237    3.230467    3.351827     3.930877     4.098247 
-Gene_b    3.561733    3.632285    3.587523     4.185287     1.380976 
-Gene_c    3.797274    2.874462    4.016916     4.175772     1.988263 
-       Sample_1.low 
-Gene_a     4.418726 
-Gene_b     5.936990 
-Gene_c     3.780917 
-``` 
- 
-```r 
-write.table(Table,file="data/writeThisTable.csv", sep=",", row.names =F,col.names=T) 
-``` 
- 
-###Recap.(3/3) 
-
- 
- 
-R has a rich set of statistical functions. 
- 
- 
-```r 
-1- pnorm(8,mean=8,sd=3) 
-``` 
- 
-``` 
-[1] 0.5 
-``` 
- 
-```r 
-tTestExample <- read.table("data/tTestData.csv",sep=",",header=T) 
-Result <- t.test(tTestExample$A,tTestExample$B,alternative ="two.sided", var.equal = T) 
-Result 
-``` 
- 
-``` 
- 
-	Two Sample t-test 
- 
-data:  tTestExample$A and tTestExample$B 
-t = -41.3528, df = 18, p-value < 2.2e-16 
-alternative hypothesis: true difference in means is not equal to 0 
-95 percent confidence interval: 
- -14.60253 -13.19051 
-sample estimates: 
-mean of x mean of y  
- 26.50152  40.39804  
-``` 
- 
-##Conditions and Loops 
+##Creating documents from R scripts 
 
  
 
  
  
-###Conditions and Loops (1/21) 
+###From Scripts to Notes 
 
  
  
-We have looked at using logical vectors as a way to index other data types 
+So we have just seen the speed at which you can produce a report document from an R script using Rstudio. 
+ 
+Rstudio makes things easy but for fine control we need to look at what is going on within Rstudio. 
+ 
+Rstudio makes use of **rmarkdown** and **knitr** packages. 
+ 
+###Defaults 
+
+ 
+Several packages offer methods to create notes from R scripts. 
+ 
+One of the simplest way to create a note in R is to use the **render()** function in **rmarkdown** package. 
+ 
  
 ```r 
-x <- 1:10 
-x[x < 4] 
+library(rmarkdown) 
+render("scripts/script.r") 
 ``` 
  
+###Output from render() 
+
+ 
+ 
+By default the render() function will have created a html file in the current working directory. 
+ 
+Have a look at the result script.html in the  
+scripts directory.  
+ 
+ 
+###Controlling the output type from render() 
+
+ 
+ 
+The render()  function takes the argument **output_format** 
+ 
+ 
+```r 
+render("scripts/script.r", output_format="html_document") 
 ``` 
-[1] 1 2 3 
+ 
+###Setting output directory for rendered documents 
+
+ 
+ 
+The arguments **output_file** and **output_dir** can be used to control where output is rendered to. 
+ 
+Note that file extension must be supplied. 
+ 
+ 
+```r 
+render("scripts/script.r", output_format="html_document", output_file="myRenderedDoc.html",output_dir="scripts") 
 ``` 
  
-Logicals are also used in controlling how scripted procedures execute. 
+ 
+###Adding comments and text. 
+
  
  
-###Conditions and Loops (2/21) - Two important control structures 
+In R we can use **#** as comments in the code. This is the most basic type of documentation for your code. 
+ 
+ 
+```r 
+# Generate some random numbers 
+myRandNumbers <- rnorm(100,10,2) 
+``` 
+ 
+###Adding comments and text. 
+
+ 
+ 
+If we want to include comments as text then we can use a new comment type **#'**   
+ 
+ 
+```r 
+#' this would be placed as code 
+# Generate some random numbers 
+myRandNumbers <- rnorm(100,10,2) 
+``` 
+ 
+###YAML metadata. 
+
+ 
+ 
+If we wish to control author, title and date, we can insert metadata into the script as YAML.   
+ 
+ 
+ 
+```r 
+#' --- 
+#' title: "CWB making notes example" 
+#' author: "Tom Carroll" 
+#' date: "Day 3 of CWB" 
+#' --- 
+#' this would be placed as text in html 
+# Generate some random numbers (This is a comment with code) 
+myRandNumbers <- rnorm(100,10,2) 
+``` 
+ 
+We will come back to YAML later. 
+ 
+###Controlling R code evaluation in notes. 
+
+ 
+We can control how the output from R looks in our rendered documents. 
+ 
+Options are passed to R code by adding a line preceeding R code with the special comment **#+**. We will look at some options later but a useful example is fig.height and fig.width to control figure height and width in the document. 
+ 
+ 
+```r 
+#' Some comments for text. 
+#+ fig.width=3, fig.height=3 
+myRandNumbers <- rnorm(100,10,2) 
+hist(myRandNumbers) 
+``` 
+ 
+ 
+###Exercise 
 
  
  
  
+- Have at the example notebook script "scriptWithNotebookExamples.r" in scripts directory. 
+- Open scriptToConvertToNote.r in scripts directory and save as new name. 
+- Add notes to this script and compile with render() function or through RStudio. 
  
-- Conditional branching (if,else) 
-- Loops (for, while) 
- 
-**While** I'm analysing data, **if** I need to execute complex statistical procedures on the data I will use R **else** I will use a calculator. 
- 
-###Conditions and Loops (3/21) - Conditional Branching. 
+##Markdown 
 
  
  
-Conditional Branching is the evaluation of a logical to determine whether a chunk of code is executed. 
+Under the hood, R is creating an intermediate document in **Markdown** format. 
  
-In R, we use the **if** statement with the logical to be evaluated in **()** and dependent code to be executed in **{}**. 
+Markdown is a mark up language containing plain text and allowing for conversion to multiple rich text document types. 
  
+Common formats markdown renders to are -  
+- html 
+- pdf 
+- Word doc 
  
-```r 
-x <- TRUE 
-if(x){ 
-  message("x is true") 
-} 
-``` 
- 
-``` 
-x is true 
-``` 
- 
-```r 
-x <- FALSE 
-if(x){ 
-  message("x is true") 
-} 
-``` 
-###Conditions and Loops (4/21) - Evaluating in if() statements 
+###Markdown 
 
  
  
-More often, we construct the logical value within **()** itself.This can be termed the **condition**.  
+Markdown is often used as an intermediate document in conversion from one type to another.   
  
+Github and Sourceforge make use of Markdown syntax in their Readme files and renders these in their webpages. 
  
-```r 
-x <- 10 
-y <- 4 
-if(x > y){ 
-  message("The value of x is ",x," is greater than ", y) 
-} 
-``` 
+https://github.com/github/markup/blob/master/README.md 
  
-``` 
-The value of x is 10 is greater than 4 
-``` 
-Here the message is printed because x is greater than y.  
- 
- 
-```r 
-y <- 20 
-if(x > y){ 
-  message("The value of x is ",x," is greater than ", y) 
-} 
-``` 
-Here, x is not longer greater than y, so no message is printed. 
- 
-We really still want a message telling us what was the result of the condition. 
- 
-###Conditions and Loops (5/21) -else following an if(). 
+###Markdown syntax. 
 
  
  
-If we want to perform an operation when the condition is false we can follow the if() statement with an else statement. 
+Markdown uses simple syntax to control text output. 
+ 
+This allows for the inclusion of font styles, text structures, images and code chunks. 
+ 
+Lets look at some simple syntax for markdown to help us understand the R documents output from RStudio. 
+ 
+###Markdown syntax- New line 
+
+ 
+ 
+Markdown is written as plain text and ignores new lines.  
+ 
+To include a new line in markdown, end the previous line with two spaces. 
+ 
+``` 
+This is my first line.  # comment shows line end 
+This would be a new line. 
+This wouldn't be a new line. 
+ 
+``` 
+ 
+To start a new paragraph, leave a line of space. 
+ 
+``` 
+This is my first paragraph. 
+ 
+This is my second paragraph 
+ 
+``` 
+ 
+###Markdown syntax- Font emphasis 
+
+ 
+Emphasis can be added to text in markdown documents using either the **_** or __*__ 
  
  
 ```r 
-x < - 10 
+Italics = _Italics_ or *Italics* 
+Bold  =  __Bold__ or **Bold** 
 ``` 
+###Markdown syntax- Including external images 
+
+ 
+Figures or external images can be used in Markdown documents.   
+Files may be local or accessible from http URL. 
  
 ``` 
-[1] FALSE 
-``` 
- 
-```r 
-if(x < 5){ 
-  message(x, " is less than to 5") 
-   }else{ 
-     message(x," is greater than or equal to 5") 
-} 
-``` 
+![alt text](imgs/Dist.jpg) 
+![alt text](http://mrccsc.github.io/r_course/imgs/Dist.jpg) 
  
 ``` 
-10 is greater than or equal to 5 
+ 
+###Markdown syntax- Creating section headers 
+
+ 
+ 
+Section headers can be added to Markdown documents. 
+ 
+Headers follow the same conventions as used in HTML markup and can implemented at multiple levels of size. Section headers in Markdown are created by using the **#** symbol 
+ 
 ``` 
+# Top level section 
+## Middle level section 
+### Bottom level section 
+``` 
+ 
+###Markdown syntax- Lists 
+
+ 
+Lists can be created in Markdown using the __*__ symbol.   
+Nested lists be specified with **+** symbol. 
+ 
+``` 
+* First item 
+* Second item 
++ Second item A 
++ Second item B 
+``` 
+###Markdown syntax- Order lists 
+
+ 
+ 
+Lists can also include ordered numbers. 
+ 
+``` 
+1. First item 
+2. Second item 
++ Second item A 
++ Second item B 
+``` 
+ 
+###Markdown syntax- Code chunks 
+
+ 
+ 
+In Markdown, text may be highlighted as if code by placing the text between '''. 
+ 
+``` 
+The code used to produce plot was 
+''' 
+hist(rnorm(100)) 
+''' 
+ 
+``` 
+###Markdown syntax- Code chunks 
+
+ 
+ 
+In Markdown, text may be highlighted as if code by placing the text between '''. 
+ 
+``` 
+The code used to produce plot was 
+''' 
+hist(rnorm(100)) 
+''' 
+ 
+``` 
+ 
+ 
+###Markdown syntax- HTML links 
+
+ 
+HTML links can be included in Markdown documents either by simply including address in text or by using **[]** for the phrase to add link to, followed the link in **()** 
+``` 
+http://mrccsc.github.io 
+[Github site](http://mrccsc.github.io) 
+``` 
+ 
+###Markdown syntax- Page breaks. 
+
+ 
+Markdown allows for the specification of page breaks in your document.   
+To specify a page break use 3 or more asterisks or dashes. 
+ 
+``` 
+Before the first page break 
 *** 
- 
-With the addition of the else statement, when x is not greater than 5 the code following the else statement is executed. 
- 
- 
-```r 
-x <- 3 
-if(x < 5){ 
-  message(x, " is less than 5") 
-   }else{ 
-     message(x," is greater than or equal to 5") 
-} 
+Before the second page break 
+--- 
 ``` 
  
-``` 
-3 is less than 5 
-``` 
- 
- 
- 
-###Conditions and Loops (6/21) - else if 
+##rMarkdown. 
 
  
  
-We may wish to execute different procedures under multiple conditions. This can be controlled in R using the else if() following an initial if() statement. 
+rMarkdown is a script type used in R to allow for the generation of Markdown from R code. rMarkdown files will typically have the extension **.Rmd** 
  
-```r 
-x <- 5 
-if(x > 5){ 
-  message(x," is greater than 5") 
-  }else if(x == 5){ 
-    message(x," is 5") 
-  }else{ 
-    message(x, " is less than 5") 
-  } 
-``` 
+rMarkdown allows for the inclusion of Markdown syntax around **chunks** of R code. 
  
-``` 
-5 is 5 
-``` 
+The output from running the R code can be tightly controled using rMarkdown, allowing for very neat integration of results with code used to generate them 
  
-###Conditions and Loops (7/21) -ifelse() 
+###knitr 
 
  
  
-A useful function to evaluate conditional statements over vectors is the **ifelse()** function. 
+The **knitr** packages is the main route to create documents from **.Rmd** files. 
  
+**knitr** was created by Yihui Xie to wrap and clean up issues with other tools to make dynamic documents. 
  
-```r 
-x <- 1:10 
-message(x) 
-``` 
+http://yihui.name/knitr/ 
  
-The ifelse() functions take the arguments of the condition to evaluate, the action if the condition is true and the action when condition is false. 
- 
- 
-```r 
-ifelse(x <= 3,"lessOrEqual","more")  
-``` 
- 
-``` 
- [1] "lessOrEqual" "lessOrEqual" "lessOrEqual" "more"        "more"        
- [6] "more"        "more"        "more"        "more"        "more"        
-``` 
- 
-This allows for multiple nested "else if" statements to be applied to vectors. 
- 
- 
-```r 
-ifelse(x == 3,"same", 
-       ifelse(x < 3,"less","more") 
-       )  
-``` 
- 
-``` 
- [1] "less" "less" "same" "more" "more" "more" "more" "more" "more" "more" 
-``` 
-###Conditions and Loops (8/21) -Loops 
+###rMarkdown. From Markdown to rMarkdown 
 
  
  
-The two main generic methods of looping in R are **while** and **for** 
+The transition from Markdown to rMarkdown is very simple. All Markdown syntax may be included and code to be evaluated in R placed between a special code chunk.   
  
-- **while** - *while* loops repeat the execution of code while a condition evaluates as true. 
+The code chunck  containing R code to execute is specified by the inclusion of **{r}** as below. 
  
-- **for** - *for* loops repeat the execution of code for a range of specified values. 
+``` 
+My Markdown **syntax** here 
+'''{r}  
+hist(rnorm(1000)) 
+''' 
+``` 
+
+###rMarkdown. Controlling R code output - eval 
+
  
-###Conditions and Loops (9/21) -While loops 
+Options may be included in the R code chunks.  
+ 
+An important option is to choose whether code will be run or is meant for display only. This can be controlled with the **eval** option. TRUE will evaluate the code. 
+ 
+``` 
+ 
+'''{r,eval=F}  
+hist(rnorm(1000)) 
+''' 
+ 
+``` 
+ 
+###rMarkdown. Controlling R code output - Displaying code. 
 
  
  
-While loops are most useful if you know the condition will be satisified but are not sure when. (i.e. Looking for a point when a number first occurs in a list). 
- 
-```r 
-x <- 1 
-while(x != 3){ 
-  message("x is ",x," ") 
-  x <- x+1 
-} 
-``` 
+It may be that you wish to report just the results and not include the code used to generate them. This can be controlled with the **echo** argument. TRUE will display the code. 
  
 ``` 
-x is 1  
-x is 2  
-``` 
  
-```r 
-message("Finally x is 3") 
-``` 
+'''{r,echo=F}  
+hist(rnorm(1000)) 
+''' 
  
 ``` 
-Finally x is 3 
-``` 
  
-###Conditions and Loops (10/21) -For loops 
+###rMarkdown. Controlling R code output - message and warnings 
 
  
+R can produce a lot of output not related to your results. To control whether messages and warnings are reported in the rendered document we can specify the **message** and **warning** arguments.  
  
-For loops allow the user to cycle through a range of values applying an operation for every value. 
+Loading libraries in rMarkdown is often somewhere you would specify these as FALSE. 
  
-Here we cycle through a numeric vector and print out its value. 
- 
-```r 
-x <- 1:5 
-for(i in x){ 
-  message("Loop",i," ", appendLF = F) 
-} 
-``` 
- 
-``` 
-Loop1 Loop2 Loop3 Loop4 Loop5 
-``` 
-*** 
-Similarly we can cycle through other vector types (or lists) 
- 
-```r 
-x <- toupper(letters[1:5]) 
-for(i in x){ 
-  message("Loop",i," ", appendLF = F) 
-} 
-``` 
- 
-``` 
-LoopA LoopB LoopC LoopD LoopE 
-``` 
- 
- 
- 
- 
-###Conditions and Loops (11/21) - Looping through indices 
-
- 
- 
-We may wish to keep track of the position in x we are evaluating to retrieve the same index in other variables. A common practice is to loop though all possible index positions of x using the expression **1:length(x)**. 
- 
- 
-```r 
-geneName <- c("Ikzf1","Myc","Igll1") 
-expression <- c(10.4,4.3,6.5) 
-1:length(geneName) 
-``` 
- 
-``` 
-[1] 1 2 3 
-``` 
- 
-```r 
-for(i in 1:length(geneName)){ 
-  message(geneName[i]," has an RPKM of ",expression[i]) 
-} 
-``` 
- 
-``` 
-Ikzf1 has an RPKM of 10.4 
-Myc has an RPKM of 4.3 
-Igll1 has an RPKM of 6.5 
-``` 
- 
-###Conditions and Loops (12/21) -Loops and conditionals 
-
- 
-Left:60% 
-Loops can be combined with conditional statements to allow for complex control of their execution over R objects.  
- 
- 
-```r 
-x <- 1:13 
- 
-for(i in 1:13){ 
-  if(i > 10){ 
-    message("Number ",i," is greater than 10") 
-  }else if(i == 10){ 
-    message("Number ",i," is  10")  
-  }else{ 
-    message("Number ",i," is less than  10")  
-  } 
-} 
-``` 
-*** 
- 
-``` 
-Number 1 is less than  10 
-Number 2 is less than  10 
-Number 3 is less than  10 
-Number 4 is less than  10 
-Number 5 is less than  10 
-Number 6 is less than  10 
-Number 7 is less than  10 
-Number 8 is less than  10 
-Number 9 is less than  10 
-Number 10 is  10 
-Number 11 is greater than 10 
-Number 12 is greater than 10 
-Number 13 is greater than 10 
-``` 
- 
-###Conditions and Loops (13/21) - Breaking loops 
-
- 
- 
-We can use conditionals to exit a loop if a condition is satisfied, just a like while loop. 
- 
- 
-```r 
-x <- 1:13 
- 
-for(i in 1:13){ 
-  if(i < 10){ 
-    message("Number ",i," is less than 10") 
-  }else if(i == 10){ 
-    message("Number ",i," is  10") 
-    break 
-  }else{ 
-    message("Number ",i," is greater than  10")  
-  } 
-} 
-``` 
-*** 
- 
-``` 
-Number 1 is less than 10 
-Number 2 is less than 10 
-Number 3 is less than 10 
-Number 4 is less than 10 
-Number 5 is less than 10 
-Number 6 is less than 10 
-Number 7 is less than 10 
-Number 8 is less than 10 
-Number 9 is less than 10 
-Number 10 is  10 
-``` 
- 
-###Conditions and Loops (14/21) -Functions to loop over data types 
-
- 
- 
-There are functions which allow you to loop over a data type and apply a function to the subsection of that data. 
- 
-- **apply** - Apply function to rows or columns of a matrix/data frame and return results as a vector,matrix or list. 
- 
-- **lapply** - Apply function to every element of a vector or list and return results as a list. 
- 
-- **sapply** - Apply function to every element of a vector or list and return results as a vector,matrix or list. 
- 
-###Conditions and Loops (15/21) - apply() 
-
- 
- 
-The **apply()** function applys a function to the rows or columns of a matrix. The arguments **FUN** specifies the function to apply and **MARGIN** whether to apply the functions by rows/columns or both. 
- 
-``` 
-apply(DATA,MARGIN,FUN,...) 
-``` 
- 
-- **DATA** - A matrix (or something to be coerced into a matrix) 
-- **MARGIN** - 1 for rows, 2 for columns, c(1,2) for cells 
- 
-###Conditions and Loops (16/21) - apply() example 
-
- 
- 
-```r 
-matExample <- matrix(c(1:4),nrow=2,ncol=2,byrow=T) 
-matExample 
-``` 
- 
-``` 
-     [,1] [,2] 
-[1,]    1    2 
-[2,]    3    4 
-``` 
-Get the mean of rows 
- 
-```r 
-apply(matExample,1,mean) 
-``` 
- 
-``` 
-[1] 1.5 3.5 
-``` 
-Get the mean of columns 
- 
-```r 
-apply(matExample,2,mean) 
-``` 
- 
-``` 
-[1] 2 3 
-``` 
- 
-###Conditions and Loops (16/21) - Additional arguments to apply 
-
- 
-Additional arguments to be used by the function in the apply loop can be specified after the function argument.  
- 
-Arguments may be ordered as if passed to function directly. For **paste()** function however this isn't possible. 
- 
- 
- 
-```r 
-apply(matExample,1,paste,collapse=";") 
-``` 
- 
-``` 
-[1] "1;2" "3;4" 
-``` 
- 
-###Conditions and Loops (17/21) - lapply() 
-
- 
- 
-Similar to apply, **lapply** applies a function to every element of a vector or list.  
- 
-**lapply** returns a list object containing the results of evaluating the function. 
- 
- 
-```r 
-lapply(c(1,2),mean) 
-``` 
- 
-``` 
-[[1]] 
-[1] 1 
- 
-[[2]] 
-[1] 2 
-``` 
-*** 
-As with apply() additional arguments can be supplied after the function name argument. 
- 
- 
-```r 
-lapply(list(1,NA,2),mean,na.rm=T) 
-``` 
- 
-``` 
-[[1]] 
-[1] 1 
- 
-[[2]] 
-[1] NaN 
- 
-[[3]] 
-[1] 2 
-``` 
- 
-###Conditions and Loops (18/21) -sapply() 
-
- 
- 
-**sapply** (*smart apply*) acts as lapply but attempts to return the results as the most appropriate data type. 
- 
-Here sapply returns a vector where lapply would return lists. 
- 
-```r 
-exampleVector <- c(1,2,3,4,5) 
-exampleList <- list(1,2,3,4,5) 
-sapply(exampleVector,mean,na.rm=T) 
-``` 
- 
-``` 
-[1] 1 2 3 4 5 
-``` 
- 
-```r 
-sapply(exampleList,mean,na.rm=T) 
-``` 
- 
-``` 
-[1] 1 2 3 4 5 
-``` 
- 
-###Conditions and Loops (19/21) - sapply() example 
-
- 
- 
-In this example lapply returns a list of vectors from the quantile function. 
- 
- 
-```r 
-exampleList <- list(row1=1:5, row2=6:10, row3=11:15) 
-exampleList 
-``` 
- 
-``` 
-$row1 
-[1] 1 2 3 4 5 
- 
-$row2 
-[1]  6  7  8  9 10 
- 
-$row3 
-[1] 11 12 13 14 15 
-``` 
- 
-*** 
- 
-```r 
-lapply(exampleList,quantile) 
-``` 
- 
-``` 
-$row1 
-  0%  25%  50%  75% 100%  
-   1    2    3    4    5  
- 
-$row2 
-  0%  25%  50%  75% 100%  
-   6    7    8    9   10  
- 
-$row3 
-  0%  25%  50%  75% 100%  
-  11   12   13   14   15  
-``` 
- 
-###Conditions and Loops (20/21) - sapply() example 2 
-
- 
- 
-Here is an example of sapply parsing a result from the quantile function in a *smart* way. 
- 
-When a function always returns a vector of the same length, sapply will create a matrix with elements by column. 
- 
- 
-```r 
-sapply(exampleList,quantile) 
-``` 
- 
-``` 
-     row1 row2 row3 
-0%      1    6   11 
-25%     2    7   12 
-50%     3    8   13 
-75%     4    9   14 
-100%    5   10   15 
-``` 
- 
-###Conditions and Loops (21/21) - sapply() example 4 
-
- 
- 
-When sapply cannot parse the result to a vector or matrix, a list will be returned. 
- 
- 
-```r 
-exampleList <- list(df=data.frame(sample=paste0("patient",1:2), data=c(1,12)), vec=c(1,3,4,5)) 
-sapply(exampleList,summary) 
-``` 
- 
-``` 
-$df 
-      sample       data       
- patient1:1   Min.   : 1.00   
- patient2:1   1st Qu.: 3.75   
-              Median : 6.50   
-              Mean   : 6.50   
-              3rd Qu.: 9.25   
-              Max.   :12.00   
- 
-$vec 
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.  
-   1.00    2.50    3.50    3.25    4.25    5.00  
-``` 
- 
-###Time for an exercise! 
-
- 
- 
-Exercise on loops and conditional branching can be found [here](exercises/conditionsAndLoops_Exercises.html) 
- 
-###Answers to exercise. 
-
- 
- 
-Answers can be found here  [here](answers/conditionsAndLoops_Answers.html) 
- 
-##Functions 
-
- 
-
- 
- 
- 
-###Functions (1/) - Built in functions 
-
- 
- 
-As we have seen, a function is command which requires one or more arguments and returns a single R object.  
- 
-This allows for the user to perform complex calculations and prodecures with one simple operation. 
- 
- 
-```r 
-x=rnorm(100,70,10) 
-y <- jitter(x,amount=1)+20 
-mean(x) 
-``` 
- 
-``` 
-[1] 70.40512 
-``` 
- 
-```r 
-lmExample <- data.frame(X=x,Y=y) 
-lmResult <- lm(Y~X,data=lmExample) 
-``` 
-*** 
- 
-```r 
-plot(Y~X,data=lmExample,main="Line of best fit with lm()", 
-     xlim=c(0,150),ylim=c(0,150)) 
-abline(lmResult,col="red",lty=3,lwd=3) 
-``` 
- 
-![plot of chunk unnamed-chunk-35](introToR_Session2-figure/unnamed-chunk-35-1.png)  
- 
- 
-###Functions (2/) - Functions can be defined in R 
-
- 
- 
-Although we have access to many built functions in R, there will be many complex tasks we wish to perform regularly which are particular to our own work and for which no suitable function exists.  
- 
-For these tasks we can construct our own functions with **function()** 
- 
-``` 
-Function_Name <- function(Arguments){ 
-      Result <- Arguments 
-  return(Result) 
-} 
-``` 
- 
-###Functions (3/) - Defining your own functions 
-
- 
- 
-To define a function with **function()** we need to decide  
-- the argument names within **()** 
-- the expression to be evaluated within **{}**  
-- the variable to which the function will be assigned  with **<-**. 
-- the output from the function using **return()**  
- 
-**Function_name** <- function(**Argument1**,**Argument2**){ **Expression**} 
- 
- 
-```r 
-myFirstFunction <- function(myArgument1,myArgument2){ 
-  myResult <- (myArgument1*myArgument2) 
-  return(myResult) 
-} 
-myFirstFunction(4,5) 
-``` 
- 
-``` 
-[1] 20 
-``` 
- 
- 
-###Functions (4/) - Default arguments 
-
- 
- 
-In functions, a default value for an argument may be used. 
-This allows the function to provide a value for an argument when the user does not specify one. 
- 
-Default arguments can be specified by assigning a value to the argument with **=** operator 
- 
- 
-```r 
-mySecondFunction <- function(myArgument1,myArgument2=10){ 
-  myResult <- (myArgument1*myArgument2) 
-  return(myResult) 
-} 
-mySecondFunction(4,5) 
-``` 
- 
-``` 
-[1] 20 
-``` 
- 
-```r 
-mySecondFunction(4) 
-``` 
- 
-``` 
-[1] 40 
-``` 
- 
- 
-###Functions (5/) -Missing Arguments 
-
- 
- 
-In some cases a function may wish to deal with missing arguments in a different way to setting a generic default for the argument. The missing() function can be used to evaluate whether an argument has been defined  
- 
- 
-```r 
-mySecondFunction <- function(myArgument1,myArgument2){ 
-  if(missing(myArgument2)){ 
-    message("Value for myArgument2 not provided so will square myArgument1") 
-    myResult <- myArgument1*myArgument1 
-  }else{ 
-    myResult <- (myArgument1*myArgument2)    
-  } 
-  return(myResult) 
-} 
-mySecondFunction(4) 
-``` 
- 
-``` 
-Value for myArgument2 not provided so will square myArgument1 
-``` 
- 
-``` 
-[1] 16 
-``` 
- 
- 
-###Functions (6/) -Returning objects from functions 
-
- 
- 
-We have seen that a function returns the value within the return() function. If no return is specified, the result of last line evaluated in the function is returned. 
- 
- 
-```r 
-myforthFunction <- function(myArgument1,myArgument2=10){ 
-  myResult <- (myArgument1*myArgument2) 
-  return(myResult) 
-  print("I returned the result") 
-} 
-myfifthFunction <- function(myArgument1,myArgument2=10){ 
-(myArgument1*myArgument2) 
-} 
- 
-myforthFunction(4,5) 
-``` 
- 
-``` 
-[1] 20 
-``` 
- 
-```r 
-myfifthFunction(4,5) 
-``` 
- 
-``` 
-[1] 20 
-``` 
- 
-Note that the print() statment after the return() is not evaluated in myforthFuntion. 
- 
-###Functions (7/) - Returning lists from functions 
-
- 
- 
-The **return()** function can only return one R object at a time. To return multiple data objects from one function call, a list can be used to contain other data objects. 
- 
- 
-```r 
-mySixthFunction <- function(arg1,arg2){ 
-  result1 <- arg1*arg2 
-  result2 <- date() 
-  return(list(Calculation=result1,DateRun=result2)) 
-} 
-result <- mySixthFunction(10,10) 
-result 
-``` 
- 
-``` 
-$Calculation 
-[1] 100 
- 
-$DateRun 
-[1] "Tue Feb  3 11:04:13 2015" 
-``` 
- 
-###Functions (8/) -Scope 
-
- 
- 
-When arguments or variables are created within a function, they only exist within that function and disappear once the function is complete. 
- 
- 
-```r 
-mySeventhFunction <- function(arg1,arg2){ 
-  internalValue <- arg1*arg2 
-  return(internalValue) 
-} 
-result <- mySeventhFunction(10,10) 
-internalValue 
-``` 
- 
-``` 
-Error in eval(expr, envir, enclos): object 'internalValue' not found 
-``` 
- 
-```r 
-arg1 
-``` 
- 
-``` 
-Error in eval(expr, envir, enclos): object 'arg1' not found 
-``` 
- 
- 
- 
-###Time for an exercise! 
-
- 
- 
-Exercise on functions can be found [here](exercises/Functions_Exercises.html) 
- 
-###Answers to exercise. 
-
- 
- 
-Answers can be found here  [here](answers/Functions_Answers.html) 
- 
-##Scripts 
-
- 
-
- 
- 
- 
-###Saving scripts 
-
- 
- 
-Once we have got our functions together and know how we want to analyse our data, we can save our analysis as a **script**. By convention R scripts typically end in **.r** or **.R** 
- 
-To save a file in RStudio. 
- 
- 
-**-> File -> Save as** 
- 
- 
-To open a previous R script 
- 
-**->File -> Open File..** 
- 
-To save all the objects (workspace) with extension **.RData** 
- 
-**->Session -> Save workspace as** 
- 
-###Sourcing scripts. 
-
- 
- 
-R scripts allow us to save and reuse custom functions we have written.  To run the code from an R script we can use the **source()** function with the name of the R script as the argument.  
- 
-The file **dayOfWeek.r** in the "scripts" directory contains a simple R script to tell you what day it is after your marathon R coding session. 
- 
-``` 
-#Contents of dayOfWeek.r 
-dayOfWeek <- function(){ 
-  return(gsub(" .*","",date()))   
-} 
-``` 
- 
-```r 
-source("scripts/dayOfWeek.R") 
-dayOfWeek() 
-``` 
- 
-``` 
-[1] "Tue" 
-``` 
- 
-###Rscript 
-
- 
- 
-R scripts can be run non-interactively from the command line with the **Rscript** command, usually with the option **--vanilla** to avoid saving or restoring workspaces. All messages/warnings/errors will be output to the console. 
- 
-``` 
-Rscript --vanilla myscript.r 
 ``` 
- 
-An alternative to Rscript is **R CMD BATCH**. Here all messages/warnings/errors are directed to a file and the processing time appended. 
- 
-``` 
-R CMD BATCH myscript.r 
-``` 
- 
-###Sending arguments to Rscript 
-
- 
- 
-To provide arguments to an R script at the command line we must add **commandArgs()** function to parse command line arguments. 
- 
- 
-```r 
-args <- commandArgs(TRUE) 
-myFirstArgument <- args[1] 
-myFirstArgument 
-as.numeric(myFirstArgument 
-``` 
- 
-``` 
-'10' 
-``` 
- 
-```r 
-as.numeric(myFirstArgument) 
-``` 
-``` 
-10 
-``` 
-Since vectors can only be one type, all command line arguments are strings and must be converted to numeric if needed with **as.numeric()** 
- 
-###Loading libraries 
-
- 
- 
-Libraries can be loaded using the library() function with an argument of the name of the library 
- 
  
-```r 
+'''{r,warning=F,message=F}  
 library(ggplot2) 
+''' 
+ 
+``` 
+###rMarkdown. Controlling figure output. 
+
+ 
+ 
+Control over figure heights and widths can be implemented in rMarkdown using the **fig.width** and **fig.height** arguments. Further control over exact size in rendered document maybe specified with **out.width** and **out.height**. 
+ 
 ``` 
  
-You can see what libraries are available in the Packages panel or by the  library() function with no arguments supplied 
+'''{r,fig.width=5,fig.height=5}  
+hist(rnorm(100)) 
+''' 
  
- 
-```r 
-library() 
 ``` 
  
-###Installing libraries 
+###rMarkdown. Automatically tidying code. 
 
  
  
-Libraries can be installed through the R studio menu 
+The code within the **{r}** code block can be reformatted using the formatR package. This can be automatically done when the **tidy** option is specified. 
  
-**-> Tools -> Install packages ..** 
+``` 
  
-Or by using the install.packages() command 
+'''{r,tidy=T}  
+        hist(  
+rnorm(100  ) 
+      ) 
+''' 
+ 
+``` 
+###rMarkdown. Placing code and output together 
+
  
  
-```r 
-install.packages("Hmisc") 
+The code within the **{r}** code block will by default appear in a separate block to results output. To force code and output to appear in the same block the **collapse** option should be specified  
+``` 
+ 
+'''{r,collapse=T}  
+temp <- rnorm(10) 
+temp 
+''' 
+ 
+``` 
+ 
+###rMarkdown. Inserting tables. 
+
+ 
+ 
+The results of printing data frames or matrices in the console aren't neat. 
+ 
+We can insert HTML tables into Markdown by setting the **results** option to **asis** and using the knitr function **kable()** 
+ 
+``` 
+ 
+'''{r,results='asis'}  
+temp <- rnorm(10) 
+temp2 <- rnorm(10) 
+dfExample <- cbind(temp,temp2) 
+kable(dfExample) 
+''' 
+ 
+``` 
+###rMarkdown. Evaluating code within markdown text. 
+
+ 
+ 
+It may be useful to report the results of R within the block of Markdown. This can be done adding the code to evalulate within **'r  '** 
+ 
+``` 
+Here is some freeform _markdown_ and the first result from an rnorm call is 'r rnorm(3)[1]', followed by some more free form text. 
+ 
+``` 
+ 
+###rMarkdown: cache 
+
+ 
+ 
+Some operations may take a significant time or resource to compute.  
+ 
+The **cache** argument may be used to save the results in the current working directory. This code chunk will import the results in future document compilations and save computation time 
+ 
+``` 
+'''{r,cache=TRUE}  
+x <- sample(1000,10^8,replace=T) 
+length(x) 
+''' 
 ``` 
  
  
-###Getting help 
+ 
+ 
+###YAML in rMarkdown. 
 
  
  
-- Google 
-- Local friendly bioinformaticians and computational biologists. 
-- [Stackoverflow](http://stackoverflow.com/) 
-- [R-help](https://stat.ethz.ch/mailman/listinfo/r-help) 
+In rMarkdown the options for document processing are stored in YAML format at the top of the document. 
  
-###The end 
+``` 
+--- 
+title: "Untitled" 
+author: "tcarroll" 
+date: "21 November 2014" 
+output: html_document 
+--- 
+``` 
+ 
+###Controlling output type. 
 
  
  
-###Two tips 
+The **output** YAML option specifies the document type to be produced. 
+ 
+``` 
+--- 
+output: html_document 
+--- 
+``` 
+``` 
+--- 
+output: pdf_document 
+--- 
+``` 
+``` 
+--- 
+output: word_document 
+--- 
+``` 
+``` 
+--- 
+output: md_document 
+--- 
+``` 
+ 
+###Figure options in YAML 
 
  
  
-Use vectorisation 
-Keep 2D numeric data in matrices 
+Global default options for figure sizes and devices used can be set within the YAML metadata. 
+ 
+ 
+``` 
+--- 
+output:  
+  html_document: 
+    fig_width: 7 
+    fig_height: 6 
+--- 
+``` 
+ 
+###Adding styles 
+
+ 
+Styles for HTML can be applied using the **theme** option and syntax highlighting styles control by the **highlight** option 
+ 
+``` 
+--- 
+output:  
+  html_document: 
+    theme: journal 
+    highlight: espresso 
+--- 
+``` 
+ 
+For a full list of theme options see - 
+http://rmarkdown.rstudio.com/html_document_format.html 
+ 
+###Additional styles 
+
+ 
+``` 
+--- 
+output:  
+  html_document: 
+    css: style.css 
+--- 
+``` 
+ 
+Custom styles can also be applied to rMarkdown documents using CSS style files and the  
+**css** option. 
+ 
+###Using Rstudio 
+
+ 
+ 
+Lets see how to do this in RStudio. 
+ 
+**File -> New File -> R Markdown**  
+ 
+###Resources 
+
+ 
+ 
+http://yihui.name/knitr/   
+http://rmarkdown.rstudio.com/   
+http://rcharts.io/   
+http://rstudio.github.io/packrat/   
+ 
+###Exercises 
+
+ 
+ 
+- Open up markdownExampleDefaultStyles.Rmd and markdownExample.Rmd in the scripts directory. Have a look at the rMarkdown examples here and the resulting output html files. 
+ 
+[Example HTML Default style.](scripts/markdownExampleDefaultStyles.html)   
+[Example HTML with extra style.](scripts/markdownExample.html) 
+ 
+- Open scriptToConvertToRMarkdown.r in scripts directory and save as new name. 
+ 
+- Convert this script to an Rmarkdown document using the render() function or inside RStudio. 
+ 

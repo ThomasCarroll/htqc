@@ -1,7 +1,7 @@
 Introduction to R, Session 2
 ========================================================
-author: MRC Clinical Sciences Centre
-date:http://mrccsc.github.io/r_course/introToR_Session2.html
+author: http://mrccsc.github.io/r_course/introToR_Session2.html
+date:Tom Carroll, Sanjay Khadayate, Gopuraja Dharmalingam
 width: 1440
 height: 1100
 autosize: true
@@ -710,7 +710,7 @@ mean(x)
 ```
 
 ```
-[1] 70.40512
+[1] 68.99693
 ```
 
 ```r
@@ -879,7 +879,7 @@ $Calculation
 [1] 100
 
 $DateRun
-[1] "Tue Feb  3 11:04:13 2015"
+[1] "Mon Feb 23 14:25:41 2015"
 ```
 
 Functions (8/) -Scope
@@ -965,7 +965,7 @@ dayOfWeek()
 ```
 
 ```
-[1] "Tue"
+[1] "Mon"
 ```
 
 Rscript
@@ -1054,5 +1054,3 @@ The end
 Two tips
 ====
 
-Use vectorisation
-Keep 2D numeric data in matrices

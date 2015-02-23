@@ -1,7 +1,7 @@
 Reproducible R
 =========================================================
-author: MRC Clinical Sciences Centre
-date:http://mrccsc.github.io/r_course/reproducibleR.html
+author:  http://mrccsc.github.io/r_course/reproducibleR.html
+date: Tom Carroll, Sanjay Khadayate, Gopuraja Dharmalingam
 width: 1440
 height: 1100
 autosize: true
